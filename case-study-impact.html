@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Inclusion Case Study | Cognitive Banking</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-dark: #050A14;
+            --bg-card: #0F172A;
+            --primary-accent: #22C55E; 
+            --action-blue: #2563EB;
+            --text-main: #F8FAFC;
+            --text-muted: #94A3B8;
+            --border-color: #1E293B;
+            --max-width: 1400px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 { font-weight: 700; color: white; margin-bottom: 1rem; }
+
+        /* --- UNIFIED HEADER --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 5%;
+            background: rgba(5, 10, 20, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .real-logo { height: 35px; width: auto; }
+
+        nav ul { display: flex; gap: 2rem; list-style: none; }
+        nav a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.3s; }
+        nav a:hover { color: white; }
+
+        .btn-primary {
+            background: var(--action-blue);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            border: 1px solid var(--action-blue);
+        }
+        .btn-primary:hover { background: #1d4ed8; border-color: #1d4ed8; transform: translateY(-1px); }
+
+        /* Case Study Hero */
+        .cs-hero {
+            padding: 10rem 5% 4rem; /* Adjusted for fixed header */
+            background: radial-gradient(circle at top right, rgba(34, 197, 94, 0.1) 0%, transparent 60%);
+            border-bottom: 1px solid var(--border-color);
+        }
+        .cs-container { max-width: 1000px; margin: 0 auto; }
+        
+        .tag { 
+            font-family: 'JetBrains Mono', monospace; 
+            color: var(--primary-accent); 
+            background: rgba(34, 197, 94, 0.1); 
+            padding: 5px 10px; 
+            border-radius: 4px; 
+            font-size: 0.85rem; 
+            display: inline-block;
+            margin-bottom: 1.5rem;
+        }
+
+        .cs-hero h1 { font-size: 3.5rem; line-height: 1.1; margin-bottom: 1.5rem; }
+        .cs-hero p { font-size: 1.25rem; color: var(--text-muted); max-width: 700px; }
+
+        /* Metrics Bar */
+        .metrics-bar {
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border-color);
+            padding: 2rem 5%;
+        }
+        .metrics-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        .metric-item strong { display: block; font-size: 2.5rem; color: var(--primary-accent); line-height: 1; margin-bottom: 0.5rem; }
+        .metric-item span { color: var(--text-muted); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* Content Layout */
+        .content-section { padding: 4rem 5%; }
+        
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 300px; /* Main content + Sidebar */
+            gap: 4rem;
+        }
+
+        h2 { font-size: 2rem; margin: 3rem 0 1.5rem; color: var(--text-main); }
+        h3 { font-size: 1.25rem; margin: 1.5rem 0 1rem; color: var(--action-blue); }
+        p, li { color: #CBD5E1; margin-bottom: 1rem; font-size: 1.05rem; }
+        
+        ul { margin-left: 1.5rem; margin-bottom: 2rem; }
+        li { margin-bottom: 0.5rem; }
+
+        /* The "Glass Box" callout */
+        .glass-box {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid var(--primary-accent);
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+        .glass-box h3 { margin-top: 0; color: var(--primary-accent); }
+
+        /* Sidebar Styles */
+        .sidebar-card {
+            background: var(--bg-card);
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+        .sidebar-title { font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; }
+
+        /* Footer Grid */
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1.5fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+        .footer-link {
+            color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 0.8rem; transition: color 0.3s;
+        }
+        .footer-link:hover { color: var(--primary-accent); }
+
+        @media (max-width: 768px) {
+            .metrics-grid { grid-template-columns: 1fr; gap: 2rem; text-align: center; }
+            .two-col { grid-template-columns: 1fr; }
+            .cs-hero h1 { font-size: 2.5rem; }
+            nav { display: none; }
+            .footer-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Unified Header -->
+    <header>
+        <div style="display:flex; align-items:center; gap:10px;">
+            <a href="index.html" style="text-decoration: none; border: none;">
+                <img src="https://placehold.co/150x40/050A14/22C55E?text=COGNITIVE&font=monospace" alt="Cognitive Logo" class="real-logo">
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="success.html">Success Stories</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="blog.html">Insights</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <a href="contact.html" class="btn-primary">Strategy Session</a>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="cs-hero">
+        <div class="cs-container">
+            <span class="tag">Impact Finance</span>
+            <h1>Scaling Financial Inclusion with AI.</h1>
+            <p>How Impact Labs used Cognitive Agents to reduce loan origination time from 6 hours to 15 minutes, rescuing clients from predatory lenders.</p>
+        </div>
+    </section>
+
+    <!-- Key Metrics -->
+    <section class="metrics-bar">
+        <div class="metrics-grid">
+            <div class="metric-item">
+                <strong>96%</strong>
+                <span>Faster Origination</span>
+            </div>
+            <div class="metric-item">
+                <strong>100%</strong>
+                <span>Custom "Shadow Core"</span>
+            </div>
+            <div class="metric-item">
+                <strong>Zero</strong>
+                <span>Predatory Rates</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="content-section cs-container">
+        <div class="two-col">
+            
+            <!-- Left Column: The Narrative -->
+            <article>
+                <h2>The Problem: The Vicious Circle</h2>
+                <p>Impact Labs, a division of a leading financial institution, serves clients trapped in a vicious circle. Due to life events like illness, divorce, or job loss, these individuals have poor credit scores. Rejected by traditional banks, they turn to predatory lenders charging exorbitant interest rates, making repayment impossible.</p>
+                <p>Impact Labs pays off these predatory loans and refinances the client at a reasonable rate (10-30%). However, this market is "underserved" for a reason:</p>
+                <ul>
+                    <li><strong>Traditional Scoring Fails:</strong> Their credit scores are already ruined, so automated bank algorithms reject them instantly.</li>
+                    <li><strong>Painstaking Manual Review:</strong> Assessing risk requires deep forensic analysis (pay stubs, bank statements, character assessment).</li>
+                    <li><strong>Economic Unviability:</strong> It took <strong>5 to 6 hours</strong> to process a single low-value loan.</li>
+                </ul>
+
+                <h2>The Solution: A "Shadow Core" & Behavioral AI</h2>
+                <p>To make financial inclusion scalable, we needed to automate the un-automatable. We deployed the <strong>Cognitive AI Workbench</strong> combined with <strong>BusinessBANKER</strong>.</p>
+                
+                <h3>1. The "Shadow" Core Banking System</h3>
+                <p>Deploying a traditional Core Banking System (like Temenos or SAP) was too expensive for this specific portfolio. Instead, we built a lightweight, API-driven "Shadow Core" specifically for loan management, integrated directly into the AI workflow.</p>
+
+                <div class="glass-box">
+                    <h3>2. The Pre-Trained AI Agents</h3>
+                    <p>We replaced manual forensic work with specialized AI agents pre-trained on banking logic:</p>
+                    <ul>
+                        <li><strong>Cross-Check Agent:</strong> Validates identity by cross-referencing Equifax data with pay stubs (ignoring the bad score).</li>
+                        <li><strong>Income Analyzer:</strong> Deciphers highly variable pay stub formats and frequencies that confuse standard OCR.</li>
+                        <li><strong>Behavioral Analysis (The "Character" Test):</strong> Using Cognitive Task Analysis, we encoded expert intuition to assess "Character"—is the client punctual? Is their story consistent? Are their bank statement behaviors aligned with their claims?</li>
+                    </ul>
+                </div>
+
+                <h2>The Result: From Paperwork to People</h2>
+                <p>The transformation was drastic. The time to prepare and adjudicate a loan dropped from <strong>6 hours to 15 minutes</strong>.</p>
+                <p>More importantly, this efficiency changed the role of the staff. Instead of spending their day doing data entry and forensic document checking, loan officers now focus on <strong>sociological consulting</strong>—listening to the client's story, understanding their life events, and providing financial coaching.</p>
+                <p>Impact Labs successfully automated a complex, high-risk workflow to deliver financial relief to those who need it most.</p>
+            </article>
+
+            <!-- Right Column: Sidebar -->
+            <aside>
+                <div class="sidebar-card">
+                    <div class="sidebar-title">Client Profile</div>
+                    <p style="font-size: 0.9rem; margin-bottom: 0;">
+                        <strong>Entity:</strong> Impact Labs<br>
+                        <strong>Mission:</strong> Financial Inclusion<br>
+                        <strong>Target:</strong> Underserved / Bad Credit
+                    </p>
+                </div>
+
+                <div class="sidebar-card">
+                    <div class="sidebar-title">Tech Stack Deployed</div>
+                    <ul style="font-size: 0.9rem; list-style: none; margin: 0;">
+                        <li style="margin-bottom: 0.5rem;">• BusinessBANKER (LOS)</li>
+                        <li style="margin-bottom: 0.5rem;">• AI Workbench</li>
+                        <li style="margin-bottom: 0.5rem;">• Custom "Shadow Core"</li>
+                        <li>• Equifax & Paystub Agents</li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-card" style="border-color: var(--primary-accent);">
+                    <div class="sidebar-title" style="color: var(--primary-accent);">Key Insight</div>
+                    <p style="font-size: 0.95rem; font-style: italic; color: white;">
+                        "We used AI to assess 'Character'—punctuality and consistency—allowing us to lend to people the algorithms had rejected."
+                    </p>
+                </div>
+            </aside>
+
+        </div>
+    </section>
+
+    <!-- Unified Footer -->
+    <footer style="padding: 4rem 5%; background: #020617; border-top: 1px solid var(--border-color);">
+        <div class="container footer-grid">
+            <div>
+                <h4 style="margin-bottom: 1.5rem;">About Us</h4>
+                <p style="font-size: 0.9rem; line-height: 1.6; color: var(--text-muted);">
+                    Cognitive was founded in 1995 by the Computer Research Institute of Montreal (CRIM). Our experts have advanced degrees in human factors and interaction design.
+                </p>
+            </div>
+            <div>
+                <h4 style="margin-bottom: 1.5rem;">Recent Posts</h4>
+                <a href="#" class="footer-link">AI-Assisted Supervision of Abnormal Situations</a>
+                <a href="#" class="footer-link">Original Paper (1994): From Task Analysis to User Interface</a>
+            </div>
+            <div>
+                <h4 style="margin-bottom: 1.5rem;">Get in Touch</h4>
+                <p style="font-size: 0.9rem; color: var(--text-muted);">
+                    Montréal, QC H3B 2K4<br>
+                    <a href="mailto:info@cognitivegroup.com" style="color: white; text-decoration: none;">info@cognitivegroup.com</a><br>
+                    <span style="color: var(--primary-accent);">+1 (415) 493-8559</span>
+                </p>
+            </div>
+        </div>
+        <div style="text-align: center; border-top: 1px solid var(--border-color); padding-top: 2rem; color: var(--text-muted); font-size: 0.85rem;">
+            &copy; 2025 Cognitive Group. All Rights Reserved.
+        </div>
+    </footer>
+
+</body>
+</html>

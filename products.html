@@ -5,30 +5,124 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Products | Cognitive Banking</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    
+    <style>
+        /* --- CSS STYLES (EMBEDDED FOR PORTABILITY) --- */
+        :root {
+            --bg-dark: #050A14;
+            --bg-card: #0F172A;
+            --primary-accent: #22C55E; 
+            --action-blue: #2563EB;
+            --text-main: #F8FAFC;
+            --text-muted: #94A3B8;
+            --border-color: #1E293B;
+            --max-width: 1400px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 { font-weight: 700; color: white; margin-bottom: 1rem; }
+        
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--primary-accent);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .container { max-width: var(--max-width); margin: 0 auto; padding: 0 5%; }
+
+        /* HEADER */
+        header {
+            position: fixed; top: 0; width: 100%; padding: 1rem 5%;
+            background: rgba(5, 10, 20, 0.95); backdrop-filter: blur(10px);
+            z-index: 1000; display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .real-logo { height: 35px; width: auto; }
+        nav ul { display: flex; gap: 2rem; list-style: none; }
+        nav a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.3s; }
+        nav a:hover { color: white; }
+        .btn-primary {
+            background: var(--action-blue); color: white; padding: 0.6rem 1.2rem;
+            font-weight: 600; text-decoration: none; border-radius: 4px; font-size: 0.9rem;
+        }
+
+        /* HERO SMALL */
+        .hero-small {
+            padding-top: 10rem; padding-bottom: 4rem; text-align: center;
+            border-bottom: 1px solid var(--border-color);
+            background: linear-gradient(180deg, rgba(5,10,20,0) 0%, rgba(34, 197, 94, 0.05) 100%);
+        }
+        .hero-small h1 { font-size: 3rem; }
+
+        /* SECTIONS & GRIDS */
+        section { padding: 6rem 0; border-bottom: 1px solid var(--border-color); }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem; }
+        .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+
+        .card { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 6px; }
+
+        /* STATS */
+        .stat-box {
+            text-align: center; padding: 2rem; 
+            border-right: 1px solid #1e293b; 
+        }
+        .stat-box .number { display: block; font-size: 2.5rem; font-weight: 800; color: white; margin-bottom: 0.5rem; }
+        .stat-box span { color: var(--primary-accent); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* FOOTER */
+        footer { padding: 4rem 5%; background: #020617; border-top: 1px solid var(--border-color); text-align: center; color: var(--text-muted); }
+
+        /* MOBILE */
+        @media (max-width: 768px) {
+            nav { display: none; }
+            .grid-2, .grid-4 { grid-template-columns: 1fr; }
+            .stat-box { border-right: none; border-bottom: 1px solid #1e293b; }
+        }
+    </style>
 </head>
 <body>
 
-    <header>
-        <a href="index.html" class="logo-container">
+   <!-- UNIFIED HEADER START -->
+   <header>
+    <div style="display:flex; align-items:center; gap:10px;">
+        <a href="index.html" style="text-decoration: none; border: none;">
+            <!-- Updated Logo to match Index Page -->
             <img src="https://placehold.co/150x40/050A14/22C55E?text=COGNITIVE&font=monospace" alt="Cognitive Logo" class="real-logo">
         </a>
-        <nav>
-            <ul>
-                <li><a href="products.html" class="active">Products</a></li>
-                <li><a href="success.html">Success Stories</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="blog.html">Insights</a></li>
-            </ul>
-        </nav>
-        <a href="#contact" class="btn-primary">Book Demo</a>
-    </header>
+    </div>
+    <nav>
+        <ul>
+            <!-- Navigation Links -->
+            <li><a href="products.html">Products</a></li>
+            <li><a href="success.html">Success Stories</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="blog.html">Insights</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+    <a href="contact.html" class="btn-primary">Strategy Session</a>
+</header>
+<!-- UNIFIED HEADER END -->
 
     <div class="hero-small">
         <div class="container">
             <span class="mono">The Cognitive Suite</span>
             <h1>Deterministic Logic. <br>Enterprise Scale.</h1>
-            <p style="max-width: 600px; margin: 0 auto;">Streamlined, effective, and seamlessly integrated risk management.</p>
+            <p style="color: var(--text-muted); max-width: 600px; margin: 1rem auto 0;">Streamlined, effective, and seamlessly integrated risk management.</p>
         </div>
     </div>
 
@@ -63,7 +157,7 @@
                 <div>
                     <span class="mono">The Origination Engine</span>
                     <h2>BusinessBANKER (LOS)</h2>
-                    <p>Efficiently navigate the commercial loan and credit process. Our SaaS platform is meticulously crafted for simplicity, effectiveness, and seamless integration with existing Core Banking and CRM systems.</p>
+                    <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Efficiently navigate the commercial loan and credit process. Our SaaS platform is meticulously crafted for simplicity, effectiveness, and seamless integration with existing Core Banking and CRM systems.</p>
                     <ul style="list-style: none; color: var(--text-muted);">
                         <li style="margin-bottom: 0.5rem;">&#10003; <strong>Risk Scoring:</strong> Better loans with less risk.</li>
                         <li style="margin-bottom: 0.5rem;">&#10003; <strong>Power Workflow:</strong> Faster to issue with fewer errors.</li>
@@ -73,8 +167,12 @@
                     <br>
                     <a href="#" class="btn-primary">Download Brochure</a>
                 </div>
-                <div class="card" style="background: #020617; border: 1px solid var(--primary-accent); height: 100%; display:flex; align-items:center; justify-content:center;">
-                    <span class="mono">Interface Visual Placeholder</span>
+                
+                <!-- IMAGE 1: BusinessBANKER Interface -->
+                <div class="card" style="padding: 0; overflow: hidden; border: 1px solid var(--primary-accent); display: flex; align-items: center; justify-content: center; min-height: 300px;">
+                    <img src="https://i.postimg.cc/x1t7Mf4V/Chat-GPT-Image-Dec-20-2025-03-45-35-PM.png" 
+                         alt="BusinessBANKER Software Interface" 
+                         style="width: 100%; height: auto; display: block;">
                 </div>
             </div>
         </div>
@@ -84,37 +182,87 @@
     <section style="background: var(--bg-card);">
         <div class="container">
             <div class="grid-2">
-                <div class="card" style="height: 100%;">
-                    <div class="mono" style="margin-top: 2rem;">ARCHITECTURE: NEURAL_SYMBOLIC</div>
+                
+                <!-- IMAGE 2: AI Agent Capture -->
+                <div class="card" style="padding: 0; overflow: hidden; min-height: 300px; display: flex; align-items: center; justify-content: center;">
+                    <img src="https://i.postimg.cc/x8fMv2Zz/Agent-Capture.png" 
+                         alt="Neural Symbolic AI Diagram" 
+                         style="width: 100%; height: auto; display: block;">
                 </div>
+
                 <div>
                     <span class="mono">The Cognitive Layer</span>
                     <h2>AI Workbench & Orchestrator</h2>
-                    <p>We don't just sell an app; we sell an encapsulated brain. Our AI Workbench allows your bank to "clone" your best credit officers.</p>
-                    <p>The Orchestrator encapsulates AI agents to handle complex tasks autonomously while maintaining a "Human-in-the-loop" audit trail. It transforms unstructured data into deterministic decisions.</p>
+                    
+                    <p style="color: var(--text-muted); margin-bottom: 1rem;"><strong>We don't just sell software. We encapsulate expertise.</strong></p>
+                    <p style="color: var(--text-muted);">Our AI Workbench enables banks to "clone" their best credit officers. By capturing human judgment through <em>Cognitive Task Analysis</em>, we translate expert intuition directly into deterministic AI agents.</p>
+                    
+                    <ul style="list-style: none; color: var(--text-muted); margin-top: 1.5rem;">
+                        <li style="margin-bottom: 1rem; border-left: 2px solid var(--primary-accent); padding-left: 1rem;">
+                            <strong>Encapsulated Brains:</strong> Industrialize high-stakes credit judgment.
+                        </li>
+                        <li style="margin-bottom: 1rem; border-left: 2px solid var(--primary-accent); padding-left: 1rem;">
+                            <strong>Deterministic Precision:</strong> Agents perform complex analysis with a traceable audit trail.
+                        </li>
+                        <li style="margin-bottom: 1rem; border-left: 2px solid var(--primary-accent); padding-left: 1rem;">
+                            <strong>Scale Without Retraining:</strong> Validated workflows reused instantly across the enterprise.
+                        </li>
+                    </ul>
+
+                    <!-- !!! ADDED QUOTE BLOCK HERE !!! -->
+                    <div style="margin-top: 2rem; padding: 1.5rem; border-left: 3px solid var(--primary-accent); background: rgba(34, 197, 94, 0.05); border-radius: 0 6px 6px 0;">
+                        <p style="color: white; font-size: 1rem; font-style: italic; line-height: 1.6; margin: 0;">
+                            "The combination of Cognitive Task Analysis (CTA), real intelligence models, with the most advanced pretrained LLMs delivers invaluable results. The continuous reinforcement of CTA is actively transforming the industry."
+                        </p>
+                    </div>
+
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Industries -->
+    <!-- Industries (UPDATED AEROSPACE) -->
     <section>
         <div class="container">
             <span class="mono" style="text-align: center;">Industries We Serve</span>
             <h2 style="text-align: center; margin-bottom: 3rem;">Beyond Banking</h2>
             <div class="grid-3">
-                <div class="card">
-                    <h3>Finance</h3>
-                    <p>End-to-end loan origination, risk scoring, and compliance automation for Tier-1 Banks and Credit Unions.</p>
+                
+                <!-- Finance -->
+                <div class="card" style="padding: 0; overflow: hidden;">
+                    <img src="https://i.postimg.cc/cH0S0x6v/Chat-GPT-Image-Dec-20-2025-06-26-00-PM.png" alt="Finance" style="width: 100%; height: 200px; object-fit: cover;">
+                    <div style="padding: 2rem;">
+                        <h3>Finance</h3>
+                        <p style="color: var(--text-muted);">End-to-end loan origination, risk scoring, and compliance automation for Tier-1 Banks and Credit Unions.</p>
+                    </div>
                 </div>
-                <div class="card">
-                    <h3>Energy</h3>
-                    <p>Complex project finance adjudication and operational risk management for large-scale energy infrastructure.</p>
+
+                <!-- Energy -->
+                <div class="card" style="padding: 0; overflow: hidden;">
+                    <img src="https://i.postimg.cc/QxtjFdmQ/Chat-GPT-Image-Dec-20-2025-06-23-24-PM.png" alt="Energy" style="width: 100%; height: 200px; object-fit: cover;">
+                    <div style="padding: 2rem;">
+                        <h3>Energy & Grid Control</h3>
+                        <p style="color: var(--text-muted);">Design of mission-critical Energy Management Systems (EMS) for real-time grid control.</p>
+                        <p style="font-size: 0.85rem; color: #94a3b8; margin-top: 1rem;">
+                            <strong>Example: Hydro-Québec</strong><br>
+                            A control ecosystem of 10,000+ interconnected screens managing grid supervision, incident resolution, and predictive automation for one of the world's most complex grids.
+                        </p>
+                    </div>
                 </div>
-                <div class="card">
-                    <h3>Aerospace</h3>
-                    <p>Supply chain finance and rigorous compliance tracking for the high-stakes aerospace sector.</p>
+
+                <!-- Aerospace -->
+                <div class="card" style="padding: 0; overflow: hidden;">
+                    <img src="https://i.postimg.cc/TY7Y0D1P/Screenshot-2025-12-20-at-6-23-13-PM.png" alt="Aerospace" style="width: 100%; height: 200px; object-fit: cover;">
+                    <div style="padding: 2rem;">
+                        <h3>Aerospace & AI Assurance</h3>
+                        <p style="color: var(--text-muted);">We design and review automation systems to ensure reliable, human-supervised decision-making in mission-critical environments.</p>
+                        <p style="font-size: 0.85rem; color: #94a3b8; margin-top: 1rem;">
+                            <strong>Deterministic Workflows</strong><br>
+                            By embedding human expertise into auditable logic, we prevent over-automation, reduce risk, and ensure AI systems remain safe and regulator-ready.
+                        </p>
+                    </div>
                 </div>
+
             </div>
         </div>
     </section>

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commercial Lending Case Study | Cognitive Banking</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-dark: #050A14;
+            --bg-card: #0F172A;
+            --primary-accent: #22C55E; /* Green for Success/Money */
+            --secondary-accent: #38BDF8; /* Blue for Technology */
+            --text-main: #F8FAFC;
+            --text-muted: #94A3B8;
+            --border-color: #1E293B;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; color: inherit; }
+
+        /* Header (Same as previous pages for consistency) */
+        header {
+            padding: 1.5rem 5%;
+            background: rgba(5, 10, 20, 0.9);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo-container { font-weight: 700; font-size: 1.5rem; display: flex; align-items: center; gap: 10px; }
+        .logo-container span { color: var(--primary-accent); }
+
+        nav ul { display: flex; gap: 2rem; list-style: none; }
+        nav a { color: var(--text-muted); transition: color 0.3s; font-size: 0.9rem; }
+        nav a:hover { color: var(--text-main); }
+
+        .btn-primary {
+            background: var(--text-main);
+            color: var(--bg-dark);
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            border-radius: 2px;
+            border: 1px solid var(--text-main);
+            transition: all 0.3s;
+        }
+        .btn-primary:hover { background: transparent; color: var(--text-main); }
+
+        /* Case Study Hero */
+        .cs-hero {
+            padding: 6rem 5%;
+            background: radial-gradient(circle at top right, rgba(34, 197, 94, 0.1) 0%, transparent 60%);
+            border-bottom: 1px solid var(--border-color);
+        }
+        .cs-container { max-width: 1000px; margin: 0 auto; }
+        
+        .tag { 
+            font-family: 'JetBrains Mono', monospace; 
+            color: var(--primary-accent); 
+            background: rgba(34, 197, 94, 0.1); 
+            padding: 5px 10px; 
+            border-radius: 4px; 
+            font-size: 0.85rem; 
+            display: inline-block;
+            margin-bottom: 1.5rem;
+        }
+
+        .cs-hero h1 { font-size: 3.5rem; line-height: 1.1; margin-bottom: 1.5rem; }
+        .cs-hero p { font-size: 1.25rem; color: var(--text-muted); max-width: 700px; }
+
+        /* Metrics Bar */
+        .metrics-bar {
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border-color);
+            padding: 2rem 5%;
+        }
+        .metrics-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        .metric-item strong { display: block; font-size: 2.5rem; color: var(--primary-accent); line-height: 1; margin-bottom: 0.5rem; }
+        .metric-item span { color: var(--text-muted); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* Content Layout */
+        .content-section { padding: 4rem 5%; }
+        
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 300px; /* Main content + Sidebar */
+            gap: 4rem;
+        }
+
+        h2 { font-size: 2rem; margin: 3rem 0 1.5rem; color: var(--text-main); }
+        h3 { font-size: 1.25rem; margin: 1.5rem 0 1rem; color: var(--secondary-accent); }
+        p, li { color: #CBD5E1; margin-bottom: 1rem; font-size: 1.05rem; }
+        
+        ul { margin-left: 1.5rem; margin-bottom: 2rem; }
+        li { margin-bottom: 0.5rem; }
+
+        /* The "Glass Box" callout */
+        .glass-box {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid var(--secondary-accent);
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+        .glass-box h3 { margin-top: 0; color: var(--primary-accent); }
+
+        /* Sidebar Styles */
+        .sidebar-card {
+            background: var(--bg-card);
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+        .sidebar-title { font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; }
+
+        @media (max-width: 768px) {
+            .metrics-grid { grid-template-columns: 1fr; gap: 2rem; text-align: center; }
+            .two-col { grid-template-columns: 1fr; }
+            .cs-hero h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <header>
+        <a href="index.html" class="logo-container">
+            <span>&#9638;</span> cognitive
+        </a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Platform</a></li>
+                <li><a href="success.html">Success Stories</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <a href="contact.html" class="btn-primary">Deploy AI</a>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="cs-hero">
+        <div class="cs-container">
+            <span class="tag">Commercial Lending</span>
+            <h1>Eliminating Friction in<br>Loan Origination.</h1>
+            <p>How a leading North American financial institution used the Cognitive AI Workbench to reduce loan preparation time from 120 minutes to 10 minutes.</p>
+        </div>
+    </section>
+
+    <!-- Key Metrics -->
+    <section class="metrics-bar">
+        <div class="metrics-grid">
+            <div class="metric-item">
+                <strong>92%</strong>
+                <span>Reduction in Prep Time</span>
+            </div>
+            <div class="metric-item">
+                <strong>0%</strong>
+                <span>Rework Rate</span>
+            </div>
+            <div class="metric-item">
+                <strong>100%</strong>
+                <span>Process Automation</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="content-section cs-container">
+        <div class="two-col">
+            
+            <!-- Left Column: The Narrative -->
+            <article>
+                <h2>The Challenge: The "Silo" Trap</h2>
+                <p>A leading North American financial institution with a large commercial portfolio faced chronic inefficiencies. Despite having strong front-office expertise, the loan origination workflow was fragmented across three isolated functions:</p>
+                <ul>
+                    <li><strong>Account Managers:</strong> Client interaction and initial prep.</li>
+                    <li><strong>Middle Office (Risk):</strong> Credit analysis and structuring.</li>
+                    <li><strong>Operations (Back Office):</strong> Documentation, offer letters, and security.</li>
+                </ul>
+                <p>Each loan application bounced back and forth 2-3 times between these groups. Account managers were spending <strong>120 minutes per loan</strong> just on preparation, with half that time wasted on rework. Previous attempts to use Robotic Process Automation (RPA) had failed because the upstream data was too messy.</p>
+
+                <h2>The Solution: Cognitive Orchestration</h2>
+                <p>Instead of replacing their core systems, the bank deployed the <strong>Cognitive AI Workbench</strong> as an orchestration layer. This wasn't a standard LOS (Loan Origination System); it was an intelligent layer designed to think like a credit officer.</p>
+                
+                <div class="glass-box">
+                    <h3>How the AI Workbench Works</h3>
+                    <ul>
+                        <li><strong>Ingestion:</strong> Captures client docs, bank statements, and Equifax reports directly.</li>
+                        <li><strong>Normalization:</strong> Automatically standardizes variable financial statements (e.g., mapping different "Revenue" line items to a single standard).</li>
+                        <li><strong>Deterministic Analysis:</strong> Runs credit risk policies against the data to generate a structured, audit-ready loan request.</li>
+                    </ul>
+                </div>
+
+                <h2>The Results: Frictionless Origination</h2>
+                <p>The impact was immediate. By ensuring data was structured and validated <em>before</em> it ever reached the Operations team, the bank eliminated the primary failure mode of their previous automation efforts.</p>
+                
+                <h3>Operational Impact</h3>
+                <ul>
+                    <li><strong>Speed:</strong> Account Manager prep time dropped from 120 minutes to 10 minutes.</li>
+                    <li><strong>Accuracy:</strong> 100% elimination of back-and-forth iterations between Front Office and Risk.</li>
+                    <li><strong>Automation:</strong> Because the AI output was clean, the bank could finally turn on end-to-end automation for offer letters and security documentation.</li>
+                </ul>
+                <p>The Proof of Concept proved that the AI Workbench alone—without a traditional LOS overhaul—was sufficient to modernize the commercial lending workflow.</p>
+            </article>
+
+            <!-- Right Column: Sidebar -->
+            <aside>
+                <div class="sidebar-card">
+                    <div class="sidebar-title">Client Profile</div>
+                    <p style="font-size: 0.9rem; margin-bottom: 0;">
+                        <strong>Sector:</strong> Commercial Banking<br>
+                        <strong>Region:</strong> United States<br>
+                        <strong>Portfolio:</strong> Large Cap SME Lending
+                    </p>
+                </div>
+
+                <div class="sidebar-card">
+                    <div class="sidebar-title">Tech Stack Deployed</div>
+                    <ul style="font-size: 0.9rem; list-style: none; margin: 0;">
+                        <li style="margin-bottom: 0.5rem;">• Cognitive AI Workbench</li>
+                        <li style="margin-bottom: 0.5rem;">• Financial Statement OCR</li>
+                        <li style="margin-bottom: 0.5rem;">• Deterministic Risk Engine</li>
+                        <li>• Auto-Doc Generation</li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-card" style="border-color: var(--primary-accent);">
+                    <div class="sidebar-title" style="color: var(--primary-accent);">Key Takeaway</div>
+                    <p style="font-size: 0.95rem; font-style: italic; color: white;">
+                        "Previous automation failed because the data was bad. Cognitive fixed the data upstream, unlocking the rest of our tech stack."
+                    </p>
+                </div>
+            </aside>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="padding: 4rem 5%; background: #020617; border-top: 1px solid var(--border-color); text-align: center;">
+        <div class="logo-container" style="justify-content: center; margin-bottom: 1.5rem;">
+            <span>&#9638;</span> cognitive
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">
+            &copy; 2025 Cognitive Group. All Rights Reserved.
+        </p>
+    </footer>
+
+</body>
+</html>

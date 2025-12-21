@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Cognitive Banking</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        /* Specific Styles for Contact Page */
+        .map-frame {
+            width: 100%;
+            height: 250px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            filter: grayscale(100%) invert(92%) contrast(83%); /* Makes map look "Dark Mode" */
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 2rem;
+            border-radius: 8px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .contact-details p {
+            margin-bottom: 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+        
+        .email-link {
+            color: var(--primary-accent);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .email-link:hover { text-decoration: underline; }
+
+        .testimonial-section {
+            background: #020617;
+            padding: 6rem 5%;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+        }
+        
+        .quote {
+            font-size: 1.8rem;
+            font-weight: 300;
+            color: white;
+            max-width: 900px;
+            margin: 0 auto 2rem;
+            line-height: 1.4;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+   <!-- UNIFIED HEADER START -->
+   <header>
+    <div style="display:flex; align-items:center; gap:10px;">
+        <a href="index.html" style="text-decoration: none; border: none;">
+            <!-- Updated Logo to match Index Page -->
+            <img src="https://placehold.co/150x40/050A14/22C55E?text=COGNITIVE&font=monospace" alt="Cognitive Logo" class="real-logo">
+        </a>
+    </div>
+    <nav>
+        <ul>
+            <!-- Navigation Links -->
+            <li><a href="products.html">Products</a></li>
+            <li><a href="success.html">Success Stories</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="blog.html">Insights</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+    <a href="contact.html" class="btn-primary">Strategy Session</a>
+</header>
+<!-- UNIFIED HEADER END -->
+
+    <!-- Hero -->
+    <div class="hero-small">
+        <div class="container">
+            <span class="mono">Global Presence</span>
+            <h1>Get in Touch.</h1>
+            <p>Operating across North America and globally.</p>
+        </div>
+    </div>
+
+    <!-- Locations Grid -->
+    <section>
+        <div class="container">
+            <div class="grid-2">
+                
+                <!-- Location 1: Montreal HQ -->
+                <div class="contact-card">
+                    <div>
+                        <iframe class="map-frame" 
+                            src="https://maps.google.com/maps?q=1155%20Rene-Levesque%20Blvd%20West%20Montreal&t=&z=14&ie=UTF8&iwloc=&output=embed" 
+                            frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
+                        </iframe>
+                        <h3>Montréal (HQ)</h3>
+                        <div class="contact-details">
+                            <p>1155 René-Lévesque Blvd West #2500</p>
+                            <p>Montréal, QC H3B 2K4</p>
+                            <a href="mailto:info@cognitivegroup.com" class="email-link">info@cognitivegroup.com</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Location 2: Montreal R&D -->
+                <div class="contact-card">
+                    <div>
+                        <iframe class="map-frame" 
+                            src="https://maps.google.com/maps?q=87%20Rue%20Prince%20Montreal&t=&z=14&ie=UTF8&iwloc=&output=embed" 
+                            frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
+                        </iframe>
+                        <h3>Montréal (Innovation Lab)</h3>
+                        <div class="contact-details">
+                            <p>87 Rue Prince, 4th floor</p>
+                            <p>Montréal, QC H3C 2M7</p>
+                            <a href="mailto:info@cognitivegroup.com" class="email-link">info@cognitivegroup.com</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Location 3: San Francisco -->
+                <div class="contact-card">
+                    <div>
+                        <iframe class="map-frame" 
+                            src="https://maps.google.com/maps?q=1390%20Market%20St%20San%20Francisco&t=&z=14&ie=UTF8&iwloc=&output=embed" 
+                            frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
+                        </iframe>
+                        <h3>San Francisco</h3>
+                        <div class="contact-details">
+                            <p>1390 Market St, Suite 200</p>
+                            <p>San Francisco, CA 94102</p>
+                            <p>USA</p>
+                            <a href="mailto:info@cognitivegroup.com" class="email-link">info@cognitivegroup.com</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Location 4: Dallas/Lewisville -->
+                <div class="contact-card">
+                    <div>
+                        <iframe class="map-frame" 
+                            src="https://maps.google.com/maps?q=109%20Main%20St%20Lewisville%20TX&t=&z=14&ie=UTF8&iwloc=&output=embed" 
+                            frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
+                        </iframe>
+                        <h3>Dallas Area</h3>
+                        <div class="contact-details">
+                            <p>109 Main Street</p>
+                            <p>Lewisville, Texas 75057</p>
+                            <p>USA</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial Section -->
+    <div class="testimonial-section">
+        <div class="container">
+            <div class="mono">CLIENT PERSPECTIVE</div>
+            <p class="quote">
+                “Cognitive takes us to a new depth in the way they are able to reference the design and develop the strategy. They are the only ones I’m aware of that can do this.”
+            </p>
+            <div>
+                <strong style="color: white; font-size: 1.1rem; display:block;">Martin Stevens</strong>
+                <span style="color: var(--text-muted);">Royal Bank of Canada (RBC)</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Cognitive Group. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>

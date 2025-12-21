@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Banking AI | Cognitive Banking</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-dark: #050A14;
+            --bg-card: #0F172A;
+            --primary-accent: #22C55E; /* Fits WhatsApp Green perfectly */
+            --action-blue: #2563EB;
+            --text-main: #F8FAFC;
+            --text-muted: #94A3B8;
+            --border-color: #1E293B;
+            --max-width: 1400px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 { font-weight: 700; color: white; margin-bottom: 1rem; }
+
+        /* --- UNIFIED HEADER --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 5%;
+            background: rgba(5, 10, 20, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .real-logo { height: 35px; width: auto; }
+
+        nav ul { display: flex; gap: 2rem; list-style: none; }
+        nav a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.3s; }
+        nav a:hover { color: white; }
+
+        .btn-primary {
+            background: var(--action-blue);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            border: 1px solid var(--action-blue);
+        }
+        .btn-primary:hover { background: #1d4ed8; border-color: #1d4ed8; transform: translateY(-1px); }
+
+        /* Case Study Hero */
+        .cs-hero {
+            padding: 10rem 5% 4rem;
+            background: radial-gradient(circle at top right, rgba(34, 197, 94, 0.15) 0%, transparent 60%);
+            border-bottom: 1px solid var(--border-color);
+        }
+        .cs-container { max-width: 1000px; margin: 0 auto; }
+        
+        .tag { 
+            font-family: 'JetBrains Mono', monospace; 
+            color: var(--primary-accent); 
+            background: rgba(34, 197, 94, 0.1); 
+            padding: 5px 10px; 
+            border-radius: 4px; 
+            font-size: 0.85rem; 
+            display: inline-block;
+            margin-bottom: 1.5rem;
+        }
+
+        .cs-hero h1 { font-size: 3.5rem; line-height: 1.1; margin-bottom: 1.5rem; }
+        .cs-hero p { font-size: 1.25rem; color: var(--text-muted); max-width: 700px; }
+
+        /* Metrics Bar */
+        .metrics-bar {
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border-color);
+            padding: 2rem 5%;
+        }
+        .metrics-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        .metric-item strong { display: block; font-size: 2.5rem; color: var(--primary-accent); line-height: 1; margin-bottom: 0.5rem; }
+        .metric-item span { color: var(--text-muted); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* Content Layout */
+        .content-section { padding: 4rem 5%; }
+        
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 300px; /* Main content + Sidebar */
+            gap: 4rem;
+        }
+
+        h2 { font-size: 2rem; margin: 3rem 0 1.5rem; color: var(--text-main); }
+        h3 { font-size: 1.25rem; margin: 1.5rem 0 1rem; color: var(--primary-accent); }
+        p, li { color: #CBD5E1; margin-bottom: 1rem; font-size: 1.05rem; }
+        
+        ul { margin-left: 1.5rem; margin-bottom: 2rem; }
+        li { margin-bottom: 0.5rem; }
+
+        /* Step List */
+        .step-list { counter-reset: step; list-style: none; margin-left: 0; }
+        .step-list li { position: relative; padding-left: 3rem; margin-bottom: 2rem; }
+        .step-list li::before {
+            counter-increment: step;
+            content: counter(step);
+            position: absolute;
+            left: 0; top: 0;
+            width: 2rem; height: 2rem;
+            background: var(--bg-card);
+            border: 1px solid var(--primary-accent);
+            color: var(--primary-accent);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 2rem;
+            font-weight: 700;
+        }
+
+        /* CHAT SIMULATION STYLES */
+        .chat-sim {
+            background: #0B141A;
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid #1E293B;
+            margin: 2rem 0;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+        }
+        .chat-bubble {
+            max-width: 80%;
+            padding: 10px 15px;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        .chat-user {
+            background: #005C4B; /* WhatsApp Green */
+            color: white;
+            margin-left: auto;
+            border-bottom-right-radius: 0;
+        }
+        .chat-ai {
+            background: #202C33;
+            color: #E9EDEF;
+            margin-right: auto;
+            border-bottom-left-radius: 0;
+        }
+        .chat-meta {
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.5);
+            text-align: right;
+            margin-top: 4px;
+        }
+        .system-note {
+            text-align: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--primary-accent);
+            margin: 1rem 0;
+            background: rgba(34, 197, 94, 0.1);
+            padding: 5px;
+            border-radius: 4px;
+        }
+
+        /* Sidebar Styles */
+        .sidebar-card {
+            background: var(--bg-card);
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+        .sidebar-title { font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; }
+
+        /* Footer */
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1.5fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+        .footer-link {
+            color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 0.8rem; transition: color 0.3s;
+        }
+        .footer-link:hover { color: var(--primary-accent); }
+
+        @media (max-width: 768px) {
+            .metrics-grid { grid-template-columns: 1fr; gap: 2rem; text-align: center; }
+            .two-col { grid-template-columns: 1fr; }
+            .cs-hero h1 { font-size: 2.5rem; }
+            nav { display: none; }
+            .footer-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Unified Header -->
+    <header>
+        <div style="display:flex; align-items:center; gap:10px;">
+            <a href="index.html" style="text-decoration: none; border: none;">
+                <img src="https://placehold.co/150x40/050A14/22C55E?text=COGNITIVE&font=monospace" alt="Cognitive Logo" class="real-logo">
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="success.html">Success Stories</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="blog.html">Insights</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <a href="contact.html" class="btn-primary">Strategy Session</a>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="cs-hero">
+        <div class="cs-container">
+            <span class="tag">Conversational Banking</span>
+            <h1>Credit Origination via WhatsApp.</h1>
+            <p>Moving financial services from complex web forms to natural language conversations. We enabled a fully automated credit channel accessible to 2 billion people.</p>
+        </div>
+    </section>
+
+    <!-- Key Metrics -->
+    <section class="metrics-bar">
+        <div class="metrics-grid">
+            <div class="metric-item">
+                <strong>Zero</strong>
+                <span>User Friction</span>
+            </div>
+            <div class="metric-item">
+                <strong>Global</strong>
+                <span>Accessibility</span>
+            </div>
+            <div class="metric-item">
+                <strong>100%</strong>
+                <span>Auto-Structured Data</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="content-section cs-container">
+        <div class="two-col">
+            
+            <!-- Left Column: The Narrative -->
+            <article>
+                <h2>The Challenge: The "Form" Barrier</h2>
+                <p>Banks have traditionally relied on web portals and call centers. However, in mobile-first regions (Africa, South America, parts of Europe), complex web forms have low conversion rates. They require high digital literacy and reliable broadband.</p>
+                <p><strong>The Opportunity:</strong> For 2 billion people, the internet <em>is</em> WhatsApp. The goal was to move financial services to where the customers actually live—inside their chat apps.</p>
+
+                <h2>The Solution: Cognitive Interface</h2>
+                <p>We didn't build a chatbot that forces users to select options from a menu (e.g., "Press 1 for Loans"). We deployed a <strong>Natural-Language Cognitive Interface</strong>. It allows customers to speak freely, while the AI Workbench structures their intent in real-time.</p>
+                
+                <h3>How It Works</h3>
+                <div class="chat-sim">
+                    <div class="chat-bubble chat-user">
+                        Hi, I need 50k for a new truck for my business.
+                        <div class="chat-meta">10:42 AM</div>
+                    </div>
+                    
+                    <div class="system-note">
+                        > AI DETECTED: Intent=Loan, Amount=50000, Purpose=Vehicle
+                    </div>
+
+                    <div class="chat-bubble chat-ai">
+                        I can help with that business loan. Is this for your existing company, "Green Transport"?
+                        <div class="chat-meta">10:42 AM</div>
+                    </div>
+
+                    <div class="chat-bubble chat-user">
+                        Yes exactly.
+                        <div class="chat-meta">10:43 AM</div>
+                    </div>
+
+                    <div class="system-note">
+                        > ACTION: Retrieving Entity 'Green Transport' from Core Banking...
+                    </div>
+
+                    <div class="chat-bubble chat-ai">
+                        Great. Please take a photo of your latest pay stub or invoice and send it here.
+                        <div class="chat-meta">10:43 AM</div>
+                    </div>
+                </div>
+
+                <h3>The Technical Workflow</h3>
+                <ul class="step-list">
+                    <li>
+                        <strong>Natural Language Interaction:</strong> The system accepts free-form language, informal phrasing, and mixed formats (e.g., "100k", "100 000").
+                    </li>
+                    <li>
+                        <strong>Dynamic Interviewing:</strong> The AI asks only what is needed based on the conversation context, mirroring a human account manager.
+                    </li>
+                    <li>
+                        <strong>Real-Time Structuring:</strong> As the user chats, the AI Workbench populates a structured loan request inside <strong>Business Banker</strong>. No re-keying required.
+                    </li>
+                    <li>
+                        <strong>Document Capture:</strong> Users send photos/PDFs via chat. The system automatically captures, validates, and links them to the loan record.
+                    </li>
+                </ul>
+
+                <h2>Strategic Impact</h2>
+                <p>This is not a channel experiment; it is a paradigm shift. By embedding cognitive reasoning into conversational interfaces, the bank extended its reach to populations previously excluded by digital complexity. Analysts now focus on judgment, while the AI handles the interview.</p>
+            </article>
+
+            <!-- Right Column: Sidebar -->
+            <aside>
+                <div class="sidebar-card">
+                    <div class="sidebar-title">Strategic Goal</div>
+                    <p style="font-size: 0.9rem; margin-bottom: 0;">
+                        <strong>Target:</strong> Mobile-First Markets<br>
+                        <strong>Channel:</strong> WhatsApp / SMS<br>
+                        <strong>User Base:</strong> Mass Market & SME
+                    </p>
+                </div>
+
+                <div class="sidebar-card">
+                    <div class="sidebar-title">Tech Stack</div>
+                    <ul style="font-size: 0.9rem; list-style: none; margin: 0;">
+                        <li style="margin-bottom: 0.5rem;">• WhatsApp Business API</li>
+                        <li style="margin-bottom: 0.5rem;">• AI Workbench (NLP)</li>
+                        <li style="margin-bottom: 0.5rem;">• Business Banker (LOS)</li>
+                        <li>• Document OCR Agent</li>
+                    </ul>
+                </div>
+
+                <div class="sidebar-card" style="border-color: var(--primary-accent);">
+                    <div class="sidebar-title" style="color: var(--primary-accent);">Key Takeaway</div>
+                    <p style="font-size: 0.95rem; font-style: italic; color: white;">
+                        "For a large part of the world, WhatsApp is the internet. We successfully made it their bank branch."
+                    </p>
+                </div>
+            </aside>
+
+        </div>
+    </section>
+
+    <!-- Unified Footer -->
+    <footer style="padding: 4rem 5%; background: #020617; border-top: 1px solid var(--border-color);">
+        <div class="container footer-grid">
+            <div>
+                <h4 style="margin-bottom: 1.5rem;">About Us</h4>
+                <p style="font-size: 0.9rem; line-height: 1.6; color: var(--text-muted);">
+                    Cognitive was founded in 1995 by the Computer Research Institute of Montreal (CRIM). Our experts have advanced degrees in human factors and interaction design.
+                </p>
+            </div>
+            <div>
+                <h4 style="margin-bottom: 1.5rem;">Recent Posts</h4>
+                <a href="#" class="footer-link">AI-Assisted Supervision of Abnormal Situations</a>
+                <a href="#" class="footer-link">Original Paper (1994): From Task Analysis to User Interface</a>
+            </div>
+            <div>
+                <h4 style="margin-bottom: 1.5rem;">Get in Touch</h4>
+                <p style="font-size: 0.9rem; color: var(--text-muted);">
+                    Montréal, QC H3B 2K4<br>
+                    <a href="mailto:info@cognitivegroup.com" style="color: white; text-decoration: none;">info@cognitivegroup.com</a><br>
+                    <span style="color: var(--primary-accent);">+1 (415) 493-8559</span>
+                </p>
+            </div>
+        </div>
+        <div style="text-align: center; border-top: 1px solid var(--border-color); padding-top: 2rem; color: var(--text-muted); font-size: 0.85rem;">
+            &copy; 2025 Cognitive Group. All Rights Reserved.
+        </div>
+    </footer>
+
+</body>
+</html>

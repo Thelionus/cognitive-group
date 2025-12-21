@@ -11,15 +11,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
-        /* --- CSS STYLES (EMBEDDED) --- */
         :root {
             --bg-dark: #050A14;
             --bg-card: #0F172A;
-            --primary-accent: #22C55E;
+            --primary-accent: #22C55E; 
+            --action-blue: #2563EB;
             --text-main: #F8FAFC;
             --text-muted: #94A3B8;
             --border-color: #1E293B;
-            --glow: rgba(34, 197, 94, 0.15);
             --max-width: 1400px;
         }
 
@@ -30,10 +29,10 @@
             color: var(--text-main);
             font-family: 'Inter', sans-serif;
             line-height: 1.6;
-            overflow-x: hidden; /* Prevents horizontal scroll */
+            overflow-x: hidden;
         }
 
-        h1, h2, h3 { font-weight: 700; color: white; margin-bottom: 1rem; }
+        h1, h2, h3, h4 { font-weight: 700; color: white; margin-bottom: 1rem; }
         
         .mono {
             font-family: 'JetBrains Mono', monospace;
@@ -45,7 +44,7 @@
             margin-bottom: 0.5rem;
         }
 
-        /* --- Header --- */
+        /* --- UNIFIED HEADER --- */
         header {
             position: fixed;
             top: 0;
@@ -63,41 +62,74 @@
         .real-logo { height: 35px; width: auto; }
 
         nav ul { display: flex; gap: 2rem; list-style: none; }
-        nav a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; }
-        nav a:hover { color: white; }
+        nav a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.3s; }
+        nav a:hover, nav a.active { color: white; }
 
         .btn-primary {
-            background: var(--text-main);
-            color: var(--bg-dark);
+            background: var(--action-blue);
+            color: white;
             padding: 0.6rem 1.2rem;
-            font-weight: 700;
+            font-weight: 600;
             text-decoration: none;
             border-radius: 4px;
             font-size: 0.9rem;
+            transition: all 0.2s;
+            border: 1px solid var(--action-blue);
         }
+        .btn-primary:hover { background: #1d4ed8; border-color: #1d4ed8; transform: translateY(-1px); }
 
         /* --- Hero --- */
         .hero {
             padding: 10rem 5% 4rem;
             max-width: var(--max-width);
             margin: 0 auto;
-            background: radial-gradient(circle at 70% 20%, var(--glow) 0%, transparent 50%);
         }
-        .hero h1 { font-size: 4rem; line-height: 1.1; margin-bottom: 1.5rem; max-width: 800px; }
+        .hero h1 { 
+            font-size: clamp(2.5rem, 4vw, 4.5rem); 
+            line-height: 1.1; 
+            margin-bottom: 1.5rem; 
+            max-width: 950px;
+            letter-spacing: -0.03em;
+        }
         .hero p { font-size: 1.25rem; color: var(--text-muted); max-width: 600px; margin-bottom: 2rem; }
 
-        /* --- Stats Bar (Fixed Layout) --- */
+        .trust-badge {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid var(--primary-accent);
+            color: var(--primary-accent);
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 1rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
         .stats-bar {
             display: flex;
             gap: 4rem;
             border-top: 1px solid var(--border-color);
             padding-top: 2rem;
-            margin-top: 3rem;
+            margin-top: 5rem;
+            flex-wrap: wrap;
         }
-        .stat-item h4 { font-size: 2rem; color: var(--primary-accent); margin: 0; line-height: 1; }
-        .stat-item span { font-size: 0.85rem; color: var(--text-muted); }
+        .money-stat {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary-accent);
+            display: block;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+        .money-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+        }
 
-        /* --- LOGOS (FIXED FOR SIZE) --- */
+        /* --- LOGOS --- */
         .trusted {
             background: #020617;
             padding: 3rem 5%;
@@ -113,31 +145,31 @@
             max-width: 1200px;
             margin: 0 auto;
         }
-        
-        /* THIS IS THE CRITICAL FIX FOR YOUR SCREENSHOT */
         .client-logo {
-            max-height: 50px !important;  /* Forces logos to be short */
+            max-height: 50px !important; 
             width: auto;
-            max-width: 160px;             /* Prevents them from getting too wide */
+            max-width: 160px;
             object-fit: contain;
             opacity: 0.7;
             filter: grayscale(100%);
             transition: all 0.3s;
         }
-        .client-logo:hover { opacity: 1; filter: grayscale(0%); }
+        .client-logo:hover { opacity: 1; filter: grayscale(0%); transform: scale(1.05); }
 
         /* --- Sections & Cards --- */
         section { padding: 6rem 5%; border-bottom: 1px solid var(--border-color); }
         .container { max-width: var(--max-width); margin: 0 auto; }
         
-        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem; }
         
         .card {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
             padding: 2rem;
             border-radius: 6px;
+            transition: border-color 0.3s;
         }
+        .card:hover { border-color: var(--primary-accent); }
         .card h3 { font-size: 1.4rem; margin-top: 1rem; }
         .card p { color: var(--text-muted); font-size: 0.95rem; }
 
@@ -146,7 +178,7 @@
         .tech-visual {
             background: linear-gradient(145deg, #0F172A, #020617);
             border: 1px solid var(--border-color);
-            height: 350px;
+            height: 420px;
             display: flex; flex-direction: column; justify-content: center;
             padding: 2rem; border-radius: 8px;
         }
@@ -158,17 +190,19 @@
         }
         @keyframes scan { 100% { left: 100%; } }
 
-        /* --- Comparison Table (FIXED LAYOUT) --- */
+        /* --- Comparison Table --- */
         .comp-wrapper {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: 8px;
             overflow: hidden;
             margin-top: 3rem;
+            max-width: 850px;
+            margin-left: auto; margin-right: auto;
         }
         .comp-row {
             display: grid;
-            grid-template-columns: 1.5fr 1fr 1fr; /* This creates the columns */
+            grid-template-columns: 1.2fr 1fr 1fr;
             border-bottom: 1px solid var(--border-color);
         }
         .comp-header-row { background: #020617; font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; color: var(--text-muted); }
@@ -182,6 +216,40 @@
         .status-good { color: var(--primary-accent); }
         .status-bad { color: #ef4444; }
 
+        /* --- Quote Block --- */
+        .quote-block {
+            background: rgba(34, 197, 94, 0.03); 
+            border: 1px solid var(--border-color); 
+            padding: 3rem; 
+            border-radius: 8px; 
+            position: relative; 
+            overflow: hidden;
+            text-align: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .quote-mark {
+            position: absolute; 
+            top: -20px; 
+            left: 20px; 
+            font-size: 8rem; 
+            color: var(--primary-accent); 
+            opacity: 0.1; 
+            font-family: serif;
+        }
+
+        /* --- Footer --- */
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1.5fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+        }
+        .footer-link {
+            color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 0.8rem; transition: color 0.3s;
+        }
+        .footer-link:hover { color: var(--primary-accent); }
+
         /* Mobile Fixes */
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.5rem; }
@@ -190,15 +258,18 @@
             nav { display: none; }
             .comp-wrapper { overflow-x: scroll; }
             .comp-row { min-width: 600px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header -->
+    <!-- Unified Header -->
     <header>
         <div style="display:flex; align-items:center; gap:10px;">
-            <img src="https://placehold.co/150x40/050A14/22C55E?text=COGNITIVE&font=monospace" alt="Logo" class="real-logo">
+            <a href="index.html">
+                <img src="https://placehold.co/150x40/050A14/22C55E?text=COGNITIVE&font=monospace" alt="Logo" class="real-logo">
+            </a>
         </div>
         <nav>
             <ul>
@@ -206,86 +277,112 @@
                 <li><a href="success.html">Success Stories</a></li>
                 <li><a href="about.html">About Us</a></li>
                 <li><a href="blog.html">Insights</a></li>
+                <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
-        <a href="#contact" class="btn-primary">Strategy Session</a>
+        <a href="contact.html" class="btn-primary">Strategy Session</a>
     </header>
 
-    <!-- Hero -->
+    <!-- Hero Section -->
     <div class="hero">
-        <span class="mono">v.2.4 Live in Production</span>
-        <h1>The Global Operating System for Banking Decisions.</h1>
-        <p>Replace 100 years of human intuition with deterministic, pre-trained AI agents. 100% Audit-Ready. Zero Hallucinations.</p>
-        <a href="#" class="btn-primary" style="background: var(--primary-accent); color: black; border:none;">Deploy Digital Banker</a>
+        <div class="trust-badge">OSFI & EU AI ACT COMPLIANT</div>
+        <h1>The Only Deterministic AI Approved for Regulated Lending.</h1>
+        <p>Replace "black box" probabilistic models with auditable, pre-trained expert agents. Reduce cost-of-risk by 30% and adjudication time by 90%—with zero hallucination risk.</p>
+        
+        <div style="margin-top: 2rem;">
+            <a href="products.html" class="btn-primary">Deploy the "Glass Box" Engine</a>
+            <a href="about.html" style="color: white; text-decoration: none; margin-left: 2rem; font-weight: 500; border-bottom: 1px solid var(--primary-accent);">See the Audit Trail &rarr;</a>
+        </div>
 
         <div class="stats-bar">
             <div class="stat-item">
-                <h4>5,000+</h4>
-                <span>Hours of Expert Logic</span>
+                <span class="money-stat">$100B+</span>
+                <span class="money-label">Loan Volume Processed</span>
             </div>
             <div class="stat-item">
-                <h4>90%</h4>
-                <span>Faster Decisions</span>
+                <span class="money-stat">90%</span>
+                <span class="money-label">Faster Decisions</span>
             </div>
             <div class="stat-item">
-                <h4>SOC 2</h4>
-                <span>Type II Compliant</span>
+                <span class="money-stat">0%</span>
+                <span class="money-label">Hallucination Risk</span>
+            </div>
+            <div class="stat-item">
+                <span class="money-stat">100%</span>
+                <span class="money-label">Audit Traceability</span>
             </div>
         </div>
     </div>
 
-    <!-- LOGOS: Fixed Size -->
+    <!-- TRUSTED INFRASTRUCTURE -->
     <div class="trusted">
         <div class="mono" style="text-align: center; margin-bottom: 2rem; opacity: 0.7;">TRUSTED INFRASTRUCTURE FOR TIER-1 BANKS</div>
         <div class="logo-grid">
-            <!-- These styles ensure the red logo doesn't blow up -->
-            <img src="https://i.postimg.cc/cJydGYv9/RBC-idzqe-B0Oz8-0.png" alt="RBC" class="client-logo">
-            <img src="https://i.postimg.cc/9XDVzV63/id-EHPMw-9s-1766250464561.png" alt="BNC" class="client-logo">
-            <img src="https://i.postimg.cc/Gtr8QtwL/Desjardins-Group-idm-Z036r-RK-1.png" alt="Desjardins" class="client-logo">
-            <img src="https://i.postimg.cc/BbXWRc0n/DUCA-Financial-Services-Credit-Union-Ltd-id-W-r-TLdk-0.png" alt="DUCA" class="client-logo">
-            <img src="https://i.postimg.cc/MHkLvbSK/africabank.jpg" alt="African Bank" class="client-logo" style="border-radius:4px;">
-            <img src="https://placehold.co/150x50/020617/94a3b8?text=BNDE" alt="BNDE" class="client-logo">
+            <img src="https://i.postimg.cc/cJydGYv9/RBC-idzqe-B0Oz8-0.png" alt="RBC Royal Bank" class="client-logo" style="height: 38px;"> 
+            <img src="https://i.postimg.cc/9XDVzV63/id-EHPMw-9s-1766250464561.png" alt="National Bank" class="client-logo">
+            <img src="https://i.postimg.cc/Gtr8QtwL/Desjardins-Group-idm-Z036r-RK-1.png" alt="Desjardins" class="client-logo" style="height: 42px;">
+            <span style="font-weight:700; font-size: 1.5rem; color: #52525b; letter-spacing: -1px;">amazon</span>
+            <span style="font-weight:700; font-size: 1.5rem; color: #52525b; letter-spacing: -1px;">AIR CANADA</span>
+        </div>
+
+        <div style="text-align: center; margin-top: 3rem; border-top: 1px dashed var(--border-color); padding-top: 2rem;">
+            <p style="color: var(--text-muted); margin-bottom: 1.5rem; font-size: 0.95rem;">
+                Deploying critical decision logic for <strong style="color: white;">Aviva, World Bank Group, Manulife Bank, Hydro-Quebec, Thales,</strong> and 50+ others.
+            </p>
+            <a href="clients.html" class="btn-primary" style="background: transparent; border: 1px solid var(--action-blue); color: var(--action-blue);">View Full Client List &rarr;</a>
         </div>
     </div>
 
-    <!-- Problem Section -->
+    <!-- THE PROBLEM -->
     <section>
         <div class="container">
-            <span class="mono">THE INDUSTRY FAILURE</span>
-            <h2>Banks are trapped between stagnation and risk.</h2>
+            <span class="mono">THE EXECUTION GAP</span>
+            <h2>Banks are trapped between Stagnation and Regulatory Risk.</h2>
             <div class="grid-3" style="margin-top: 3rem;">
                 <div class="card">
-                    <span class="mono">RISK 01</span>
-                    <h3>The Brain Drain</h3>
-                    <p>The "Gold Standard" credit officers are retiring. Junior bankers lack the intuition to assess complex risk.</p>
+                    <span class="mono">RISK 01: BRAIN DRAIN</span>
+                    <h3>The "Gold Standard" is Retiring</h3>
+                    <p>Senior credit officers are leaving. Junior bankers lack the intuition to assess complex risk, leading to inconsistent adjudication and bad loans.</p>
                 </div>
                 <div class="card">
-                    <span class="mono">RISK 02</span>
-                    <h3>The GenAI Trap</h3>
-                    <p>Standard LLMs hallucinate. They are probabilistic "Black Boxes" that regulators cannot audit.</p>
+                    <span class="mono">RISK 02: THE GEN-AI TRAP</span>
+                    <h3>LLMs are a Compliance Nightmare</h3>
+                    <p>Standard LLMs hallucinate. They are probabilistic "Black Boxes." You cannot explain their decisions to OSFI or the ECB. They are a regulatory non-starter.</p>
                 </div>
                 <div class="card">
-                    <span class="mono">RISK 03</span>
-                    <h3>The Legacy Anchor</h3>
-                    <p>Hard-coding expert rules takes 12-18 months. By the time software is deployed, the market has shifted.</p>
+                    <span class="mono">RISK 03: LEGACY ANCHORS</span>
+                    <h3>Manual Coding is Too Slow</h3>
+                    <p>Hard-coding expert rules takes 12-18 months. By the time the software is deployed, market conditions and risk policies have already shifted.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Technology Section -->
+    <!-- TECHNOLOGY -->
     <section>
         <div class="container tech-container">
             <div>
                 <span class="mono">PROPRIETARY TECHNOLOGY</span>
                 <h2>The "Glass Box" Engine.</h2>
-                <p style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 2rem;">
-                    We don't use AI to <em>make</em> the decision. We use our Cognitive Compiler™ to encapsulate expert logic into deterministic code.
+                <p style="color: white; font-size: 1.1rem; margin-bottom: 1.5rem; line-height: 1.6;">
+                    <strong>We pre-train systems by compiling human expertise into deterministic, repeatable, and fully traceable logic.</strong>
                 </p>
-                <ul style="list-style: none; color: var(--text-muted); line-height: 2;">
-                    <li><strong style="color:white;">1. Protocol Capture:</strong> Real-time interrogation of experts.</li>
-                    <li><strong style="color:white;">2. Logic Disambiguation:</strong> Converting "gut feeling" into variables.</li>
-                    <li><strong style="color:white;">3. Deterministic Output:</strong> Sentence-level audit trails.</li>
+                <p style="color: var(--text-muted); margin-bottom: 2rem;">
+                    Human judgment is captured through <em>Cognitive Task Analysis (CTA)</em>—transforming implicit reasoning into explicit decision structures. Generative AI is used exclusively as a <strong>perception layer</strong> (interpreting documents and signals), never as the decision authority.
+                </p>
+                <ul style="list-style: none; color: var(--text-muted); line-height: 1.5;">
+                    <li style="margin-bottom: 1.2rem;">
+                        <strong style="color: var(--primary-accent); display:block; margin-bottom: 0.3rem;">1. Protocol Capture</strong>
+                        Real-time cognitive analysis of experts as they perform high-stakes tasks, capturing decision cues and constraints.
+                    </li>
+                    <li style="margin-bottom: 1.2rem;">
+                        <strong style="color: var(--primary-accent); display:block; margin-bottom: 0.3rem;">2. Logic Disambiguation</strong>
+                        Conversion of tacit "gut feeling" into explicit rules, thresholds, and decision paths that can be validated.
+                    </li>
+                    <li style="margin-bottom: 1.2rem;">
+                        <strong style="color: var(--primary-accent); display:block; margin-bottom: 0.2rem;">3. Deterministic Output</strong>
+                        Execution of decisions through deterministic logic with sentence-level audit trails—explainable and regulator-ready.
+                    </li>
                 </ul>
             </div>
             <div class="tech-visual">
@@ -301,12 +398,12 @@
         </div>
     </section>
 
-    <!-- Comparison Table -->
+    <!-- COMPARISON -->
     <section>
         <div class="container">
             <div style="text-align: center; margin-bottom: 3rem;">
                 <span class="mono">COMPETITIVE LANDSCAPE</span>
-                <h2>Why Banks Choose Cognitive OS</h2>
+                <h2>Why Regulators Approve Cognitive OS</h2>
             </div>
             
             <div class="comp-wrapper">
@@ -315,19 +412,16 @@
                     <div class="comp-cell">GenAI / LLMs</div>
                     <div class="comp-cell cell-cognitive">Cognitive OS</div>
                 </div>
-
                 <div class="comp-row">
                     <div class="comp-cell" style="color: white; font-weight: 600;">Auditability</div>
                     <div class="comp-cell status-bad">Black Box (Unknown)</div>
                     <div class="comp-cell cell-cognitive status-good">Glass Box (Traceable)</div>
                 </div>
-
                 <div class="comp-row">
                     <div class="comp-cell" style="color: white; font-weight: 600;">Logic Model</div>
                     <div class="comp-cell status-bad">Probabilistic (Guesses)</div>
                     <div class="comp-cell cell-cognitive status-good">Deterministic (Reasoning)</div>
                 </div>
-
                 <div class="comp-row">
                     <div class="comp-cell" style="color: white; font-weight: 600;">Hallucinations</div>
                     <div class="comp-cell status-bad">High Risk</div>
@@ -337,9 +431,45 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer style="padding: 4rem; text-align: center; border-top: 1px solid var(--border-color); color: var(--text-muted);">
-        <p>&copy; 2025 Cognitive Group. All Rights Reserved.</p>
+    <!-- QUOTE SECTION -->
+    <section style="border-bottom: none; padding-top: 0;">
+        <div class="quote-block">
+            <div class="quote-mark">&ldquo;</div>
+            <p style="font-size: 1.35rem; color: white; line-height: 1.5; font-weight: 300; position: relative; z-index: 2;">
+                "The combination of <span style="color: var(--primary-accent); font-weight: 600;">Cognitive Task Analysis (CTA)</span>, real intelligence models, with the most advanced pretrained LLMs delivers invaluable results. The continuous reinforcement of CTA is transforming the industry."
+            </p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer style="padding: 4rem 5%; background: #020617; border-top: 1px solid var(--border-color);">
+        <div class="container footer-grid">
+            <div>
+                <h4 style="margin-bottom: 1.5rem;">About Us</h4>
+                <p style="font-size: 0.9rem; line-height: 1.6; color: var(--text-muted);">
+                    Cognitive was founded in 1995 by the Computer Research Institute of Montreal (CRIM). Our experts have advanced degrees in human factors and interaction design. Our specialists are located in Montreal, Toronto, Hong Kong, and San Francisco.
+                </p>
+            </div>
+            <div>
+                <h4 style="margin-bottom: 1.5rem;">Recent Posts</h4>
+                <a href="#" class="footer-link">AI-Assisted Supervision of Abnormal Situations: Lessons from the 2025 Louvre Burglary</a>
+                <a href="#" class="footer-link">Original Paper (1994) “From Task Analysis to User Interface Design”</a>
+                <a href="#" class="footer-link">Why Simple Scoring Systems Beat Human Judgment in Lending</a>
+            </div>
+            <div>
+                <h4 style="margin-bottom: 1.5rem;">Get in Touch</h4>
+                <p style="font-size: 0.9rem; color: var(--text-muted);">
+                    1155 René-Lévesque Blvd West #2500<br>
+                    Montréal, QC H3B 2K4<br><br>
+                    <a href="mailto:info@cognitivegroup.com" style="color: white; text-decoration: none;">info@cognitivegroup.com</a><br>
+                    <span style="color: var(--primary-accent);">+1 (415) 493-8559</span>
+                </p>
+            </div>
+        </div>
+
+        <div style="text-align: center; border-top: 1px solid var(--border-color); padding-top: 2rem; color: var(--text-muted); font-size: 0.85rem;">
+            &copy; 2025 Cognitive Group. All Rights Reserved.
+        </div>
     </footer>
 
 </body>

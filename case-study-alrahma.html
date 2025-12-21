@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Study: Alrahma | Cognitive Banking</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #050A14;
+            --bg-card: #0F172A;
+            --primary-accent: #22C55E;
+            --text-main: #F8FAFC;
+            --text-muted: #94A3B8;
+            --border-color: #1E293B;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+        }
+
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--primary-accent);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Header */
+        header {
+            padding: 1.5rem 5%;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(5, 10, 20, 0.9);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .logo { font-weight: 700; font-size: 1.2rem; text-decoration: none; color: white; display: flex; align-items: center; gap: 8px;}
+        .back-link { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 5px; transition: color 0.3s;}
+        .back-link:hover { color: var(--primary-accent); }
+
+        /* Hero */
+        .case-hero {
+            padding: 6rem 5% 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        h1 { font-size: 3rem; margin: 1rem 0; line-height: 1.1; }
+        .hero-lead { font-size: 1.4rem; color: var(--text-muted); max-width: 800px; }
+
+        /* Metrics Bar */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+            padding: 2rem 0;
+            border-top: 1px solid var(--border-color);
+        }
+        .metric h4 { font-size: 2.5rem; color: var(--primary-accent); margin-bottom: 0.5rem; }
+        .metric span { font-size: 0.9rem; color: var(--text-muted); display: block; }
+
+        /* Main Layout */
+        .content-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 5%;
+        }
+
+        /* Article Styling */
+        article h2 { font-size: 1.8rem; margin-top: 3rem; margin-bottom: 1rem; color: white; }
+        article p { margin-bottom: 1.5rem; color: var(--text-muted); }
+        article ul { margin-bottom: 1.5rem; padding-left: 1.5rem; color: var(--text-muted); }
+        article li { margin-bottom: 0.5rem; }
+
+        .highlight-box {
+            background: rgba(34, 197, 94, 0.05);
+            border-left: 2px solid var(--primary-accent);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            font-style: italic;
+            color: var(--text-main);
+        }
+
+        /* Sidebar Styling */
+        aside {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .info-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 1.5rem;
+            border-radius: 4px;
+            margin-bottom: 2rem;
+        }
+
+        .info-row {
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #1E293B;
+            padding-bottom: 1rem;
+        }
+        .info-row:last-child { border-bottom: none; }
+        .info-label { display: block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 4px; }
+        .info-value { display: block; font-size: 1rem; font-weight: 600; color: white; }
+
+        .tech-tag {
+            display: inline-block;
+            background: #0f172a;
+            border: 1px solid var(--primary-accent);
+            color: var(--primary-accent);
+            padding: 4px 8px;
+            font-size: 0.75rem;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Visual Representation of the "Grid Array" */
+        .grid-visual {
+            background: #020617;
+            border: 1px solid #334155;
+            padding: 1rem;
+            margin: 2rem 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: #94a3b8;
+        }
+        .grid-row { display: flex; justify-content: space-between; border-bottom: 1px solid #334155; padding: 8px 0; }
+        .grid-header { color: var(--primary-accent); font-weight: bold; }
+
+        @media (max-width: 768px) {
+            .content-container { grid-template-columns: 1fr; }
+            .metrics-grid { grid-template-columns: 1fr 1fr; }
+            h1 { font-size: 2rem; }
+            aside { position: static; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">
+            <span style="color: var(--primary-accent); font-size: 1.5rem;">&#9638;</span> cognitive
+        </a>
+        <a href="success.html" class="back-link">&larr; Back to Case Studies</a>
+    </header>
+
+    <div class="case-hero">
+        <div class="mono">Client: Alrahma | Region: Senegal</div>
+        <h1>Digitizing the Informal Economy.</h1>
+        <p class="hero-lead">How Cognitive Banking deployed "BusinessBANKER" to replace gut feeling with deterministic data for micro-lenders in West Africa.</p>
+        
+        <div class="metrics-grid">
+            <div class="metric">
+                <h4>10m</h4>
+                <span>Origination Time<br>(Prev: 4 Hours)</span>
+            </div>
+            <div class="metric">
+                <h4>&lt;4h</h4>
+                <span>Disbursal Cycle<br>(Prev: 3 Days)</span>
+            </div>
+            <div class="metric">
+                <h4>100%</h4>
+                <span>Digital Audit Trail</span>
+            </div>
+            <div class="metric">
+                <h4>0%</h4>
+                <span>Paperwork Required</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-container">
+        <!-- Main Story -->
+        <article>
+            <div class="mono">01 | The Problem</div>
+            <h2>The "Data Darkness" of the Informal Sector</h2>
+            <p>Providing financing to small businesses in emerging economies is an information problem. In Senegal and Guinea, 80% of the population operates without bank accounts. Small businesses—market stalls, tailors, agricultural traders—do not possess financial statements, tax returns, or formal ledgers.</p>
+            <p>For decades, microfinance institutions relied on the "Gut Feeling" of loan officers. Methods were loosely structured, varying wildly from person to person. This lack of standardization made scaling impossible and risk assessment a game of chance.</p>
+
+            <div class="mono">02 | The Approach</div>
+            <h2>Cognitive Task Analysis (CTA)</h2>
+            <p>We did not just build an app. We deployed our Cognitive Task Analysis engine that comprise pre-trained</pre-trained> micro-lenders. We answered: <em>"How do you know a borrower is solvent when there is no paper trail?"</em></p>
+            <p>We discovered that experts use heuristic proxies. We codified these proxies into the <strong>BusinessBANKER™</strong> mobile platform.</p>
+
+            <div class="highlight-box">
+                "The solution transforms the credit industry. We created a simple way to generate quantitative financial information from a qualitative assessment."
+            </div>
+
+            <h3>The "Grid Array" Protocol</h3>
+            <p>Instead of asking for a Balance Sheet, the system prompts the Field Agent to collect "Proxy Data" using a structured grid. The AI then triangulates this into a financial profile.</p>
+
+            <!-- Visual representation of the logic -->
+            <div class="grid-visual">
+                <div class="grid-row grid-header">
+                    <span>INPUT (Field Agent)</span>
+                    <span>AI CALCULATION</span>
+                </div>
+                <div class="grid-row">
+                    <span>> Cash on "Bad Day"</span>
+                    <span>> Lower Bound Revenue</span>
+                </div>
+                <div class="grid-row">
+                    <span>> Cash on "Good Day"</span>
+                    <span>> Upper Bound Revenue</span>
+                </div>
+                <div class="grid-row">
+                    <span>> Visual Stock Photo</span>
+                    <span>> Inventory Validation</span>
+                </div>
+                <div class="grid-row">
+                    <span>> GPS Location</span>
+                    <span>> Foot Traffic Est.</span>
+                </div>
+                <div class="grid-row" style="color: var(--primary-accent); margin-top: 10px; border: none;">
+                    <span>STATUS: VALIDATED</span>
+                    <span>OUTPUT: P&L STATEMENT</span>
+                </div>
+            </div>
+
+            <p>This allows a loan officer to visit a client, take pictures, input answers to simple questions (e.g., "What are your sales on a bad day?"), and have the system auto-generate a P&L statement in real-time.</p>
+
+            <div class="mono">03 | The Results</div>
+            <h2>Hyper-Efficiency in the Field</h2>
+            <p>The formalization of this informal process fundamentally changed the unit economics of the bank.</p>
+            <ul>
+                <li><strong>Speed:</strong> Loan application creation dropped from hours of manual writing to <strong>10 minutes</strong> on a tablet.</li>
+                <li><strong>Cycle Time:</strong> The time from request to provision dropped to less than a few hours.</li>
+                <li><strong>Focus:</strong> Loan officers stopped being data-entry clerks and returned to being relationship managers.</li>
+                <li><strong>Agility:</strong> Using our No-Code configuration, Alrahma was able to adjust workflows (e.g., adding a Decision Committee step) in real-time without needing engineering support.</li>
+            </ul>
+
+        </article>
+
+        <!-- Sidebar -->
+        <aside>
+            <div class="info-card">
+                <div class="mono" style="margin-bottom: 1rem; color: white;">Project Profile</div>
+                
+                <div class="info-row">
+                    <span class="info-label">Client</span>
+                    <span class="info-value">Alrahma</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Industry</span>
+                    <span class="info-value">Microfinance / SME</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Geography</span>
+                    <span class="info-value">Senegal</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Solution</span>
+                    <span class="info-value">BusinessBANKER™, AI Workbench</span>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <div class="mono" style="margin-bottom: 1rem; color: white;">Expertise Used</div>
+                <div>
+                    <span class="tech-tag">Cognitive Task Analysis</span>
+                    <span class="tech-tag">Computer Vision</span>
+                    <span class="tech-tag">Deterministic AI</span>
+                    <span class="tech-tag">No-Code Config</span>
+                    <span class="tech-tag">Mobile Field App</span>
+                </div>
+            </div>
+
+            <a href="contact.html" style="display: block; text-align: center; background: var(--primary-accent); color: #050A14; padding: 1rem; font-weight: 700; text-decoration: none; border-radius: 4px;">
+                Download Technical Brief
+            </a>
+        </aside>
+    </div>
+
+    <!-- Footer -->
+    <footer style="border-top: 1px solid var(--border-color); padding: 3rem 5%; text-align: center; margin-top: 4rem;">
+        <div class="mono" style="color: var(--text-muted);">&copy; 2025 Cognitive Group | Deterministic Banking Infrastructure</div>
+    </footer>
+
+</body>
+</html>

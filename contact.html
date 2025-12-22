@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us | Cognitive Banking - Strategic Global Presence</title>
+    <title>Contact Us | Cognitive Banking</title>
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,106 +44,110 @@
             margin-bottom: 0.5rem;
         }
 
-        /* --- UNIFIED STABLE HEADER --- */
+        /* HEADER */
         header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 1rem 5%;
-            background: rgba(5, 10, 20, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--border-color);
-            height: 72px; 
+            position: fixed; top: 0; width: 100%; padding: 1rem 5%;
+            background: rgba(5, 10, 20, 0.95); backdrop-filter: blur(10px);
+            z-index: 1000; display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid var(--border-color); height: 72px;
         }
-
-        .real-logo { height: 40px; width: auto; display: block; }
-
+        .real-logo { height: 35px; width: auto; }
         nav ul { display: flex; gap: 2rem; list-style: none; }
         nav a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.3s; }
         nav a:hover, nav a.active { color: white; }
-
+        
         .btn-primary {
-            background: var(--action-blue);
-            color: white;
-            padding: 0.6rem 1.2rem;
-            font-weight: 600;
-            text-decoration: none;
-            border-radius: 4px;
-            font-size: 0.9rem;
-            transition: all 0.2s;
-            border: 1px solid var(--action-blue);
-            display: inline-block;
+            background: var(--action-blue); color: white; padding: 0.6rem 1.2rem;
+            font-weight: 600; text-decoration: none; border-radius: 4px; font-size: 0.9rem;
+            cursor: pointer; border: 1px solid var(--action-blue);
         }
-        .btn-primary:hover { background: #1d4ed8; border-color: #1d4ed8; transform: translateY(-1px); }
+        .btn-primary:hover { background: #1d4ed8; border-color: #1d4ed8; }
 
-        /* --- HERO SECTION --- */
-        .container { max-width: var(--max-width); margin: 0 auto; padding: 0 5%; }
+        /* MODAL STYLES */
+        .modal-overlay {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(5px);
+            z-index: 2000; align-items: center; justify-content: center;
+        }
+        .modal-card {
+            background: #0F172A; border: 1px solid #1E293B;
+            padding: 3rem; border-radius: 8px; width: 100%; max-width: 450px;
+            position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+        .close-modal {
+            position: absolute; top: 15px; right: 20px; font-size: 1.5rem; color: #94A3B8;
+            cursor: pointer; transition: color 0.2s;
+        }
+        .close-modal:hover { color: white; }
+        .form-group { margin-bottom: 1.5rem; text-align: left; }
+        .form-label { display: block; font-size: 0.85rem; color: #94A3B8; margin-bottom: 0.5rem; }
+        .form-input {
+            width: 100%; padding: 0.8rem; background: #020617; border: 1px solid #1E293B;
+            color: white; border-radius: 4px; font-family: sans-serif; outline: none;
+        }
+        .form-input:focus { border-color: #22C55E; }
+        .modal-btn {
+            width: 100%; padding: 1rem; background: #22C55E; color: #000;
+            font-weight: 700; border: none; border-radius: 4px; cursor: pointer; font-size: 1rem;
+            margin-top: 1rem;
+        }
+        .modal-btn:hover { opacity: 0.9; }
 
+        /* HERO */
         .hero-small {
-            padding: 10rem 0 4rem;
-            text-align: center;
+            padding: 10rem 0 4rem; text-align: center;
             border-bottom: 1px solid var(--border-color);
             background: linear-gradient(180deg, rgba(5,10,20,0) 0%, rgba(34, 197, 94, 0.05) 100%);
-            margin-top: 72px; /* Offset for Header */
+            margin-top: 72px;
         }
-        .hero-small h1 { font-size: clamp(2.5rem, 4vw, 3.5rem); letter-spacing: -0.02em; }
+        .container { max-width: var(--max-width); margin: 0 auto; padding: 0 5%; }
 
-        /* --- LOCATIONS GRID --- */
+        /* CONTACT CARDS */
         section { padding: 6rem 0; border-bottom: 1px solid var(--border-color); }
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
         
         .contact-card {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
-            padding: 2.5rem;
+            padding: 2rem;
             border-radius: 8px;
-            height: 100%;
             transition: border-color 0.3s ease;
         }
         .contact-card:hover { border-color: var(--primary-accent); }
 
+        /* MAP STYLE */
         .map-frame {
             width: 100%;
             height: 250px;
             border: 1px solid var(--border-color);
             border-radius: 6px;
-            filter: grayscale(100%) invert(92%) contrast(83%); /* Premium "Dark" Map Filter */
             margin-bottom: 1.5rem;
+            filter: grayscale(100%) invert(100%) contrast(1.2) brightness(0.85);
+            opacity: 0.9;
+            transition: all 0.3s ease;
         }
-        
+        .contact-card:hover .map-frame {
+            filter: grayscale(100%) invert(100%) contrast(1.1) brightness(1);
+            opacity: 1;
+            border-color: #475569;
+        }
+
         .contact-details p { margin-bottom: 0.4rem; color: var(--text-muted); font-size: 0.95rem; }
-        .email-link { color: var(--primary-accent); text-decoration: none; font-weight: 600; transition: opacity 0.2s; }
-        .email-link:hover { opacity: 0.8; }
+        .email-link { color: var(--primary-accent); text-decoration: none; font-weight: 600; font-size: 0.95rem; }
+        .email-link:hover { text-decoration: underline; }
 
-        /* --- TESTIMONIAL --- */
-        .testimonial-section {
-            background: #020617;
-            padding: 8rem 5%;
-            text-align: center;
-            border-bottom: 1px solid var(--border-color);
-        }
-        .quote {
-            font-size: clamp(1.4rem, 2.5vw, 1.8rem);
-            font-weight: 300;
-            color: white;
-            max-width: 900px;
-            margin: 0 auto 2.5rem;
-            line-height: 1.5;
-            font-style: italic;
-        }
+        /* TESTIMONIAL */
+        .testimonial-section { background: #020617; padding: 8rem 5%; text-align: center; border-bottom: 1px solid var(--border-color); }
+        .quote { font-size: clamp(1.4rem, 2.5vw, 1.8rem); font-weight: 300; color: white; max-width: 900px; margin: 0 auto 2.5rem; font-style: italic; }
 
-        /* --- UNIFIED FOOTER --- */
+        /* FOOTER */
         footer { padding: 4rem 5%; background: #020617; }
         .footer-grid { display: grid; grid-template-columns: 1.5fr 1.5fr 1fr; gap: 4rem; }
         .footer-link { color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 0.8rem; font-size: 0.9rem; transition: color 0.3s; }
         .footer-link:hover { color: var(--primary-accent); }
 
         @media (max-width: 968px) {
-            header { padding: 1rem 5%; height: auto; }
+            header { padding: 1rem 5%; }
             nav { display: none; }
             .grid-2, .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
         }
@@ -151,23 +155,24 @@
 </head>
 <body>
 
-    <!-- Unified Header -->
+    <!-- Header -->
     <header>
-        <div style="display:flex; align-items:center;">
+        <div style="display:flex; align-items:center; gap:10px;">
             <a href="index.html">
-                <img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Cognitive Group Logo" class="real-logo">
+                <img src="https://placehold.co/150x40/050A14/22C55E?text=COGNITIVE&font=monospace" alt="Cognitive Logo" class="real-logo">
             </a>
         </div>
         <nav>
             <ul>
                 <li><a href="products.html">Products</a></li>
-                <li><a href="success.html">Success Stories</a></li>
+                <li><a href="clients.html">Success Stories</a></li>
                 <li><a href="about.html">About Us</a></li>
                 <li><a href="blog.html">Insights</a></li>
                 <li><a href="contact.html" class="active">Contact</a></li>
             </ul>
         </nav>
-        <a href="contact.html" class="btn-primary">Strategy Session</a>
+        <!-- Modal Trigger -->
+        <button onclick="openModal()" class="btn-primary">Strategy Session</button>
     </header>
 
     <!-- Hero -->
@@ -229,7 +234,7 @@
                     </div>
                 </div>
 
-                <!-- Dallas -->
+                <!-- Dallas (Fixed: Phone & Email Added) -->
                 <div class="contact-card">
                     <iframe class="map-frame" 
                         src="https://maps.google.com/maps?q=109%20Main%20St%20Lewisville%20TX&t=&z=14&ie=UTF8&iwloc=&output=embed" 
@@ -240,6 +245,10 @@
                         <p>109 Main Street</p>
                         <p>Lewisville, Texas 75057, USA</p>
                         <br>
+                        <!-- ADDED CONTACT INFO HERE -->
+                        <p style="color: white; font-weight: 600; margin-bottom: 0.3rem;">+1 (214) 298-8019</p>
+                        <a href="mailto:info@cognitivegroup.com" class="email-link">info@cognitivegroup.com</a>
+                        <br><br>
                         <p style="font-size: 0.8rem; opacity: 0.6;">Regional Deployment & Support Office</p>
                     </div>
                 </div>
@@ -262,7 +271,7 @@
         </div>
     </div>
 
-    <!-- Unified Footer -->
+    <!-- Footer -->
     <footer>
         <div class="container footer-grid">
             <div>
@@ -274,16 +283,16 @@
             <div>
                 <h4 style="color: white; margin-bottom: 1.5rem;">Institutional Links</h4>
                 <a href="products.html" class="footer-link">The Cognitive Suite</a>
-                <a href="about.html" class="footer-link">The CRIM Spinoff History</a>
-                <a href="blog.html" class="footer-link">Knowledge Base & Insights</a>
+                <a href="clients.html" class="footer-link">Success Stories</a>
+                <a href="about.html" class="footer-link">Our History</a>
+                <a href="blog.html" class="footer-link">Knowledge Base</a>
             </div>
             <div>
                 <h4 style="color: white; margin-bottom: 1.5rem;">Global Headquarters</h4>
                 <p style="font-size: 0.9rem; color: var(--text-muted);">
                     1155 René-Lévesque Blvd West #2500<br>
                     Montréal, QC H3B 2K4<br><br>
-                    <a href="mailto:info@cognitivegroup.com" style="color: white; text-decoration: none;">info@cognitivegroup.com</a><br>
-                    <span style="color: var(--primary-accent); font-weight: 600;">+1 (415) 493-8559</span>
+                    <a href="mailto:info@cognitivegroup.com" style="color: white; text-decoration: none;">info@cognitivegroup.com</a>
                 </p>
             </div>
         </div>
@@ -291,6 +300,47 @@
             &copy; 2025 Cognitive Group. All Rights Reserved.
         </div>
     </footer>
+
+    <!-- GLOBAL BOOKING MODAL & SCRIPT -->
+    <div id="bookingModal" class="modal-overlay">
+        <div class="modal-card">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <span style="font-family: monospace; color: #22C55E; text-transform: uppercase;">Strategy Session</span>
+                <h3 style="margin-top: 0.5rem; color: white; font-size: 1.5rem;">Book a Briefing</h3>
+                <p style="font-size: 0.9rem; color: #94A3B8;">Tell us who you are, and we'll take you straight to the calendar.</p>
+            </div>
+            
+            <form onsubmit="handleGlobalSubmit(event)">
+                <div class="form-group">
+                    <label class="form-label">Full Name</label>
+                    <input type="text" id="g-name" class="form-input" required placeholder="Jane Doe">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Work Email</label>
+                    <input type="email" id="g-email" class="form-input" required placeholder="jane@bank.com">
+                </div>
+                <button type="submit" class="modal-btn">Continue to Calendar &rarr;</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const gModal = document.getElementById('bookingModal');
+        function openModal() { gModal.style.display = 'flex'; }
+        function closeModal() { gModal.style.display = 'none'; }
+        window.onclick = function(e) { if (e.target == gModal) closeModal(); }
+
+        function handleGlobalSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('g-name').value;
+            const email = document.getElementById('g-email').value;
+            // Redirect to Calendly with pre-filled data
+            const url = `https://cal.com/francoisaubin?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}`;
+            window.open(url, '_blank');
+            closeModal();
+        }
+    </script>
 
 </body>
 </html>

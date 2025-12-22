@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Business Banker | Commercial Loan Origination Platform Spec</title>
+    <title>Cognitive Engine | Commercial Loan Origination Platform Spec</title>
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,33 +29,72 @@
         .mono { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--primary-accent); }
         h1, h2, h3, h4 { color: white; font-weight: 700; }
 
-        /* --- GLOBAL HEADER --- */
+        /* HEADER */
         header {
             position: fixed; top: 0; width: 100%; height: var(--header-height);
             padding: 0 5%; background: rgba(5, 10, 20, 0.95); backdrop-filter: blur(12px);
             z-index: 1000; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color);
         }
-        .real-logo { height: 38px; width: auto; }
-        nav ul { display: flex; gap: 2.5rem; list-style: none; }
-        nav a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; }
-        nav a.active { color: white; border-bottom: 2px solid var(--primary-accent); padding-bottom: 4px; }
+        .real-logo { height: 35px; width: auto; }
+        nav ul { display: flex; gap: 2rem; list-style: none; }
+        nav a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.3s; }
+        nav a:hover, nav a.active { color: white; }
+        
+        .btn-primary {
+            background: var(--action-blue); color: white; padding: 0.6rem 1.2rem;
+            font-weight: 600; text-decoration: none; border-radius: 4px; font-size: 0.9rem;
+            border: 1px solid var(--action-blue); cursor: pointer;
+        }
+        .btn-primary:hover { background: #1d4ed8; border-color: #1d4ed8; }
 
-        /* --- SPEC SUB-NAV --- */
+        /* MODAL STYLES (The Popup) */
+        .modal-overlay {
+            display: none; /* Hidden by default */
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(5px);
+            z-index: 2000; align-items: center; justify-content: center;
+        }
+        .modal-card {
+            background: var(--bg-card); border: 1px solid var(--border-color);
+            padding: 3rem; border-radius: 8px; width: 100%; max-width: 450px;
+            position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+        .close-modal {
+            position: absolute; top: 15px; right: 20px; font-size: 1.5rem; color: var(--text-muted);
+            cursor: pointer; transition: color 0.2s;
+        }
+        .close-modal:hover { color: white; }
+        
+        .form-group { margin-bottom: 1.5rem; text-align: left; }
+        .form-label { display: block; font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem; }
+        .form-input {
+            width: 100%; padding: 0.8rem; background: #020617; border: 1px solid var(--border-color);
+            color: white; border-radius: 4px; font-family: 'Inter', sans-serif; outline: none;
+            transition: border-color 0.2s;
+        }
+        .form-input:focus { border-color: var(--primary-accent); }
+        .modal-btn {
+            width: 100%; padding: 1rem; background: var(--primary-accent); color: #000;
+            font-weight: 700; border: none; border-radius: 4px; cursor: pointer; font-size: 1rem;
+            margin-top: 1rem; transition: transform 0.1s;
+        }
+        .modal-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+
+        /* SPEC SUB-NAV */
         .spec-nav {
             background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color);
             padding: 0.8rem 5%; position: sticky; top: var(--header-height); z-index: 900;
             display: flex; justify-content: space-between; align-items: center;
         }
 
-        /* --- HERO --- */
+        /* HERO */
         .hero { padding: 12rem 5% 4rem; max-width: 1200px; margin: 0 auto; }
         .hero h1 { font-size: clamp(2.5rem, 5vw, 4rem); letter-spacing: -0.04em; margin-bottom: 1.5rem; line-height: 1.1; }
         .hero .value-prop { font-size: 1.4rem; color: var(--primary-accent); font-weight: 600; margin-bottom: 1rem; }
         .hero p { font-size: 1.25rem; color: var(--text-muted); max-width: 850px; }
 
-        /* --- MAIN LAYOUT --- */
+        /* LAYOUT */
         .container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 260px 1fr; gap: 5rem; padding: 0 5% 10rem; }
-        
         aside { position: sticky; top: 160px; height: fit-content; }
         aside ul { list-style: none; border-left: 1px solid var(--border-color); padding-left: 1.5rem; }
         aside li { margin-bottom: 1.2rem; }
@@ -66,20 +105,16 @@
         h2 { font-size: 2rem; margin-bottom: 2rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; }
         h3 { margin: 2rem 0 1rem; color: var(--primary-accent); font-size: 1.2rem; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* --- CARDS & GRIDS --- */
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
         .card { background: var(--bg-card); padding: 2rem; border-radius: 8px; border: 1px solid var(--border-color); }
         .card h4 { margin-bottom: 0.8rem; font-size: 1.1rem; }
         .card p { font-size: 0.95rem; color: var(--text-muted); }
-
         .feature-box { border-left: 3px solid var(--action-blue); padding-left: 1.5rem; margin-bottom: 2rem; }
         
-        /* --- WORKFLOW VISUAL --- */
         .workflow-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2rem; }
         .workflow-item { text-align: center; padding: 2rem; background: rgba(37, 99, 235, 0.05); border-radius: 8px; border: 1px solid rgba(37, 99, 235, 0.2); }
         .workflow-item strong { display: block; margin-bottom: 0.5rem; color: white; }
 
-        /* --- LIFECYCLE LIST --- */
         .lifecycle-list { counter-reset: step; list-style: none; }
         .lifecycle-list li { position: relative; padding-left: 4rem; margin-bottom: 1.5rem; }
         .lifecycle-list li::before {
@@ -89,43 +124,81 @@
             display: flex; align-items: center; justify-content: center; font-weight: 800;
         }
 
-        /* --- FOOTER --- */
         footer { padding: 6rem 5%; background: #01040a; border-top: 1px solid var(--border-color); }
         .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4rem; max-width: 1200px; margin: 0 auto; }
+        .footer-link { color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 0.8rem; font-size: 0.9rem; transition: color 0.3s; }
+        .footer-link:hover { color: var(--primary-accent); }
 
         @media (max-width: 900px) {
             .container { grid-template-columns: 1fr; }
             aside { display: none; }
             .workflow-grid, .grid-2 { grid-template-columns: 1fr; }
+            nav { display: none; }
         }
     </style>
 </head>
 <body>
 
-    <!-- OVERHAUL HEADER -->
+    <!-- MODAL POPUP (Hidden by default) -->
+    <div id="bookingModal" class="modal-overlay">
+        <div class="modal-card">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <span class="mono">Strategy Session</span>
+                <h3 style="margin-top: 0.5rem; color: white;">Book a Briefing</h3>
+                <p style="font-size: 0.9rem;">Tell us who you are, and we'll take you straight to the calendar.</p>
+            </div>
+            
+            <form id="bookingForm" onsubmit="handleFormSubmit(event)">
+                <div class="form-group">
+                    <label class="form-label">Full Name</label>
+                    <input type="text" id="name" class="form-input" required placeholder="Jane Doe">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Work Email</label>
+                    <input type="email" id="email" class="form-input" required placeholder="jane@bank.com">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Organization</label>
+                    <input type="text" id="org" class="form-input" required placeholder="Bank Name">
+                </div>
+                <button type="submit" class="modal-btn">Continue to Calendar &rarr;</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- HEADER -->
     <header>
-        <a href="index.html"><img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Cognitive" class="real-logo"></a>
+        <div style="display:flex; align-items:center; gap:10px;">
+            <a href="index.html">
+                <img src="https://placehold.co/150x40/050A14/22C55E?text=COGNITIVE&font=monospace" alt="Cognitive Logo" class="real-logo">
+            </a>
+        </div>
         <nav>
             <ul>
-                <li><a href="business-banker.html" class="active">Business Banker</a></li>
-                <li><a href="success.html">Success Stories</a></li>
+                <li><a href="products.html" class="active">Products</a></li>
+                <li><a href="clients.html">Success Stories</a></li>
                 <li><a href="about.html">About Us</a></li>
-                <li><a href="insights.html">Insights</a></li>
+                <li><a href="blog.html">Insights</a></li>
+                <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
-        <a href="contact.html" class="btn-primary" style="background: var(--action-blue); color: white; padding: 0.6rem 1.2rem; text-decoration: none; border-radius: 4px; font-weight: 600;">Strategy Session</a>
+        <!-- Button triggers Modal -->
+        <button onclick="openModal()" class="btn-primary">Strategy Session</button>
     </header>
 
     <!-- SPEC SUB-NAV -->
     <div class="spec-nav">
         <div style="display:flex; align-items:center; gap:12px;">
             <span class="mono" style="color:var(--text-muted);">Product Spec /</span>
-            <span class="mono" style="color:white; font-weight: 700;">Business Banker CLOS</span>
+            <span class="mono" style="color:white; font-weight: 700;">Cognitive Engine</span>
         </div>
-        <a href="#briefing" style="background: var(--primary-accent); color: var(--bg-dark); padding: 0.5rem 1rem; border-radius: 4px; text-decoration: none; font-weight: 700; font-size: 0.8rem;">Technical Briefing</a>
+        <a href="Cognitive-Engine-Technical-Briefing.pdf" download target="_blank" style="background: var(--primary-accent); color: var(--bg-dark); padding: 0.5rem 1rem; border-radius: 4px; text-decoration: none; font-weight: 700; font-size: 0.8rem;">
+            Download Technical Briefing
+        </a>
     </div>
 
-    <!-- HERO SECTION -->
+    <!-- HERO -->
     <div class="hero">
         <span class="mono">Commercial Loan Origination Platform</span>
         <h1>Cognitive Engine</h1>
@@ -153,9 +226,9 @@
             <!-- OVERVIEW -->
             <section id="overview">
                 <h2>Overview</h2>
-                <p style="margin-bottom: 2rem;">Built on AI and cognitive engineering principles, Business Banker enables banks to configure, deploy, and evolve complex lending processes without heavy IT projects. The platform scales seamlessly from micro-loans to large corporate and syndicated facilities, all within a single, unified system.</p>
+                <p style="margin-bottom: 2rem;">Built on AI and cognitive engineering principles, Cognitive Engine enables banks to configure, deploy, and evolve complex lending processes without heavy IT projects. The platform scales seamlessly from micro-loans to large corporate and syndicated facilities, all within a single, unified system.</p>
                 <div class="card" style="border-left: 4px solid var(--primary-accent);">
-                    <p>Business Banker replaces fragmented tools and manual hand-offs with a single, intelligent platform that aligns <strong>origination, risk, and operations</strong>.</p>
+                    <p>Cognitive Engine replaces fragmented tools and manual hand-offs with a single, intelligent platform that aligns <strong>origination, risk, and operations</strong>.</p>
                 </div>
             </section>
 
@@ -194,7 +267,7 @@
                 </ul>
 
                 <h3>2. Loan Request Structure</h3>
-                <p>The core object of Business Banker, encompassing:</p>
+                <p>The core object of Cognitive Engine, encompassing:</p>
                 <ul style="margin: 1.5rem 0; color: var(--text-muted); padding-left: 1.5rem;">
                     <li><strong>Facilities:</strong> Term loans, Revolving credit, Equipment, Mortgages, Leases.</li>
                     <li><strong>Collateral:</strong> Security details with associated documentation and realizable values.</li>
@@ -252,7 +325,7 @@
                     </div>
                     <div class="card">
                         <h4>Workflow Acceleration</h4>
-                        <p>Automated routing, validation checkpoints, and compliance reminders.</p>
+                        <p>Automated routing, validation, reminders, and compliance checkpoints.</p>
                     </div>
                 </div>
             </section>
@@ -274,7 +347,7 @@
             <!-- COMPETITIVE ADVANTAGE -->
             <section id="competitive">
                 <h2>Competitive Advantage</h2>
-                <p>Compared to conventional LOS platforms, Business Banker delivers:</p>
+                <p>Compared to conventional LOS platforms, Cognitive Engine delivers:</p>
                 <ul style="margin: 1.5rem 0; color: var(--text-muted); list-style: none;">
                     <li style="margin-bottom: 0.8rem;"><strong style="color:white;">• Deployment:</strong> 6-8 weeks vs. 12 months.</li>
                     <li style="margin-bottom: 0.8rem;"><strong style="color:white;">• Logic:</strong> No-code configuration vs. developer dependency.</li>
@@ -288,9 +361,10 @@
                 <span class="mono">Technical Deep Dive</span>
                 <h3 style="font-size: 2.5rem; margin: 1rem 0; color: white;">Ready to Modernize?</h3>
                 <p style="color: var(--text-muted); margin-bottom: 2.5rem; max-width: 600px; margin-left: auto; margin-right: auto;">
-                    Join the leading financial institutions using <strong>Business Banker</strong> to power their commercial decision infrastructure.
+                    Join the leading financial institutions using <strong>Cognitive Engine</strong> to power their commercial decision infrastructure.
                 </p>
-                <a href="mailto:info@cognitivegroup.com" class="btn-primary" style="padding: 1.2rem 3rem; font-size: 1.1rem; background: var(--action-blue); color: white; text-decoration: none; border-radius: 4px; font-weight: 600;">Request Demo</a>
+                <!-- Button triggers Modal -->
+                <button onclick="openModal()" class="btn-primary" style="padding: 1.2rem 3rem; font-size: 1.1rem; cursor: pointer;">Request Demo</button>
             </section>
         </main>
     </div>
@@ -299,16 +373,19 @@
     <footer>
         <div class="footer-grid">
             <div>
-                <img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" style="height: 24px; margin-bottom: 1.5rem; opacity: 0.8;" alt="Cognitive">
+                <img src="https://placehold.co/150x40/050A14/22C55E?text=COGNITIVE&font=monospace" style="height: 24px; margin-bottom: 1.5rem; opacity: 0.8;" alt="Cognitive">
                 <p style="font-size: 0.9rem; color: var(--text-muted);">Founded in 1995, Cognitive Group provides the deterministic AI infrastructure required for high-stakes financial decisions.</p>
             </div>
             <div>
-                <h4 style="color: white; margin-bottom: 1rem;">Contact</h4>
-                <p style="font-size: 0.9rem; color: var(--text-muted);">1155 René-Lévesque Blvd West #2500<br>Montréal, QC H3B 2K4</p>
+                <h4 style="color: white; margin-bottom: 1rem;">Institutional Links</h4>
+                <a href="products.html" class="footer-link">The Cognitive Suite</a>
+                <a href="clients.html" class="footer-link">Success Stories</a>
+                <a href="about.html" class="footer-link">Our History</a>
+                <a href="blog.html" class="footer-link">Knowledge Base</a>
             </div>
             <div style="text-align: right;">
                 <h4 style="color: white; margin-bottom: 1rem;">Powered By</h4>
-                <p class="mono" style="color: white; font-size: 1.1rem;">Business Banker</p>
+                <p class="mono" style="color: white; font-size: 1.1rem;">Cognitive Engine</p>
                 <p style="color: var(--primary-accent); margin-top: 0.5rem; font-weight: 700;">+1 (415) 493-8559</p>
             </div>
         </div>
@@ -316,6 +393,44 @@
             &copy; 2025 Cognitive Group. All Rights Reserved.
         </div>
     </footer>
+
+    <!-- SCRIPT FOR MODAL & CALENDLY -->
+    <script>
+        const modal = document.getElementById('bookingModal');
+
+        function openModal() {
+            modal.style.display = 'flex';
+        }
+
+        function closeModal() {
+            modal.style.display = 'none';
+        }
+
+        // Close if clicked outside
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const org = document.getElementById('org').value;
+
+            // Construct Calendly URL with pre-fill data
+            // Note: We are appending name/email to URL so Calendly can read it.
+            const calendlyUrl = `https://cal.com/francoisaubin?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&notes=${encodeURIComponent("Organization: " + org)}`;
+
+            // Open in new tab
+            window.open(calendlyUrl, '_blank');
+            
+            // Close modal
+            closeModal();
+        }
+    </script>
 
 </body>
 </html>

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Banker | Commercial Loan Origination Platform Spec</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-dark: #050A14;
+            --bg-card: #0F172A;
+            --primary-accent: #22C55E; 
+            --action-blue: #2563EB;
+            --text-main: #F8FAFC;
+            --text-muted: #94A3B8;
+            --border-color: #1E293B;
+            --header-height: 72px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { background-color: var(--bg-dark); color: var(--text-main); font-family: 'Inter', sans-serif; line-height: 1.6; }
+
+        .mono { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--primary-accent); }
+        h1, h2, h3, h4 { color: white; font-weight: 700; }
+
+        /* --- GLOBAL HEADER --- */
+        header {
+            position: fixed; top: 0; width: 100%; height: var(--header-height);
+            padding: 0 5%; background: rgba(5, 10, 20, 0.95); backdrop-filter: blur(12px);
+            z-index: 1000; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color);
+        }
+        .real-logo { height: 38px; width: auto; }
+        nav ul { display: flex; gap: 2.5rem; list-style: none; }
+        nav a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; }
+        nav a.active { color: white; border-bottom: 2px solid var(--primary-accent); padding-bottom: 4px; }
+
+        /* --- SPEC SUB-NAV --- */
+        .spec-nav {
+            background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color);
+            padding: 0.8rem 5%; position: sticky; top: var(--header-height); z-index: 900;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+
+        /* --- HERO --- */
+        .hero { padding: 12rem 5% 4rem; max-width: 1200px; margin: 0 auto; }
+        .hero h1 { font-size: clamp(2.5rem, 5vw, 4rem); letter-spacing: -0.04em; margin-bottom: 1.5rem; line-height: 1.1; }
+        .hero .value-prop { font-size: 1.4rem; color: var(--primary-accent); font-weight: 600; margin-bottom: 1rem; }
+        .hero p { font-size: 1.25rem; color: var(--text-muted); max-width: 850px; }
+
+        /* --- MAIN LAYOUT --- */
+        .container { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 260px 1fr; gap: 5rem; padding: 0 5% 10rem; }
+        
+        aside { position: sticky; top: 160px; height: fit-content; }
+        aside ul { list-style: none; border-left: 1px solid var(--border-color); padding-left: 1.5rem; }
+        aside li { margin-bottom: 1.2rem; }
+        aside a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; transition: 0.2s; }
+        aside a:hover { color: var(--primary-accent); }
+
+        section { margin-bottom: 8rem; scroll-margin-top: 180px; }
+        h2 { font-size: 2rem; margin-bottom: 2rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; }
+        h3 { margin: 2rem 0 1rem; color: var(--primary-accent); font-size: 1.2rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* --- CARDS & GRIDS --- */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+        .card { background: var(--bg-card); padding: 2rem; border-radius: 8px; border: 1px solid var(--border-color); }
+        .card h4 { margin-bottom: 0.8rem; font-size: 1.1rem; }
+        .card p { font-size: 0.95rem; color: var(--text-muted); }
+
+        .feature-box { border-left: 3px solid var(--action-blue); padding-left: 1.5rem; margin-bottom: 2rem; }
+        
+        /* --- WORKFLOW VISUAL --- */
+        .workflow-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2rem; }
+        .workflow-item { text-align: center; padding: 2rem; background: rgba(37, 99, 235, 0.05); border-radius: 8px; border: 1px solid rgba(37, 99, 235, 0.2); }
+        .workflow-item strong { display: block; margin-bottom: 0.5rem; color: white; }
+
+        /* --- LIFECYCLE LIST --- */
+        .lifecycle-list { counter-reset: step; list-style: none; }
+        .lifecycle-list li { position: relative; padding-left: 4rem; margin-bottom: 1.5rem; }
+        .lifecycle-list li::before {
+            counter-increment: step; content: counter(step);
+            position: absolute; left: 0; top: 0; width: 45px; height: 45px;
+            background: var(--action-blue); color: white; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; font-weight: 800;
+        }
+
+        /* --- FOOTER --- */
+        footer { padding: 6rem 5%; background: #01040a; border-top: 1px solid var(--border-color); }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 4rem; max-width: 1200px; margin: 0 auto; }
+
+        @media (max-width: 900px) {
+            .container { grid-template-columns: 1fr; }
+            aside { display: none; }
+            .workflow-grid, .grid-2 { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- OVERHAUL HEADER -->
+    <header>
+        <a href="index.html"><img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Cognitive" class="real-logo"></a>
+        <nav>
+            <ul>
+                <li><a href="business-banker.html" class="active">Business Banker</a></li>
+                <li><a href="success.html">Success Stories</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="insights.html">Insights</a></li>
+            </ul>
+        </nav>
+        <a href="contact.html" class="btn-primary" style="background: var(--action-blue); color: white; padding: 0.6rem 1.2rem; text-decoration: none; border-radius: 4px; font-weight: 600;">Strategy Session</a>
+    </header>
+
+    <!-- SPEC SUB-NAV -->
+    <div class="spec-nav">
+        <div style="display:flex; align-items:center; gap:12px;">
+            <span class="mono" style="color:var(--text-muted);">Product Spec /</span>
+            <span class="mono" style="color:white; font-weight: 700;">Business Banker CLOS</span>
+        </div>
+        <a href="#briefing" style="background: var(--primary-accent); color: var(--bg-dark); padding: 0.5rem 1rem; border-radius: 4px; text-decoration: none; font-weight: 700; font-size: 0.8rem;">Technical Briefing</a>
+    </div>
+
+    <!-- HERO SECTION -->
+    <div class="hero">
+        <span class="mono">Commercial Loan Origination Platform</span>
+        <h1>Cognitive Engine</h1>
+        <div class="value-prop">Faster Decisions. Lower Cost. Stronger Governance.</div>
+        <p>A next-generation Commercial Loan Origination System (CLOS) designed for financial institutions seeking to accelerate lending, reduce operational friction, and embed expert credit judgment directly into automated workflows.</p>
+    </div>
+
+    <div class="container">
+        <!-- SIDEBAR -->
+        <aside>
+            <p class="mono" style="margin-bottom: 1.5rem; color: var(--text-muted);">Platform Sections</p>
+            <ul>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#capabilities">Core Capabilities</a></li>
+                <li><a href="#architecture">Platform Architecture</a></li>
+                <li><a href="#workflow">Workflow Model</a></li>
+                <li><a href="#risk">Risk & Compliance</a></li>
+                <li><a href="#ai">AI Automation</a></li>
+                <li><a href="#lifecycle">Lending Lifecycle</a></li>
+            </ul>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main>
+            <!-- OVERVIEW -->
+            <section id="overview">
+                <h2>Overview</h2>
+                <p style="margin-bottom: 2rem;">Built on AI and cognitive engineering principles, Business Banker enables banks to configure, deploy, and evolve complex lending processes without heavy IT projects. The platform scales seamlessly from micro-loans to large corporate and syndicated facilities, all within a single, unified system.</p>
+                <div class="card" style="border-left: 4px solid var(--primary-accent);">
+                    <p>Business Banker replaces fragmented tools and manual hand-offs with a single, intelligent platform that aligns <strong>origination, risk, and operations</strong>.</p>
+                </div>
+            </section>
+
+            <!-- CORE CAPABILITIES -->
+            <section id="capabilities">
+                <h2>Core Capabilities & Business Impact</h2>
+                <div class="grid-2">
+                    <div class="card">
+                        <h4>Extreme Configurability</h4>
+                        <p>Fully no-code configuration of products, workflows, and risk models. Adapt in real-time without dev cycles.</p>
+                    </div>
+                    <div class="card">
+                        <h4>Scalable Architecture</h4>
+                        <p>Single-instance platform supporting personal, small business, and complex corporate multi-facility structures.</p>
+                    </div>
+                    <div class="card">
+                        <h4>Integrated AI</h4>
+                        <p>Native automation for financial spreading and credit assessment with full traceability and reasoning.</p>
+                    </div>
+                    <div class="card">
+                        <h4>Accelerated Deployment</h4>
+                        <p>Implementation in 6–8 weeks using iterative configuration and stakeholder validation.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ARCHITECTURE -->
+            <section id="architecture">
+                <h2>Platform Architecture</h2>
+                <h3>1. Configurable Client Model</h3>
+                <p>Dynamically constructed profiles support complex relationships, including:</p>
+                <ul style="margin: 1.5rem 0; color: var(--text-muted); padding-left: 1.5rem;">
+                    <li>Legal and trade names (Entity mapping)</li>
+                    <li>Structure: Partnerships, Corporations, Individuals</li>
+                    <li>Unified multi-entity, multi-product credit views</li>
+                </ul>
+
+                <h3>2. Loan Request Structure</h3>
+                <p>The core object of Business Banker, encompassing:</p>
+                <ul style="margin: 1.5rem 0; color: var(--text-muted); padding-left: 1.5rem;">
+                    <li><strong>Facilities:</strong> Term loans, Revolving credit, Equipment, Mortgages, Leases.</li>
+                    <li><strong>Collateral:</strong> Security details with associated documentation and realizable values.</li>
+                    <li><strong>Conditions:</strong> Disbursement triggers and ongoing covenants (financial updates, annual reviews).</li>
+                </ul>
+            </section>
+
+            <!-- WORKFLOW MODEL -->
+            <section id="workflow">
+                <h2>Workflow & Decision Model</h2>
+                <p>Supporting the standard three-tier commercial lending structure used by Tier-1 banks:</p>
+                <div class="workflow-grid">
+                    <div class="workflow-item">
+                        <strong>01. Origination</strong>
+                        <p style="font-size: 0.85rem; color: var(--text-muted);">Account managers initiate onboarding and structure facilities.</p>
+                    </div>
+                    <div class="workflow-item">
+                        <strong>02. Adjudication</strong>
+                        <p style="font-size: 0.85rem; color: var(--text-muted);">Analysts perform spreading and risk approvals with AI assistance.</p>
+                    </div>
+                    <div class="workflow-item">
+                        <strong>03. Operations</strong>
+                        <p style="font-size: 0.85rem; color: var(--text-muted);">Legal and Ops finalize documentation and disbursement.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- RISK & COMPLIANCE -->
+            <section id="risk">
+                <h2>Risk Modeling & Compliance</h2>
+                <p>Configurable frameworks for small business, corporate, and construction financing. Supports:</p>
+                <div class="feature-box">
+                    <p>• Internal rating methodologies & Basel-compliant metrics (PD, LGD, EAD, RWA).</p>
+                    <p>• AI-assisted risk scoring and real-time portfolio visibility.</p>
+                    <p>• Regulatory alignment with Basel III/IV standards across jurisdictions.</p>
+                </div>
+            </section>
+
+            <!-- AI AUTOMATION -->
+            <section id="ai">
+                <h2>AI-Driven Automation</h2>
+                <p>Natively embedded to enhance efficiency without compromising control:</p>
+                <div class="grid-2" style="margin-top: 2rem;">
+                    <div class="card">
+                        <h4>Document Intelligence</h4>
+                        <p>Extraction and classification of data from PDFs and scanned financial statements.</p>
+                    </div>
+                    <div class="card">
+                        <h4>Financial Spreading</h4>
+                        <p>Normalization of unstructured financial statements into analyzable formats.</p>
+                    </div>
+                    <div class="card">
+                        <h4>Predictive Insights</h4>
+                        <p>Pre-computed ratios and anomaly detection to assist human credit analysts.</p>
+                    </div>
+                    <div class="card">
+                        <h4>Workflow Acceleration</h4>
+                        <p>Automated routing, validation checkpoints, and compliance reminders.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- LIFECYCLE -->
+            <section id="lifecycle">
+                <h2>End-to-End Lending Lifecycle</h2>
+                <ol class="lifecycle-list">
+                    <li><strong>Profiling:</strong> Client prospect created and relationship profiled.</li>
+                    <li><strong>Structuring:</strong> Loan request created with facilities and securities.</li>
+                    <li><strong>Generation:</strong> Term sheet automatically generated.</li>
+                    <li><strong>Decisioning:</strong> Credit adjudication via deterministic logic.</li>
+                    <li><strong>Signature:</strong> Letter of offer produced and routed for e-signature.</li>
+                    <li><strong>Funding:</strong> Disbursement completed by operations.</li>
+                    <li><strong>Monitoring:</strong> Post-disbursement alerts and annual reviews.</li>
+                </ol>
+            </section>
+
+            <!-- COMPETITIVE ADVANTAGE -->
+            <section id="competitive">
+                <h2>Competitive Advantage</h2>
+                <p>Compared to conventional LOS platforms, Business Banker delivers:</p>
+                <ul style="margin: 1.5rem 0; color: var(--text-muted); list-style: none;">
+                    <li style="margin-bottom: 0.8rem;"><strong style="color:white;">• Deployment:</strong> 6-8 weeks vs. 12 months.</li>
+                    <li style="margin-bottom: 0.8rem;"><strong style="color:white;">• Logic:</strong> No-code configuration vs. developer dependency.</li>
+                    <li style="margin-bottom: 0.8rem;"><strong style="color:white;">• Automation:</strong> Fully integrated document AI vs. manual entry.</li>
+                    <li style="margin-bottom: 0.8rem;"><strong style="color:white;">• UX:</strong> Intuitive design requiring minimal training.</li>
+                </ul>
+            </section>
+
+            <!-- FINAL CTA -->
+            <section id="briefing" style="text-align: center; background: linear-gradient(145deg, #0F172A, #020617); padding: 5rem 3rem; border-radius: 12px; border: 1px solid var(--action-blue);">
+                <span class="mono">Technical Deep Dive</span>
+                <h3 style="font-size: 2.5rem; margin: 1rem 0; color: white;">Ready to Modernize?</h3>
+                <p style="color: var(--text-muted); margin-bottom: 2.5rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                    Join the leading financial institutions using <strong>Business Banker</strong> to power their commercial decision infrastructure.
+                </p>
+                <a href="mailto:info@cognitivegroup.com" class="btn-primary" style="padding: 1.2rem 3rem; font-size: 1.1rem; background: var(--action-blue); color: white; text-decoration: none; border-radius: 4px; font-weight: 600;">Request Demo</a>
+            </section>
+        </main>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" style="height: 24px; margin-bottom: 1.5rem; opacity: 0.8;" alt="Cognitive">
+                <p style="font-size: 0.9rem; color: var(--text-muted);">Founded in 1995, Cognitive Group provides the deterministic AI infrastructure required for high-stakes financial decisions.</p>
+            </div>
+            <div>
+                <h4 style="color: white; margin-bottom: 1rem;">Contact</h4>
+                <p style="font-size: 0.9rem; color: var(--text-muted);">1155 René-Lévesque Blvd West #2500<br>Montréal, QC H3B 2K4</p>
+            </div>
+            <div style="text-align: right;">
+                <h4 style="color: white; margin-bottom: 1rem;">Powered By</h4>
+                <p class="mono" style="color: white; font-size: 1.1rem;">Business Banker</p>
+                <p style="color: var(--primary-accent); margin-top: 0.5rem; font-weight: 700;">+1 (415) 493-8559</p>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 5rem; font-size: 0.8rem; color: #334155; border-top: 1px solid var(--border-color); padding-top: 2rem;">
+            &copy; 2025 Cognitive Group. All Rights Reserved.
+        </div>
+    </footer>
+
+</body>
+</html>

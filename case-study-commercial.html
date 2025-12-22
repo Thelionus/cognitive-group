@@ -3,18 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Commercial Lending Case Study | Cognitive Banking</title>
+    <title>Case Study: Commercial Lending | Cognitive Banking - Eliminating Friction</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
             --bg-dark: #050A14;
             --bg-card: #0F172A;
-            --primary-accent: #22C55E; /* Green for Success/Money */
-            --secondary-accent: #38BDF8; /* Blue for Technology */
+            --primary-accent: #22C55E; 
+            --action-blue: #2563EB;
             --text-main: #F8FAFC;
             --text-muted: #94A3B8;
             --border-color: #1E293B;
+            --max-width: 1400px;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -23,247 +28,265 @@
             background-color: var(--bg-dark);
             color: var(--text-main);
             font-family: 'Inter', sans-serif;
-            line-height: 1.6;
+            line-height: 1.7;
+            overflow-x: hidden;
         }
 
-        a { text-decoration: none; color: inherit; }
+        h1, h2, h3, h4 { font-weight: 700; color: white; margin-bottom: 1rem; }
+        
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--primary-accent);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
 
-        /* Header (Same as previous pages for consistency) */
+        /* --- UNIFIED STABLE HEADER --- */
         header {
-            padding: 1.5rem 5%;
-            background: rgba(5, 10, 20, 0.9);
-            border-bottom: 1px solid var(--border-color);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 5%;
+            background: rgba(5, 10, 20, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            height: 72px; 
         }
 
-        .logo-container { font-weight: 700; font-size: 1.5rem; display: flex; align-items: center; gap: 10px; }
-        .logo-container span { color: var(--primary-accent); }
+        .real-logo { height: 40px; width: auto; display: block; }
 
         nav ul { display: flex; gap: 2rem; list-style: none; }
-        nav a { color: var(--text-muted); transition: color 0.3s; font-size: 0.9rem; }
-        nav a:hover { color: var(--text-main); }
+        nav a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.3s; }
+        nav a:hover { color: white; }
 
         .btn-primary {
-            background: var(--text-main);
-            color: var(--bg-dark);
-            padding: 0.75rem 1.5rem;
+            background: var(--action-blue);
+            color: white;
+            padding: 0.6rem 1.2rem;
             font-weight: 600;
-            border-radius: 2px;
-            border: 1px solid var(--text-main);
-            transition: all 0.3s;
-        }
-        .btn-primary:hover { background: transparent; color: var(--text-main); }
-
-        /* Case Study Hero */
-        .cs-hero {
-            padding: 6rem 5%;
-            background: radial-gradient(circle at top right, rgba(34, 197, 94, 0.1) 0%, transparent 60%);
-            border-bottom: 1px solid var(--border-color);
-        }
-        .cs-container { max-width: 1000px; margin: 0 auto; }
-        
-        .tag { 
-            font-family: 'JetBrains Mono', monospace; 
-            color: var(--primary-accent); 
-            background: rgba(34, 197, 94, 0.1); 
-            padding: 5px 10px; 
-            border-radius: 4px; 
-            font-size: 0.85rem; 
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            border: 1px solid var(--action-blue);
             display: inline-block;
-            margin-bottom: 1.5rem;
         }
+        .btn-primary:hover { background: #1d4ed8; border-color: #1d4ed8; transform: translateY(-1px); }
 
-        .cs-hero h1 { font-size: 3.5rem; line-height: 1.1; margin-bottom: 1.5rem; }
-        .cs-hero p { font-size: 1.25rem; color: var(--text-muted); max-width: 700px; }
+        /* --- CASE HERO --- */
+        .case-hero {
+            padding: 10rem 5% 4rem;
+            max-width: var(--max-width);
+            margin: 72px auto 0;
+            border-bottom: 1px solid var(--border-color);
+            background: radial-gradient(circle at top right, rgba(34, 197, 94, 0.05) 0%, transparent 60%);
+        }
+        .case-hero h1 { font-size: clamp(2.5rem, 4vw, 3.5rem); line-height: 1.1; margin: 1rem 0; }
+        .hero-lead { font-size: 1.25rem; color: var(--text-muted); max-width: 800px; }
 
         /* Metrics Bar */
-        .metrics-bar {
-            background: var(--bg-card);
-            border-bottom: 1px solid var(--border-color);
-            padding: 2rem 5%;
-        }
         .metrics-grid {
-            max-width: 1000px;
-            margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
+            margin-top: 3.5rem;
+            padding: 2.5rem 0;
+            border-top: 1px solid var(--border-color);
         }
-        .metric-item strong { display: block; font-size: 2.5rem; color: var(--primary-accent); line-height: 1; margin-bottom: 0.5rem; }
-        .metric-item span { color: var(--text-muted); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+        .metric h4 { font-size: 2.5rem; color: var(--primary-accent); margin-bottom: 0.2rem; }
+        .metric span { font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
 
-        /* Content Layout */
-        .content-section { padding: 4rem 5%; }
-        
-        .two-col {
+        /* Main Layout */
+        .content-container {
             display: grid;
-            grid-template-columns: 1fr 300px; /* Main content + Sidebar */
-            gap: 4rem;
+            grid-template-columns: 2fr 1fr;
+            gap: 5rem;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 5rem 5%;
         }
 
-        h2 { font-size: 2rem; margin: 3rem 0 1.5rem; color: var(--text-main); }
-        h3 { font-size: 1.25rem; margin: 1.5rem 0 1rem; color: var(--secondary-accent); }
-        p, li { color: #CBD5E1; margin-bottom: 1rem; font-size: 1.05rem; }
+        article h2 { font-size: 1.8rem; margin-top: 3.5rem; color: white; border-left: 3px solid var(--primary-accent); padding-left: 1.5rem; }
+        article p { margin-bottom: 1.5rem; color: var(--text-muted); font-size: 1.05rem; }
         
-        ul { margin-left: 1.5rem; margin-bottom: 2rem; }
-        li { margin-bottom: 0.5rem; }
-
-        /* The "Glass Box" callout */
         .glass-box {
-            background: rgba(30, 41, 59, 0.5);
-            border: 1px solid var(--secondary-accent);
-            padding: 2rem;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid var(--action-blue);
+            padding: 2.5rem;
             border-radius: 8px;
-            margin: 2rem 0;
+            margin: 3rem 0;
         }
-        .glass-box h3 { margin-top: 0; color: var(--primary-accent); }
+        .glass-box h3 { color: var(--primary-accent); margin-bottom: 1.5rem; }
 
-        /* Sidebar Styles */
+        /* Sidebar Styling */
+        aside { position: sticky; top: 100px; height: fit-content; }
         .sidebar-card {
             background: var(--bg-card);
-            padding: 1.5rem;
             border: 1px solid var(--border-color);
+            padding: 2rem;
             border-radius: 8px;
             margin-bottom: 2rem;
         }
-        .sidebar-title { font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; }
+        .sidebar-title { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; }
 
-        @media (max-width: 768px) {
+        /* --- UNIFIED FOOTER --- */
+        footer { padding: 4rem 5%; background: #020617; border-top: 1px solid var(--border-color); }
+        .footer-grid { display: grid; grid-template-columns: 1.5fr 1.5fr 1fr; gap: 4rem; }
+        .footer-link { color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 0.8rem; font-size: 0.9rem; transition: color 0.3s; }
+        .footer-link:hover { color: var(--primary-accent); }
+
+        @media (max-width: 968px) {
+            .content-container { grid-template-columns: 1fr; }
             .metrics-grid { grid-template-columns: 1fr; gap: 2rem; text-align: center; }
-            .two-col { grid-template-columns: 1fr; }
-            .cs-hero h1 { font-size: 2.5rem; }
+            header { height: auto; padding: 1rem 5%; }
+            nav { display: none; }
+            .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Navigation -->
+    <!-- Unified Stable Header -->
     <header>
-        <a href="index.html" class="logo-container">
-            <span>&#9638;</span> cognitive
-        </a>
+        <div style="display:flex; align-items:center;">
+            <a href="index.html">
+                <img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Cognitive Group Logo" class="real-logo">
+            </a>
+        </div>
         <nav>
             <ul>
-                <li><a href="index.html">Platform</a></li>
+                <li><a href="products.html">Products</a></li>
                 <li><a href="success.html">Success Stories</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="blog.html">Insights</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
-        <a href="contact.html" class="btn-primary">Deploy AI</a>
+        <a href="contact.html" class="btn-primary">Strategy Session</a>
     </header>
 
     <!-- Hero Section -->
-    <section class="cs-hero">
-        <div class="cs-container">
-            <span class="tag">Commercial Lending</span>
-            <h1>Eliminating Friction in<br>Loan Origination.</h1>
-            <p>How a leading North American financial institution used the Cognitive AI Workbench to reduce loan preparation time from 120 minutes to 10 minutes.</p>
-        </div>
-    </section>
-
-    <!-- Key Metrics -->
-    <section class="metrics-bar">
+    <div class="case-hero">
+        <a href="success.html" style="color: var(--primary-accent); text-decoration: none; font-size: 0.85rem; font-family: 'JetBrains Mono';">&larr; BACK TO SUCCESS STORIES</a>
+        <div class="mono" style="margin-top: 2rem;">Sector: Commercial Banking | Region: North America</div>
+        <h1>Eliminating Friction in <br>Loan Origination.</h1>
+        <p class="hero-lead">How a leading financial institution used the <strong>Cognitive Engine</strong> to reduce commercial loan preparation time from 120 minutes to 10 minutes.</p>
+        
         <div class="metrics-grid">
-            <div class="metric-item">
-                <strong>92%</strong>
+            <div class="metric">
+                <h4>92%</h4>
                 <span>Reduction in Prep Time</span>
             </div>
-            <div class="metric-item">
-                <strong>0%</strong>
+            <div class="metric">
+                <h4>0%</h4>
                 <span>Rework Rate</span>
             </div>
-            <div class="metric-item">
-                <strong>100%</strong>
-                <span>Process Automation</span>
+            <div class="metric">
+                <h4>100%</h4>
+                <span>Process Traceability</span>
             </div>
         </div>
-    </section>
+    </div>
 
     <!-- Main Content -->
-    <section class="content-section cs-container">
-        <div class="two-col">
+    <div class="content-container">
+        <article>
+            <span class="mono">01 | The Challenge</span>
+            <h2>The "Silo" Trap & RPA Failure</h2>
+            <p>A major North American financial institution with a massive commercial portfolio faced chronic inefficiencies. Despite high-level expertise, the loan origination workflow was fragmented across three isolated functions: Account Management, Credit Analysis, and Documentation.</p>
+            <p>Each loan application bounced back and forth multiple times. Previous attempts to use standard RPA (Robotic Process Automation) had failed because the upstream data—client financials and legal documents—was too variable and unstructured for simple "if-then" bots.</p>
+
+            <span class="mono">02 | The Solution</span>
+            <h2>Orchestrating the "Universal Banker"</h2>
+            <p>Instead of a costly core system overhaul, the bank deployed the <strong>Cognitive Foundry</strong> to build an orchestration layer. This wasn't a standard LOS; it was an intelligent layer designed to think and reason like a senior credit officer.</p>
             
-            <!-- Left Column: The Narrative -->
-            <article>
-                <h2>The Challenge: The "Silo" Trap</h2>
-                <p>A leading North American financial institution with a large commercial portfolio faced chronic inefficiencies. Despite having strong front-office expertise, the loan origination workflow was fragmented across three isolated functions:</p>
-                <ul>
-                    <li><strong>Account Managers:</strong> Client interaction and initial prep.</li>
-                    <li><strong>Middle Office (Risk):</strong> Credit analysis and structuring.</li>
-                    <li><strong>Operations (Back Office):</strong> Documentation, offer letters, and security.</li>
+            <div class="glass-box">
+                <h3>The Intelligence Layer in Action</h3>
+                <ul style="color: var(--text-muted); padding-left: 1.5rem; list-style: square;">
+                    <li style="margin-bottom: 1rem;"><strong>Expert Ingestion:</strong> Directly captures messy bank statements and Equifax reports.</li>
+                    <li style="margin-bottom: 1rem;"><strong>Normalization:</strong> Standardizes variable line items into a single, institutional credit framework.</li>
+                    <li style="margin-bottom: 1rem;"><strong>Deterministic Output:</strong> Runs internal risk policies against data to generate a structured, board-ready loan request.</li>
                 </ul>
-                <p>Each loan application bounced back and forth 2-3 times between these groups. Account managers were spending <strong>120 minutes per loan</strong> just on preparation, with half that time wasted on rework. Previous attempts to use Robotic Process Automation (RPA) had failed because the upstream data was too messy.</p>
+            </div>
 
-                <h2>The Solution: Cognitive Orchestration</h2>
-                <p>Instead of replacing their core systems, the bank deployed the <strong>Cognitive AI Workbench</strong> as an orchestration layer. This wasn't a standard LOS (Loan Origination System); it was an intelligent layer designed to think like a credit officer.</p>
-                
-                <div class="glass-box">
-                    <h3>How the AI Workbench Works</h3>
-                    <ul>
-                        <li><strong>Ingestion:</strong> Captures client docs, bank statements, and Equifax reports directly.</li>
-                        <li><strong>Normalization:</strong> Automatically standardizes variable financial statements (e.g., mapping different "Revenue" line items to a single standard).</li>
-                        <li><strong>Deterministic Analysis:</strong> Runs credit risk policies against the data to generate a structured, audit-ready loan request.</li>
-                    </ul>
-                </div>
+            <span class="mono">03 | The Results</span>
+            <h2>Unlocking the Tech Stack</h2>
+            <p>The impact was structural. By ensuring data was structured and validated *before* it reached Operations, the bank eliminated the primary failure mode of their digital transformation efforts.</p>
+            
+            <ul style="color: var(--text-muted); padding-left: 1.5rem; margin-bottom: 2rem;">
+                <li style="margin-bottom: 1rem;"><strong>Time Savings:</strong> Account Manager prep time dropped from 120 minutes to just **10 minutes**.</li>
+                <li style="margin-bottom: 1rem;"><strong>Zero Rework:</strong> 100% elimination of iterations between Front Office and Risk functions.</li>
+                <li style="margin-bottom: 1rem;"><strong>Downstream Automation:</strong> Because the Engine's output was clean, the bank could finally automate offer letters and security documentation end-to-end.</li>
+            </ul>
+        </article>
 
-                <h2>The Results: Frictionless Origination</h2>
-                <p>The impact was immediate. By ensuring data was structured and validated <em>before</em> it ever reached the Operations team, the bank eliminated the primary failure mode of their previous automation efforts.</p>
-                
-                <h3>Operational Impact</h3>
-                <ul>
-                    <li><strong>Speed:</strong> Account Manager prep time dropped from 120 minutes to 10 minutes.</li>
-                    <li><strong>Accuracy:</strong> 100% elimination of back-and-forth iterations between Front Office and Risk.</li>
-                    <li><strong>Automation:</strong> Because the AI output was clean, the bank could finally turn on end-to-end automation for offer letters and security documentation.</li>
+        <!-- Sidebar -->
+        <aside>
+            <div class="sidebar-card">
+                <div class="sidebar-title">Client Profile</div>
+                <p style="font-size: 0.9rem; margin-bottom: 0;">
+                    <strong>Sector:</strong> Commercial Banking<br>
+                    <strong>Region:</strong> United States / Canada<br>
+                    <strong>Portfolio:</strong> Large Cap SME Lending
+                </p>
+            </div>
+
+            <div class="sidebar-card">
+                <div class="sidebar-title">Suite Deployed</div>
+                <ul style="font-size: 0.9rem; list-style: none; margin: 0;">
+                    <li style="margin-bottom: 0.5rem;"><strong style="color: white;">• Cognitive Engine</strong></li>
+                    <li style="margin-bottom: 0.5rem;"><strong style="color: white;">• Cognitive Foundry</strong></li>
+                    <li style="margin-bottom: 0.5rem;">• Financial Statement OCR</li>
+                    <li>• Auto-Doc Generation</li>
                 </ul>
-                <p>The Proof of Concept proved that the AI Workbench alone—without a traditional LOS overhaul—was sufficient to modernize the commercial lending workflow.</p>
-            </article>
+            </div>
 
-            <!-- Right Column: Sidebar -->
-            <aside>
-                <div class="sidebar-card">
-                    <div class="sidebar-title">Client Profile</div>
-                    <p style="font-size: 0.9rem; margin-bottom: 0;">
-                        <strong>Sector:</strong> Commercial Banking<br>
-                        <strong>Region:</strong> United States<br>
-                        <strong>Portfolio:</strong> Large Cap SME Lending
-                    </p>
-                </div>
+            <div class="sidebar-card" style="border-color: var(--primary-accent); background: rgba(34, 197, 94, 0.03);">
+                <div class="sidebar-title" style="color: var(--primary-accent);">The Insight</div>
+                <p style="font-size: 0.95rem; font-style: italic; color: white;">
+                    "Most automation fails because the data is 'bad.' We fix the data upstream at the decision layer, which unlocks the rest of the institution's tech stack."
+                </p>
+            </div>
 
-                <div class="sidebar-card">
-                    <div class="sidebar-title">Tech Stack Deployed</div>
-                    <ul style="font-size: 0.9rem; list-style: none; margin: 0;">
-                        <li style="margin-bottom: 0.5rem;">• Cognitive AI Workbench</li>
-                        <li style="margin-bottom: 0.5rem;">• Financial Statement OCR</li>
-                        <li style="margin-bottom: 0.5rem;">• Deterministic Risk Engine</li>
-                        <li>• Auto-Doc Generation</li>
-                    </ul>
-                </div>
+            <a href="contact.html" class="btn-primary" style="width: 100%; text-align: center; padding: 1rem;">Request Technical Briefing</a>
+        </aside>
+    </div>
 
-                <div class="sidebar-card" style="border-color: var(--primary-accent);">
-                    <div class="sidebar-title" style="color: var(--primary-accent);">Key Takeaway</div>
-                    <p style="font-size: 0.95rem; font-style: italic; color: white;">
-                        "Previous automation failed because the data was bad. Cognitive fixed the data upstream, unlocking the rest of our tech stack."
-                    </p>
-                </div>
-            </aside>
-
+    <!-- Unified Footer -->
+    <footer>
+        <div class="container footer-grid">
+            <div>
+                <h4 style="color: white; margin-bottom: 1.5rem;">About Us</h4>
+                <p style="font-size: 0.9rem; line-height: 1.6; color: var(--text-muted);">
+                    Cognitive specializes in deterministic AI for mission-critical banking. Founded in 1995 by CRIM, our expertise is built on decades of cognitive engineering.
+                </p>
+            </div>
+            <div>
+                <h4 style="color: white; margin-bottom: 1.5rem;">Institutional Links</h4>
+                <a href="products.html" class="footer-link">The Cognitive Suite</a>
+                <a href="blog.html" class="footer-link">Research & Insights</a>
+                <a href="success.html" class="footer-link">Case Study Archive</a>
+            </div>
+            <div>
+                <h4 style="color: white; margin-bottom: 1.5rem;">Get in Touch</h4>
+                <p style="font-size: 0.9rem; color: var(--text-muted);">
+                    1155 René-Lévesque Blvd West #2500<br>
+                    Montréal, QC H3B 2K4, Canada<br><br>
+                    <a href="mailto:info@cognitivegroup.com" style="color: white; text-decoration: none;">info@cognitivegroup.com</a><br>
+                    <span style="color: var(--primary-accent); font-weight: 600;">+1 (415) 493-8559</span>
+                </p>
+            </div>
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer style="padding: 4rem 5%; background: #020617; border-top: 1px solid var(--border-color); text-align: center;">
-        <div class="logo-container" style="justify-content: center; margin-bottom: 1.5rem;">
-            <span>&#9638;</span> cognitive
-        </div>
-        <p style="color: var(--text-muted); font-size: 0.9rem;">
+        <div style="text-align: center; border-top: 1px solid var(--border-color); padding-top: 2rem; margin-top: 2rem; color: var(--text-muted); font-size: 0.8rem;">
             &copy; 2025 Cognitive Group. All Rights Reserved.
-        </p>
+        </div>
     </footer>
 
 </body>

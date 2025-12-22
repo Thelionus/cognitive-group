@@ -4,15 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Case Study: Mortgage Automation | Cognitive Banking</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --bg-dark: #050A14;
             --bg-card: #0F172A;
-            --primary-accent: #22C55E;
+            --primary-accent: #22C55E; 
+            --action-blue: #2563EB;
             --text-main: #F8FAFC;
             --text-muted: #94A3B8;
             --border-color: #1E293B;
+            --max-width: 1400px;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -22,103 +29,113 @@
             color: var(--text-main);
             font-family: 'Inter', sans-serif;
             line-height: 1.7;
+            overflow-x: hidden;
         }
 
+        h1, h2, h3, h4 { font-weight: 700; color: white; margin-bottom: 1rem; }
+        
         .mono {
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.85rem;
             color: var(--primary-accent);
             text-transform: uppercase;
             letter-spacing: 0.05em;
+            display: block;
+            margin-bottom: 0.5rem;
         }
 
-        /* Header */
+        /* --- UNIFIED STABLE HEADER --- */
         header {
-            padding: 1.5rem 5%;
-            border-bottom: 1px solid var(--border-color);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 5%;
+            background: rgba(5, 10, 20, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(5, 10, 20, 0.9);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            border-bottom: 1px solid var(--border-color);
+            height: 72px; 
         }
-        
-        .logo { font-weight: 700; font-size: 1.2rem; text-decoration: none; color: white; display: flex; align-items: center; gap: 8px;}
-        .back-link { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 5px; transition: color 0.3s;}
-        .back-link:hover { color: var(--primary-accent); }
 
-        /* Hero */
+        .real-logo { height: 40px; width: auto; display: block; }
+
+        nav ul { display: flex; gap: 2rem; list-style: none; }
+        nav a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.3s; }
+        nav a:hover { color: white; }
+
+        .btn-primary {
+            background: var(--action-blue);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            border: 1px solid var(--action-blue);
+            display: inline-block;
+        }
+
+        /* --- CASE HERO --- */
         .case-hero {
-            padding: 6rem 5% 4rem;
-            max-width: 1200px;
-            margin: 0 auto;
+            padding: 10rem 5% 4rem;
+            max-width: var(--max-width);
+            margin: 72px auto 0;
             border-bottom: 1px solid var(--border-color);
         }
-
-        h1 { font-size: 3rem; margin: 1rem 0; line-height: 1.1; }
-        .hero-lead { font-size: 1.4rem; color: var(--text-muted); max-width: 800px; }
+        .case-hero h1 { font-size: clamp(2.5rem, 4vw, 3.5rem); line-height: 1.1; margin: 1rem 0; }
+        .hero-lead { font-size: 1.25rem; color: var(--text-muted); max-width: 800px; }
 
         /* Metrics Bar */
         .metrics-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 2rem;
-            margin-top: 3rem;
-            padding: 2rem 0;
+            margin-top: 3.5rem;
+            padding: 2.5rem 0;
             border-top: 1px solid var(--border-color);
         }
-        .metric h4 { font-size: 2.5rem; color: var(--primary-accent); margin-bottom: 0.5rem; }
-        .metric span { font-size: 0.9rem; color: var(--text-muted); display: block; }
+        .metric h4 { font-size: 2.5rem; color: var(--primary-accent); margin-bottom: 0.2rem; }
+        .metric span { font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
 
         /* Main Layout */
         .content-container {
             display: grid;
             grid-template-columns: 2fr 1fr;
-            gap: 4rem;
-            max-width: 1200px;
+            gap: 5rem;
+            max-width: var(--max-width);
             margin: 0 auto;
-            padding: 4rem 5%;
+            padding: 5rem 5%;
         }
 
-        /* Article Styling */
-        article h2 { font-size: 1.8rem; margin-top: 3rem; margin-bottom: 1rem; color: white; }
-        article p { margin-bottom: 1.5rem; color: var(--text-muted); }
-        article ul { margin-bottom: 1.5rem; padding-left: 1.5rem; color: var(--text-muted); }
-        article li { margin-bottom: 0.5rem; }
-
+        article h2 { font-size: 1.8rem; margin-top: 3.5rem; color: white; border-left: 3px solid var(--primary-accent); padding-left: 1.5rem; }
+        article p { margin-bottom: 1.5rem; color: var(--text-muted); font-size: 1.05rem; }
+        
         .highlight-box {
             background: rgba(34, 197, 94, 0.05);
             border-left: 2px solid var(--primary-accent);
-            padding: 1.5rem;
-            margin: 2rem 0;
+            padding: 2rem;
+            margin: 3rem 0;
             font-style: italic;
-            color: var(--text-main);
+            color: white;
+            font-size: 1.1rem;
         }
 
         /* Sidebar Styling */
-        aside {
-            position: sticky;
-            top: 100px;
-            height: fit-content;
-        }
-
+        aside { position: sticky; top: 100px; height: fit-content; }
         .info-card {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
-            padding: 1.5rem;
-            border-radius: 4px;
+            padding: 2rem;
+            border-radius: 8px;
             margin-bottom: 2rem;
         }
-
-        .info-row {
-            margin-bottom: 1rem;
-            border-bottom: 1px solid #1E293B;
-            padding-bottom: 1rem;
-        }
+        .info-row { margin-bottom: 1.5rem; border-bottom: 1px solid #1E293B; padding-bottom: 1rem; }
         .info-row:last-child { border-bottom: none; }
-        .info-label { display: block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 4px; }
+        .info-label { display: block; font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 5px; }
         .info-value { display: block; font-size: 1rem; font-weight: 600; color: white; }
 
         .tech-tag {
@@ -126,69 +143,75 @@
             background: #0f172a;
             border: 1px solid var(--primary-accent);
             color: var(--primary-accent);
-            padding: 4px 8px;
+            padding: 5px 10px;
             font-size: 0.75rem;
-            margin-right: 5px;
-            margin-bottom: 5px;
+            margin-right: 6px;
+            margin-bottom: 8px;
             font-family: 'JetBrains Mono', monospace;
         }
 
-        /* Visual Representation of Logic Flow */
+        /* Logic Flow Visual */
         .logic-visual {
             background: #020617;
-            border: 1px solid #334155;
-            padding: 1.5rem;
-            margin: 2rem 0;
+            border: 1px solid var(--border-color);
+            padding: 2rem;
+            margin: 3rem 0;
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.85rem;
             color: #94a3b8;
-            position: relative;
         }
-        
-        .logic-step {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-        .logic-step:last-child { margin-bottom: 0; }
-        
+        .logic-step { display: flex; align-items: center; margin-bottom: 1rem; }
         .step-icon {
-            width: 24px;
-            height: 24px;
+            width: 28px; height: 28px;
             background: var(--border-color);
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 15px;
-            color: white;
-            font-size: 0.7rem;
+            display: flex; align-items: center; justify-content: center;
+            margin-right: 15px; color: white; font-size: 0.75rem; flex-shrink: 0;
         }
-        
-        .step-active { background: var(--primary-accent); color: black; }
-        .connector { height: 15px; border-left: 1px dashed #334155; margin-left: 12px; margin-top: -5px; margin-bottom: 5px;}
+        .step-active { background: var(--primary-accent); color: black; font-weight: bold; }
 
-        @media (max-width: 768px) {
+        /* --- UNIFIED FOOTER --- */
+        footer { padding: 4rem 5%; background: #020617; border-top: 1px solid var(--border-color); }
+        .footer-grid { display: grid; grid-template-columns: 1.5fr 1.5fr 1fr; gap: 4rem; }
+        .footer-link { color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 0.8rem; font-size: 0.9rem; transition: color 0.3s; }
+        .footer-link:hover { color: var(--primary-accent); }
+
+        @media (max-width: 968px) {
             .content-container { grid-template-columns: 1fr; }
             .metrics-grid { grid-template-columns: 1fr 1fr; }
-            h1 { font-size: 2rem; }
-            aside { position: static; }
+            header { height: auto; padding: 1rem 5%; }
+            nav { display: none; }
+            .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
         }
     </style>
 </head>
 <body>
 
+    <!-- Unified Stable Header -->
     <header>
-        <a href="index.html" class="logo">
-            <span style="color: var(--primary-accent); font-size: 1.5rem;">&#9638;</span> cognitive
-        </a>
-        <a href="success.html" class="back-link">&larr; Back to Case Studies</a>
+        <div style="display:flex; align-items:center;">
+            <a href="index.html">
+                <img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Cognitive Group Logo" class="real-logo">
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="success.html">Success Stories</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="blog.html">Insights</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <a href="contact.html" class="btn-primary">Strategy Session</a>
     </header>
 
+    <!-- Case Hero -->
     <div class="case-hero">
-        <div class="mono">Client: Confidential (Tier-1 Bank) | Region: Canada</div>
+        <a href="success.html" style="color: var(--primary-accent); text-decoration: none; font-size: 0.85rem; font-family: 'JetBrains Mono';">&larr; BACK TO CASE STUDIES</a>
+        <div class="mono" style="margin-top: 2rem;">Client: Confidential (Tier-1 Bank) | Region: Canada</div>
         <h1>Adjudication at the Speed of AI.</h1>
-        <p class="hero-lead">We used <strong>Real Intelligence Capture</strong> through CTA to build a Mortgage Agent that encapsulates <strong>100 years of expertise</strong> in lending.</p>
+        <p class="hero-lead">Encapsulating 100 years of lending expertise into a deterministic Mortgage Agent via <strong>Real Intelligence Capture.</strong></p>
         
         <div class="metrics-grid">
             <div class="metric">
@@ -200,82 +223,66 @@
                 <span>Years of Logic Encoded</span>
             </div>
             <div class="metric">
-                <h4>300</h4>
-                <span>Adjudicators Augmented</span>
+                <h4>90%</h4>
+                <span>Efficiency Gain</span>
             </div>
             <div class="metric">
                 <h4>0%</h4>
-                <span>Hallucination Rate</span>
+                <span>Hallucination Risk</span>
             </div>
         </div>
     </div>
 
+    <!-- Main Content Area -->
     <div class="content-container">
-        <!-- Main Story -->
         <article>
-            <div class="mono">01 | The Problem</div>
-            <h2>The Brain Drain & The 90% Inefficiency</h2>
-            <p>We collaborated with a major Canadian financial institution employing 300 adjudicators. Our initial analysis revealed a critical inefficiency: Adjudicators spent <strong>90% of their time on routine verification</strong> and only 10% on actual decision-making.</p>
-            <p>More dangerously, the bank was facing a "Brain Drain." The intuition required to assess complex loans resided in the minds of senior adjudicators who were nearing retirement. This expertise was undocumented, making the bank vulnerable to inconsistencies and errors.</p>
+            <span class="mono">01 | The Challenge</span>
+            <h2>The Brain Drain & Verification Bottleneck</h2>
+            <p>We collaborated with a major Canadian financial institution employing 300 adjudicators. Our initial analysis revealed that adjudicators spent **90% of their time on routine verification** and only 10% on actual decision-making.</p>
+            <p>Simultaneously, the bank faced a "Brain Drain." The intuition required for complex risk assessment resided in senior adjudicators nearing retirement. This expertise was undocumented, leaving the institution vulnerable.</p>
             
             <div class="highlight-box">
-                "I have to get out of the Bureau, go back in here, go back in there. I'm flipping back and forth constantly. It's insane." <br>— Senior Adjudicator
+                "I have to flip back and forth between five different systems just to verify one income statement. It's inconsistent and exhausting." <br>— Senior Credit Officer
             </div>
 
-            <div class="mono">02 | The Approach</div>
-            <h2>Real Intelligence Capture</h2>
-            <p>We didn't just build a chatbot; we cloned the institutional memory of the bank. Using <strong>Cognitive Task Analysis (CTA)</strong>, we performed a deep extraction of the "Gold Standard" logic.</p>
-            <p>We interviewed the bank's most senior experts, challenging them to verbalize the specific variables driving their intuition. We mapped <strong>100 years of collective lending expertise</strong> into a deterministic code structure.</p>
-            <p>This allowed us to build a pre-trained "Mortgage Agent" that doesn't guess—it reasons exactly like a senior adjudicator.</p>
+            <span class="mono">02 | The Solution</span>
+            <h2>Industrializing Expert Intuition</h2>
+            <p>Using **Cognitive Task Analysis (CTA)**, we extracted the "Gold Standard" logic from the bank's top experts. We mapped 100 years of collective lending expertise into a deterministic code structure.</p>
             
             <div class="logic-visual">
                 <div class="logic-step">
                     <div class="step-icon step-active">01</div>
-                    <span><strong>PROTOCOL CAPTURE:</strong> Interviewing Senior Experts (20+ Yrs Exp).</span>
+                    <span><strong>PROTOCOL CAPTURE:</strong> Mapping senior adjudicator mental models.</span>
                 </div>
-                <div class="connector"></div>
                 <div class="logic-step">
                     <div class="step-icon step-active">02</div>
-                    <span><strong>REAL INTELLIGENCE:</strong> Encoding heuristics into Deterministic Rules.</span>
+                    <span><strong>LOGIC SYNTHESIS:</strong> Converting intuition into auditable rules.</span>
                 </div>
-                <div class="connector"></div>
                 <div class="logic-step">
                     <div class="step-icon step-active">03</div>
-                    <span><strong>THE MORTGAGE AGENT:</strong> Automates Policy & Verification.</span>
-                </div>
-                <div class="connector"></div>
-                <div class="logic-step">
-                    <div class="step-icon" style="background: white; color: black;">04</div>
-                    <span><strong>RESULT:</strong> 90% Faster Decisions with Senior-Level Accuracy.</span>
+                    <span><strong>DEPLOYMENT:</strong> Pre-trained Agents automate 90% of verification.</span>
                 </div>
             </div>
 
-            <p>By automating the capture and verification of client information—such as identity, income, and property valuation—we minimized the risk of errors. Once information is verified, the application of bank policy is consistent, traceable, and instant.</p>
+            <p>By automating the capture and verification of identity, income, and property valuation, we ensured that the application of bank policy is consistent, traceable, and instant.</p>
 
-            <div class="mono">03 | The Results</div>
-            <h2>Deterministic Reliability</h2>
-            <p>The implementation fundamentally shifted the operating model of the lending unit.</p>
-            <ul>
-                <li><strong>Expertise Encapsulated:</strong> The bank now possesses a digital asset containing its best decision-making logic, immune to staff turnover.</li>
-                <li><strong>Time Savings:</strong> Automating the verification layer reduced the processing time per application by up to <strong>90%</strong>.</li>
-                <li><strong>Cost Reduction:</strong> By streamlining the workflow and reducing manual error correction loops, the client realized an estimated <strong>$20 million</strong> in operational savings.</li>
-                <li><strong>Risk Management:</strong> The AI enforces strict policy adherence (e.g., checking environmental questionnaires for >1 acre properties), ensuring loans are granted only to qualified applicants.</li>
+            <span class="mono">03 | The Impact</span>
+            <h2>Deterministic ROI</h2>
+            <p>The implementation fundamentally shifted the operating model of the lending unit:</p>
+            <ul style="color: var(--text-muted); padding-left: 1.5rem; margin-bottom: 2rem;">
+                <li style="margin-bottom: 1rem;"><strong>Expertise Encapsulated:</strong> The bank now owns a digital asset containing its best decision-making logic, immune to staff turnover.</li>
+                <li style="margin-bottom: 1rem;"><strong>OpEx Reduction:</strong> Estimated **$20 million** in operational savings through streamlined workflows.</li>
+                <li style="margin-bottom: 1rem;"><strong>Risk Mitigation:</strong> 100% adherence to complex environmental and regulatory questionnaires.</li>
             </ul>
-
         </article>
 
         <!-- Sidebar -->
         <aside>
             <div class="info-card">
-                <div class="mono" style="margin-bottom: 1rem; color: white;">Project Profile</div>
-                
+                <span class="mono" style="margin-bottom: 1.5rem; color: white;">Project Profile</span>
                 <div class="info-row">
                     <span class="info-label">Sector</span>
                     <span class="info-value">Mortgage Lending</span>
-                </div>
-                <div class="info-row">
-                    <span class="info-label">Scale</span>
-                    <span class="info-value">300 Adjudicators</span>
                 </div>
                 <div class="info-row">
                     <span class="info-label">Core Asset</span>
@@ -283,29 +290,52 @@
                 </div>
                 <div class="info-row">
                     <span class="info-label">Outcome</span>
-                    <span class="info-value">90% Efficiency Gain</span>
+                    <span class="info-value">90% Faster Decisions</span>
                 </div>
             </div>
 
             <div class="info-card">
-                <div class="mono" style="margin-bottom: 1rem; color: white;">Technology Stack</div>
-                <div>
-                    <span class="tech-tag">Real Intelligence Capture</span>
-                    <span class="tech-tag">Cognitive Task Analysis</span>
+                <span class="mono" style="margin-bottom: 1.5rem; color: white;">Tech Stack</span>
+                <div style="margin-top: 1rem;">
+                    <span class="tech-tag">Cognitive OS</span>
                     <span class="tech-tag">Deterministic AI</span>
+                    <span class="tech-tag">CTA Methodology</span>
                     <span class="tech-tag">Policy Engine</span>
                 </div>
             </div>
 
-            <a href="contact.html" style="display: block; text-align: center; background: var(--primary-accent); color: #050A14; padding: 1rem; font-weight: 700; text-decoration: none; border-radius: 4px;">
-                Request Demo
-            </a>
+            <a href="contact.html" class="btn-primary" style="width: 100%; text-align: center; padding: 1rem;">Request Technical Briefing</a>
         </aside>
     </div>
 
-    <!-- Footer -->
-    <footer style="border-top: 1px solid var(--border-color); padding: 3rem 5%; text-align: center; margin-top: 4rem;">
-        <div class="mono" style="color: var(--text-muted);">&copy; 2025 Cognitive Group | Deterministic Banking Infrastructure</div>
+    <!-- Unified Footer -->
+    <footer>
+        <div class="container footer-grid">
+            <div>
+                <h4 style="color: white; margin-bottom: 1.5rem;">About Us</h4>
+                <p style="font-size: 0.9rem; line-height: 1.6; color: var(--text-muted);">
+                    Cognitive specializes in deterministic AI for mission-critical banking and global regulated industries. Founded in 1995 by CRIM.
+                </p>
+            </div>
+            <div>
+                <h4 style="color: white; margin-bottom: 1.5rem;">Institutional Links</h4>
+                <a href="products.html" class="footer-link">The Cognitive Suite</a>
+                <a href="blog.html" class="footer-link">Research & Insights</a>
+                <a href="success.html" class="footer-link">Case Study Archive</a>
+            </div>
+            <div>
+                <h4 style="color: white; margin-bottom: 1.5rem;">Get in Touch</h4>
+                <p style="font-size: 0.9rem; color: var(--text-muted);">
+                    1155 René-Lévesque Blvd West #2500<br>
+                    Montréal, QC H3B 2K4, Canada<br><br>
+                    <a href="mailto:info@cognitivegroup.com" style="color: white; text-decoration: none;">info@cognitivegroup.com</a><br>
+                    <span style="color: var(--primary-accent); font-weight: 600;">+1 (415) 493-8559</span>
+                </p>
+            </div>
+        </div>
+        <div style="text-align: center; border-top: 1px solid var(--border-color); padding-top: 2rem; margin-top: 2rem; color: var(--text-muted); font-size: 0.8rem;">
+            &copy; 2025 Cognitive Group. All Rights Reserved.
+        </div>
     </footer>
 
 </body>

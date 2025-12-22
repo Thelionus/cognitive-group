@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Success Stories | Cognitive Banking</title>
+    <title>Success Stories | Cognitive Banking - Proven Institutional Impact</title>
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,7 +11,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
-        /* --- CSS STYLES (MATCHING INDEX) --- */
         :root {
             --bg-dark: #050A14;
             --bg-card: #0F172A;
@@ -45,7 +44,7 @@
             margin-bottom: 0.5rem;
         }
 
-        /* --- UNIFIED HEADER STYLES --- */
+        /* --- UNIFIED STABLE HEADER --- */
         header {
             position: fixed;
             top: 0;
@@ -58,9 +57,10 @@
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid var(--border-color);
+            height: 72px; 
         }
 
-        .real-logo { height: 35px; width: auto; display: block; }
+        .real-logo { height: 40px; width: auto; display: block; }
 
         nav ul { display: flex; gap: 2rem; list-style: none; }
         nav a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.3s; }
@@ -76,149 +76,116 @@
             font-size: 0.9rem;
             transition: all 0.2s;
             border: 1px solid var(--action-blue);
+            display: inline-block;
         }
         .btn-primary:hover { background: #1d4ed8; border-color: #1d4ed8; transform: translateY(-1px); }
 
-        /* Container & Grid */
-        .container { max-width: var(--max-width); margin: 0 auto; padding: 0 5%; }
-        
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            padding: 4rem 0;
-        }
-
-        /* Hero Banner Image Styles */
+        /* --- HERO BANNER --- */
         .hero-banner {
             position: relative;
             width: 100%;
             height: 500px; 
             overflow: hidden;
             border-bottom: 1px solid var(--border-color);
-            margin-top: 60px; /* Offset for fixed header */
+            margin-top: 72px; 
         }
 
-        .hero-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-        }
+        .hero-img { width: 100%; height: 100%; object-fit: cover; }
 
         .hero-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(to top, var(--bg-dark) 10%, rgba(5, 10, 20, 0.6) 50%, transparent);
+            background: linear-gradient(to top, var(--bg-dark) 10%, rgba(5, 10, 20, 0.4) 100%);
             display: flex;
             flex-direction: column;
-            justify-content: flex-end;
-            padding-bottom: 4rem;
+            justify-content: center;
+            align-items: center;
             text-align: center;
+            padding: 0 5%;
         }
 
-        .hero-overlay h1 { font-size: 3.5rem; margin: 1rem 0; text-shadow: 0 4px 20px rgba(0,0,0,0.8); }
-        .hero-overlay p { font-size: 1.25rem; color: #E2E8F0; text-shadow: 0 2px 10px rgba(0,0,0,0.8); }
-        
-        .mono-hero { font-family: 'JetBrains Mono', monospace; color: var(--primary-accent); font-size: 0.85rem; text-transform: uppercase; background: rgba(0,0,0,0.6); padding: 5px 10px; border-radius: 4px; display: inline-block; }
+        .hero-overlay h1 { font-size: clamp(2.5rem, 4vw, 4rem); letter-spacing: -0.02em; max-width: 900px; text-shadow: 0 4px 20px rgba(0,0,0,0.5); }
+        .hero-overlay p { font-size: 1.25rem; color: var(--text-muted); max-width: 650px; }
 
-        /* Specific Styles for Success Cards */
+        /* --- CASE STUDIES SECTION --- */
+        section { padding: 6rem 5%; border-bottom: 1px solid var(--border-color); }
+        .container { max-width: var(--max-width); margin: 0 auto; }
+        
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
         .case-card {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: 8px;
             overflow: hidden;
-            transition: transform 0.3s, border-color 0.3s;
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-        }
-        
-        .case-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary-accent);
-        }
-
-        .case-image {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            border-bottom: 1px solid var(--border-color);
-            filter: grayscale(20%);
-            transition: filter 0.3s;
-        }
-
-        .case-card:hover .case-image { filter: grayscale(0%); }
-
-        .case-content {
-            padding: 2rem;
-            flex-grow: 1;
+            transition: all 0.3s;
             display: flex;
             flex-direction: column;
         }
-
-        .case-content h3 { margin: 0.5rem 0 1rem; font-size: 1.25rem; }
-        .case-content p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
-
-        .case-link {
-            margin-top: auto;
-            color: white;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            padding-top: 1.5rem;
-            transition: color 0.2s;
-            font-size: 0.9rem;
-        }
         
-        .case-link:hover { color: var(--primary-accent); }
+        .case-card:hover { border-color: var(--primary-accent); transform: translateY(-5px); }
+
+        .case-image-box { height: 230px; overflow: hidden; border-bottom: 1px solid var(--border-color); }
+        .case-image-box img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; transition: opacity 0.3s; }
+        .case-card:hover .case-image-box img { opacity: 1; }
+
+        .case-content { padding: 2rem; flex-grow: 1; display: flex; flex-direction: column; }
+        .case-content h3 { font-size: 1.4rem; margin: 0.5rem 0 1rem; }
 
         .metric-row {
             display: flex;
-            gap: 2rem;
+            gap: 1.5rem;
             margin: 1.5rem 0;
-            padding: 1rem 0;
-            border-top: 1px solid #1E293B;
-            border-bottom: 1px solid #1E293B;
+            padding: 1.2rem 0;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
         }
         
-        .mini-stat { font-size: 0.8rem; color: var(--text-muted); }
-        .mini-stat strong { display: block; color: var(--primary-accent); font-size: 1.1rem; }
+        .mini-stat { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+        .mini-stat strong { display: block; color: var(--primary-accent); font-size: 1.25rem; margin-bottom: 2px; }
 
-        /* Footer Grid */
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 1.5fr 1.5fr 1fr;
-            gap: 4rem;
-            margin-bottom: 4rem;
+        .case-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-top: auto;
+            transition: color 0.2s;
         }
-        .footer-link {
-            color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 0.8rem; transition: color 0.3s;
-        }
+        .case-link:hover { color: var(--primary-accent); }
+
+        /* --- UNIFIED FOOTER --- */
+        footer { padding: 4rem 5%; background: #020617; border-top: 1px solid var(--border-color); }
+        .footer-grid { display: grid; grid-template-columns: 1.5fr 1.5fr 1fr; gap: 4rem; }
+        .footer-link { color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 0.8rem; font-size: 0.9rem; transition: color 0.3s; }
         .footer-link:hover { color: var(--primary-accent); }
 
-        @media (max-width: 768px) {
-            .grid-3 { grid-template-columns: 1fr; }
+        @media (max-width: 968px) {
+            header { height: auto; padding: 1rem 5%; }
+            nav { display: none; }
+            .hero-banner { height: 400px; }
+            .hero-overlay h1 { font-size: 2.2rem; }
             .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
-            header { display: none; }
-            .hero-banner { height: 400px; margin-top: 0; }
-            .hero-overlay h1 { font-size: 2.5rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Unified Header -->
+    <!-- Unified Stable Header -->
     <header>
-        <div style="display:flex; align-items:center; gap:10px;">
-            <a href="index.html" style="text-decoration: none; border: none;">
-                <img src="https://placehold.co/150x40/050A14/22C55E?text=COGNITIVE&font=monospace" alt="Cognitive Logo" class="real-logo">
+        <div style="display:flex; align-items:center;">
+            <a href="index.html">
+                <img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Cognitive Group Logo" class="real-logo">
             </a>
         </div>
         <nav>
             <ul>
                 <li><a href="products.html">Products</a></li>
-                <li><a href="success.html" class="active" style="color:white;">Success Stories</a></li>
+                <li><a href="success.html" class="active">Success Stories</a></li>
                 <li><a href="about.html">About Us</a></li>
                 <li><a href="blog.html">Insights</a></li>
                 <li><a href="contact.html">Contact</a></li>
@@ -227,144 +194,122 @@
         <a href="contact.html" class="btn-primary">Strategy Session</a>
     </header>
 
-    <!-- HERO BANNER SECTION -->
+    <!-- Hero Banner -->
     <div class="hero-banner">
         <img src="https://i.postimg.cc/T2Jp36BM/Chat-GPT-Image-Dec-21-2025-11-20-24-AM.png" alt="Success Stories Background" class="hero-img">
         <div class="hero-overlay">
             <div class="container">
-                <span class="mono-hero">Global Impact</span>
+                <span class="mono">Global Impact</span>
                 <h1>Mission Critical Deployments.</h1>
-                <p>From Tier-1 Banks to Emerging Markets.</p>
+                <p>From Tier-1 Financial Institutions to high-growth Emerging Markets.</p>
             </div>
         </div>
     </div>
 
-    <!-- Methodology Intro -->
-    <section style="padding-bottom: 2rem; padding-top: 4rem; border-bottom: 1px solid var(--border-color);">
-        <div class="container">
-            <div style="max-width: 800px; margin: 0 auto; text-align: center;">
-                <h2>Linking Cognitive Analysis & AI.</h2>
-                <p style="color: var(--text-muted); margin-top: 1rem;">To achieve tangible results, organizations must solve the right problems. We reduce modeling time from 6 months to 1 month by ensuring the solution maps perfectly to human reality.</p>
-            </div>
-        </div>
-    </section>
-
     <!-- Case Studies Grid -->
-    <section style="padding: 4rem 5%;">
+    <section style="background: #020617;">
         <div class="container">
             <div class="grid-3">
                 
-                <!-- Card 1: RBC Mortgage -->
+                <!-- Card 1: RBC -->
                 <div class="case-card">
-                    <img src="https://i.postimg.cc/yY7BWzBc/Chat-GPT-Image-Dec-21-2025-11-08-58-AM.png" alt="RBC Mortgage" class="case-image">
+                    <div class="case-image-box">
+                        <img src="https://i.postimg.cc/yY7BWzBc/Chat-GPT-Image-Dec-21-2025-11-08-58-AM.png" alt="RBC Mortgage">
+                    </div>
                     <div class="case-content">
                         <span class="mono">Credit Decisions</span>
                         <h3>Mortgage Adjudication (RBC)</h3>
-                        <p>Automating complex credit decisions by restructuring the cognitive flow of adjudicators. Reduced UI complexity from 50 pages to 2.</p>
+                        <p>Automating complex credit decisions by restructuring the cognitive flow of expert adjudicators. Reduced UI complexity from 50 pages to 2.</p>
                         <div class="metric-row">
-                            <div class="mini-stat">
-                                <strong>90%</strong> Time Saved
-                            </div>
-                            <div class="mini-stat">
-                                <strong>$20M</strong> Savings
-                            </div>
+                            <div class="mini-stat"><strong>90%</strong> Time Saved</div>
+                            <div class="mini-stat"><strong>$20M</strong> OpEx Savings</div>
                         </div>
-                        <a href="case-study-mortgage.html" class="case-link">Read Full Case Study &rarr;</a>
+                        <a href="case-study-mortgage.html" class="case-link">View Full Case Study &rarr;</a>
                     </div>
                 </div>
 
-                <!-- Card 2: Alrahma Micro-Credit -->
+                <!-- Card 2: Alrahma -->
                 <div class="case-card">
-                    <img src="https://i.postimg.cc/HkvNpwZZ/Screenshot-2025-12-21-at-8-58-14-AM.png" alt="African Market" class="case-image">
+                    <div class="case-image-box">
+                        <img src="https://i.postimg.cc/HkvNpwZZ/Screenshot-2025-12-21-at-8-58-14-AM.png" alt="Emerging Markets">
+                    </div>
                     <div class="case-content">
                         <span class="mono">Emerging Markets</span>
-                        <h3>Micro-Finance Revolution (Alrhama)</h3>
-                        <p>Enabling loans for the informal economy. Our system generates financial statements from qualitative data, opening credit to the unbanked.</p>
+                        <h3>Micro-Finance Revolution</h3>
+                        <p>Enabling loans for the informal economy. Our Engine generates auditable financial statements from qualitative data, opening credit to the unbanked.</p>
                         <div class="metric-row">
-                            <div class="mini-stat">
-                                <strong>30%</strong> Portfolio Growth
-                            </div>
-                            <div class="mini-stat">
-                                <strong>10m</strong> Origination
-                            </div>
+                            <div class="mini-stat"><strong>30%</strong> Port. Growth</div>
+                            <div class="mini-stat"><strong>10M</strong> Origination</div>
                         </div>
-                        <a href="case-study-alrahma.html" class="case-link">Read Full Case Study &rarr;</a>
+                        <a href="case-study-alrahma.html" class="case-link">View Full Case Study &rarr;</a>
                     </div>
                 </div>
 
                 <!-- Card 3: Commercial Lending -->
                 <div class="case-card">
-                    <img src="https://i.postimg.cc/28fv6G0L/Chat-GPT-Image-Dec-21-2025-11-46-31-AM.png" alt="Commercial Lending" class="case-image">
+                    <div class="case-image-box">
+                        <img src="https://i.postimg.cc/28fv6G0L/Chat-GPT-Image-Dec-21-2025-11-46-31-AM.png" alt="Commercial Lending">
+                    </div>
                     <div class="case-content">
                         <span class="mono">Frictionless Origination</span>
                         <h3>Commercial Lending Transformation</h3>
-                        <p>Reducing loan preparation time from 120 minutes to 10 minutes by eliminating front-to-back office friction with AI orchestration.</p>
+                        <p>Reducing loan preparation time by 92% by eliminating front-to-back office friction with deterministic AI orchestration.</p>
                         <div class="metric-row">
-                            <div class="mini-stat">
-                                <strong>92%</strong> Faster Prep
-                            </div>
-                            <div class="mini-stat">
-                                <strong>0%</strong> Rework Rate
-                            </div>
+                            <div class="mini-stat"><strong>92%</strong> Faster Prep</div>
+                            <div class="mini-stat"><strong>0%</strong> Rework Rate</div>
                         </div>
-                        <a href="case-study-commercial.html" class="case-link">Read Full Case Study &rarr;</a>
+                        <a href="case-study-commercial.html" class="case-link">View Full Case Study &rarr;</a>
                     </div>
                 </div>
 
                 <!-- Card 4: Impact Labs -->
                 <div class="case-card">
-                    <img src="https://i.postimg.cc/tRzvtBY6/Chat-GPT-Image-Dec-21-2025-01-46-13-PM.png" alt="Impact Labs" class="case-image">
+                    <div class="case-image-box">
+                        <img src="https://i.postimg.cc/tRzvtBY6/Chat-GPT-Image-Dec-21-2025-01-46-13-PM.png" alt="Impact Labs">
+                    </div>
                     <div class="case-content">
                         <span class="mono">Financial Inclusion</span>
                         <h3>Scaling Inclusion (Impact Labs)</h3>
-                        <p>Rescuing clients from predatory lenders by reducing loan origination time from 6 hours to 15 minutes using behavioral AI agents.</p>
+                        <p>Rescuing small businesses from predatory lenders by reducing origination time from 6 hours to 15 minutes using behavioral agents.</p>
                         <div class="metric-row">
-                            <div class="mini-stat">
-                                <strong>15 min</strong> Origination
-                            </div>
-                            <div class="mini-stat">
-                                <strong>0%</strong> Predatory
-                            </div>
+                            <div class="mini-stat"><strong>15 Min</strong> Origination</div>
+                            <div class="mini-stat"><strong>6x</strong> Faster Scale</div>
                         </div>
-                        <a href="case-study-impact.html" class="case-link">Read Full Case Study &rarr;</a>
+                        <a href="case-study-impact.html" class="case-link">View Full Case Study &rarr;</a>
                     </div>
                 </div>
 
                 <!-- Card 5: Financial Statement Automation -->
                 <div class="case-card">
-                    <img src="https://i.postimg.cc/QxvWwrzy/Chat-GPT-Image-Dec-21-2025-02-17-00-PM.png" alt="Financial Capture" class="case-image">
+                    <div class="case-image-box">
+                        <img src="https://i.postimg.cc/QxvWwrzy/Chat-GPT-Image-Dec-21-2025-02-17-00-PM.png" alt="Financial Capture">
+                    </div>
                     <div class="case-content">
                         <span class="mono">AI Operations</span>
                         <h3>Financial Statement Automation</h3>
-                        <p>From PDF to Moody’s RiskCalc in minutes. Deterministic agents read, reclassify, and validate financial data without math hallucinations.</p>
+                        <p>From PDF to Moody’s RiskCalc in minutes. Deterministic agents reclassify and validate financial data without math hallucinations.</p>
                         <div class="metric-row">
-                            <div class="mini-stat">
-                                <strong>98%</strong> Faster Spreading
-                            </div>
-                            <div class="mini-stat">
-                                <strong>100%</strong> Traceable
-                            </div>
+                            <div class="mini-stat"><strong>98%</strong> Faster Spreading</div>
+                            <div class="mini-stat"><strong>100%</strong> Traceable</div>
                         </div>
-                        <a href="case-study-financial-capture.html" class="case-link">Read Full Case Study &rarr;</a>
+                        <a href="case-study-financial-capture.html" class="case-link">View Full Case Study &rarr;</a>
                     </div>
                 </div>
 
-                <!-- Card 6: WhatsApp Credit Origination (REPLACES TD) -->
+                <!-- Card 6: WhatsApp Credit -->
                 <div class="case-card">
-                    <img src="https://i.postimg.cc/X7DvXS6Z/Chat-GPT-Image-Dec-21-2025-02-33-49-PM.png" alt="WhatsApp Banking" class="case-image">
+                    <div class="case-image-box">
+                        <img src="https://i.postimg.cc/X7DvXS6Z/Chat-GPT-Image-Dec-21-2025-02-33-49-PM.png" alt="WhatsApp Banking">
+                    </div>
                     <div class="case-content">
                         <span class="mono">Conversational AI</span>
                         <h3>WhatsApp Credit Origination</h3>
-                        <p>A cognitive interface that understands natural language. Clients apply for loans via chat, and the AI automatically structures the request.</p>
+                        <p>A cognitive interface for secure chat lending. Clients apply in natural language, and the AI automatically structures the request for credit committee.</p>
                         <div class="metric-row">
-                            <div class="mini-stat">
-                                <strong>Zero</strong> Friction
-                            </div>
-                            <div class="mini-stat">
-                                <strong>Global</strong> Reach
-                            </div>
+                            <div class="mini-stat"><strong>Zero</strong> Friction</div>
+                            <div class="mini-stat"><strong>Global</strong> Availability</div>
                         </div>
-                        <a href="case-study-whatsapp.html" class="case-link">Read Full Case Study &rarr;</a>
+                        <a href="case-study-whatsapp.html" class="case-link">View Full Case Study &rarr;</a>
                     </div>
                 </div>
 
@@ -373,32 +318,31 @@
     </section>
 
     <!-- Unified Footer -->
-    <footer style="padding: 4rem 5%; background: #020617; border-top: 1px solid var(--border-color);">
+    <footer>
         <div class="container footer-grid">
             <div>
-                <h4 style="margin-bottom: 1.5rem;">About Us</h4>
+                <h4 style="color: white; margin-bottom: 1.5rem;">About Us</h4>
                 <p style="font-size: 0.9rem; line-height: 1.6; color: var(--text-muted);">
-                    Cognitive was founded in 1995 by the Computer Research Institute of Montreal (CRIM). Our experts have advanced degrees in human factors and interaction design. Our specialists are located in Montreal, Toronto, Hong Kong, and San Francisco.
+                    Cognitive was founded in 1995 by the Computer Research Institute of Montreal (CRIM). We specialize in deterministic AI for mission-critical banking.
                 </p>
             </div>
             <div>
-                <h4 style="margin-bottom: 1.5rem;">Recent Posts</h4>
-                <a href="#" class="footer-link">AI-Assisted Supervision of Abnormal Situations: Lessons from the 2025 Louvre Burglary</a>
-                <a href="#" class="footer-link">Original Paper (1994) “From Task Analysis to User Interface Design”</a>
-                <a href="#" class="footer-link">Why Simple Scoring Systems Beat Human Judgment in Lending</a>
+                <h4 style="color: white; margin-bottom: 1.5rem;">Recent Research</h4>
+                <a href="blog.html" class="footer-link">Lessons from the 2025 Louvre Burglary</a>
+                <a href="blog.html" class="footer-link">Why Scoring Systems Beat Intuition</a>
+                <a href="products.html" class="footer-link">The "Glass Box" Methodology</a>
             </div>
             <div>
-                <h4 style="margin-bottom: 1.5rem;">Get in Touch</h4>
+                <h4 style="color: white; margin-bottom: 1.5rem;">Get in Touch</h4>
                 <p style="font-size: 0.9rem; color: var(--text-muted);">
                     1155 René-Lévesque Blvd West #2500<br>
                     Montréal, QC H3B 2K4<br><br>
                     <a href="mailto:info@cognitivegroup.com" style="color: white; text-decoration: none;">info@cognitivegroup.com</a><br>
-                    <span style="color: var(--primary-accent);">+1 (415) 493-8559</span>
+                    <span style="color: var(--primary-accent); font-weight: 600;">+1 (415) 493-8559</span>
                 </p>
             </div>
         </div>
-
-        <div style="text-align: center; border-top: 1px solid var(--border-color); padding-top: 2rem; color: var(--text-muted); font-size: 0.85rem;">
+        <div style="text-align: center; border-top: 1px solid var(--border-color); padding-top: 2rem; margin-top: 2rem; color: var(--text-muted); font-size: 0.8rem;">
             &copy; 2025 Cognitive Group. All Rights Reserved.
         </div>
     </footer>

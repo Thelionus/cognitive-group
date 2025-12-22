@@ -3,16 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Case Study: Alrahma | Cognitive Banking</title>
+    <title>Case Study: Alrahma | Cognitive Banking - Digitizing the Informal Economy</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --bg-dark: #050A14;
             --bg-card: #0F172A;
-            --primary-accent: #22C55E;
+            --primary-accent: #22C55E; 
+            --action-blue: #2563EB;
             --text-main: #F8FAFC;
             --text-muted: #94A3B8;
             --border-color: #1E293B;
+            --max-width: 1400px;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -22,103 +29,113 @@
             color: var(--text-main);
             font-family: 'Inter', sans-serif;
             line-height: 1.7;
+            overflow-x: hidden;
         }
 
+        h1, h2, h3, h4 { font-weight: 700; color: white; margin-bottom: 1rem; }
+        
         .mono {
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.85rem;
             color: var(--primary-accent);
             text-transform: uppercase;
             letter-spacing: 0.05em;
+            display: block;
+            margin-bottom: 0.5rem;
         }
 
-        /* Header */
+        /* --- UNIFIED STABLE HEADER --- */
         header {
-            padding: 1.5rem 5%;
-            border-bottom: 1px solid var(--border-color);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 5%;
+            background: rgba(5, 10, 20, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(5, 10, 20, 0.9);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            border-bottom: 1px solid var(--border-color);
+            height: 72px; 
         }
-        
-        .logo { font-weight: 700; font-size: 1.2rem; text-decoration: none; color: white; display: flex; align-items: center; gap: 8px;}
-        .back-link { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 5px; transition: color 0.3s;}
-        .back-link:hover { color: var(--primary-accent); }
 
-        /* Hero */
+        .real-logo { height: 40px; width: auto; display: block; }
+
+        nav ul { display: flex; gap: 2rem; list-style: none; }
+        nav a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.3s; }
+        nav a:hover { color: white; }
+
+        .btn-primary {
+            background: var(--action-blue);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            border: 1px solid var(--action-blue);
+            display: inline-block;
+        }
+
+        /* --- CASE HERO --- */
         .case-hero {
-            padding: 6rem 5% 4rem;
-            max-width: 1200px;
-            margin: 0 auto;
+            padding: 10rem 5% 4rem;
+            max-width: var(--max-width);
+            margin: 72px auto 0;
             border-bottom: 1px solid var(--border-color);
         }
-
-        h1 { font-size: 3rem; margin: 1rem 0; line-height: 1.1; }
-        .hero-lead { font-size: 1.4rem; color: var(--text-muted); max-width: 800px; }
+        .case-hero h1 { font-size: clamp(2.5rem, 4vw, 3.5rem); line-height: 1.1; margin: 1rem 0; }
+        .hero-lead { font-size: 1.25rem; color: var(--text-muted); max-width: 800px; }
 
         /* Metrics Bar */
         .metrics-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 2rem;
-            margin-top: 3rem;
-            padding: 2rem 0;
+            margin-top: 3.5rem;
+            padding: 2.5rem 0;
             border-top: 1px solid var(--border-color);
         }
-        .metric h4 { font-size: 2.5rem; color: var(--primary-accent); margin-bottom: 0.5rem; }
-        .metric span { font-size: 0.9rem; color: var(--text-muted); display: block; }
+        .metric h4 { font-size: 2.5rem; color: var(--primary-accent); margin-bottom: 0.2rem; }
+        .metric span { font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
 
         /* Main Layout */
         .content-container {
             display: grid;
             grid-template-columns: 2fr 1fr;
-            gap: 4rem;
-            max-width: 1200px;
+            gap: 5rem;
+            max-width: var(--max-width);
             margin: 0 auto;
-            padding: 4rem 5%;
+            padding: 5rem 5%;
         }
 
-        /* Article Styling */
-        article h2 { font-size: 1.8rem; margin-top: 3rem; margin-bottom: 1rem; color: white; }
-        article p { margin-bottom: 1.5rem; color: var(--text-muted); }
-        article ul { margin-bottom: 1.5rem; padding-left: 1.5rem; color: var(--text-muted); }
-        article li { margin-bottom: 0.5rem; }
-
+        article h2 { font-size: 1.8rem; margin-top: 3.5rem; color: white; border-left: 3px solid var(--primary-accent); padding-left: 1.5rem; }
+        article p { margin-bottom: 1.5rem; color: var(--text-muted); font-size: 1.05rem; }
+        
         .highlight-box {
             background: rgba(34, 197, 94, 0.05);
             border-left: 2px solid var(--primary-accent);
-            padding: 1.5rem;
-            margin: 2rem 0;
+            padding: 2rem;
+            margin: 3rem 0;
             font-style: italic;
-            color: var(--text-main);
+            color: white;
+            font-size: 1.1rem;
         }
 
         /* Sidebar Styling */
-        aside {
-            position: sticky;
-            top: 100px;
-            height: fit-content;
-        }
-
+        aside { position: sticky; top: 100px; height: fit-content; }
         .info-card {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
-            padding: 1.5rem;
-            border-radius: 4px;
+            padding: 2rem;
+            border-radius: 8px;
             margin-bottom: 2rem;
         }
-
-        .info-row {
-            margin-bottom: 1rem;
-            border-bottom: 1px solid #1E293B;
-            padding-bottom: 1rem;
-        }
+        .info-row { margin-bottom: 1.5rem; border-bottom: 1px solid #1E293B; padding-bottom: 1rem; }
         .info-row:last-child { border-bottom: none; }
-        .info-label { display: block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 4px; }
+        .info-label { display: block; font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 5px; }
         .info-value { display: block; font-size: 1rem; font-weight: 600; color: white; }
 
         .tech-tag {
@@ -126,47 +143,68 @@
             background: #0f172a;
             border: 1px solid var(--primary-accent);
             color: var(--primary-accent);
-            padding: 4px 8px;
+            padding: 5px 10px;
             font-size: 0.75rem;
-            margin-right: 5px;
-            margin-bottom: 5px;
+            margin-right: 6px;
+            margin-bottom: 8px;
             font-family: 'JetBrains Mono', monospace;
         }
 
-        /* Visual Representation of the "Grid Array" */
+        /* Grid Visual */
         .grid-visual {
             background: #020617;
-            border: 1px solid #334155;
-            padding: 1rem;
-            margin: 2rem 0;
+            border: 1px solid var(--border-color);
+            padding: 2rem;
+            margin: 3rem 0;
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             color: #94a3b8;
         }
-        .grid-row { display: flex; justify-content: space-between; border-bottom: 1px solid #334155; padding: 8px 0; }
-        .grid-header { color: var(--primary-accent); font-weight: bold; }
+        .grid-row { display: flex; justify-content: space-between; border-bottom: 1px solid #1E293B; padding: 12px 0; }
+        .grid-header { color: var(--primary-accent); font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
 
-        @media (max-width: 768px) {
+        /* --- UNIFIED FOOTER --- */
+        footer { padding: 4rem 5%; background: #020617; border-top: 1px solid var(--border-color); }
+        .footer-grid { display: grid; grid-template-columns: 1.5fr 1.5fr 1fr; gap: 4rem; }
+        .footer-link { color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 0.8rem; font-size: 0.9rem; transition: color 0.3s; }
+        .footer-link:hover { color: var(--primary-accent); }
+
+        @media (max-width: 968px) {
             .content-container { grid-template-columns: 1fr; }
             .metrics-grid { grid-template-columns: 1fr 1fr; }
-            h1 { font-size: 2rem; }
-            aside { position: static; }
+            header { height: auto; padding: 1rem 5%; }
+            nav { display: none; }
+            .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
         }
     </style>
 </head>
 <body>
 
+    <!-- Unified Stable Header -->
     <header>
-        <a href="index.html" class="logo">
-            <span style="color: var(--primary-accent); font-size: 1.5rem;">&#9638;</span> cognitive
-        </a>
-        <a href="success.html" class="back-link">&larr; Back to Case Studies</a>
+        <div style="display:flex; align-items:center;">
+            <a href="index.html">
+                <img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Cognitive Group Logo" class="real-logo">
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="success.html">Success Stories</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="blog.html">Insights</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <a href="contact.html" class="btn-primary">Strategy Session</a>
     </header>
 
+    <!-- Case Hero -->
     <div class="case-hero">
-        <div class="mono">Client: Alrahma | Region: Senegal</div>
+        <a href="success.html" style="color: var(--primary-accent); text-decoration: none; font-size: 0.85rem; font-family: 'JetBrains Mono';">&larr; BACK TO SUCCESS STORIES</a>
+        <div class="mono" style="margin-top: 2rem;">Client: Alrahma | Region: West Africa</div>
         <h1>Digitizing the Informal Economy.</h1>
-        <p class="hero-lead">How Cognitive Banking deployed "BusinessBANKER" to replace gut feeling with deterministic data for micro-lenders in West Africa.</p>
+        <p class="hero-lead">Replacing "gut feeling" with deterministic data for micro-lenders through the deployment of the <strong>Cognitive Suite.</strong></p>
         
         <div class="metrics-grid">
             <div class="metric">
@@ -182,33 +220,31 @@
                 <span>Digital Audit Trail</span>
             </div>
             <div class="metric">
-                <h4>0%</h4>
+                <h4>Zero</h4>
                 <span>Paperwork Required</span>
             </div>
         </div>
     </div>
 
+    <!-- Main Content Area -->
     <div class="content-container">
-        <!-- Main Story -->
         <article>
-            <div class="mono">01 | The Problem</div>
+            <span class="mono">01 | The Challenge</span>
             <h2>The "Data Darkness" of the Informal Sector</h2>
-            <p>Providing financing to small businesses in emerging economies is an information problem. In Senegal and Guinea, 80% of the population operates without bank accounts. Small businesses—market stalls, tailors, agricultural traders—do not possess financial statements, tax returns, or formal ledgers.</p>
-            <p>For decades, microfinance institutions relied on the "Gut Feeling" of loan officers. Methods were loosely structured, varying wildly from person to person. This lack of standardization made scaling impossible and risk assessment a game of chance.</p>
+            <p>Providing financing to small businesses in emerging economies is primarily an information problem. In West Africa, 80% of the population operates without formal bank accounts. Market stalls, tailors, and agricultural traders rarely possess formal ledgers.</p>
+            <p>For decades, microfinance institutions relied on the subjective "gut feeling" of loan officers. This lack of standardization made scaling impossible and risk assessment a game of chance.</p>
 
-            <div class="mono">02 | The Approach</div>
-            <h2>Cognitive Task Analysis (CTA)</h2>
-            <p>We did not just build an app. We deployed our Cognitive Task Analysis engine that comprise pre-trained</pre-trained> micro-lenders. We answered: <em>"How do you know a borrower is solvent when there is no paper trail?"</em></p>
-            <p>We discovered that experts use heuristic proxies. We codified these proxies into the <strong>BusinessBANKER™</strong> mobile platform.</p>
+            <span class="mono">02 | The Solution</span>
+            <h2>Cognitive Task Analysis (CTA) for Proxy Data</h2>
+            <p>We did not just build an app. We deployed our <strong>Cognitive Foundry</strong> to extract how expert micro-lenders verify solvency without a paper trail. We identified heuristic proxies and codified them into the mobile platform.</p>
 
             <div class="highlight-box">
                 "The solution transforms the credit industry. We created a simple way to generate quantitative financial information from a qualitative assessment."
             </div>
 
             <h3>The "Grid Array" Protocol</h3>
-            <p>Instead of asking for a Balance Sheet, the system prompts the Field Agent to collect "Proxy Data" using a structured grid. The AI then triangulates this into a financial profile.</p>
+            <p>Instead of asking for a Balance Sheet, the system prompts Field Agents to collect "Proxy Data" using a structured grid. The deterministic engine then triangulates this into a financial profile.</p>
 
-            <!-- Visual representation of the logic -->
             <div class="grid-visual">
                 <div class="grid-row grid-header">
                     <span>INPUT (Field Agent)</span>
@@ -223,11 +259,11 @@
                     <span>> Upper Bound Revenue</span>
                 </div>
                 <div class="grid-row">
-                    <span>> Visual Stock Photo</span>
-                    <span>> Inventory Validation</span>
+                    <span>> Visual Inventory Photo</span>
+                    <span>> Stock Validation</span>
                 </div>
                 <div class="grid-row">
-                    <span>> GPS Location</span>
+                    <span>> GPS Location Data</span>
                     <span>> Foot Traffic Est.</span>
                 </div>
                 <div class="grid-row" style="color: var(--primary-accent); margin-top: 10px; border: none;">
@@ -236,25 +272,22 @@
                 </div>
             </div>
 
-            <p>This allows a loan officer to visit a client, take pictures, input answers to simple questions (e.g., "What are your sales on a bad day?"), and have the system auto-generate a P&L statement in real-time.</p>
+            <p>This allows a loan officer to visit a client, take pictures, and input answers to simple questions. The system auto-generates a P&L statement in real-time, removing subjectivity from the equation.</p>
 
-            <div class="mono">03 | The Results</div>
+            <span class="mono">03 | The Impact</span>
             <h2>Hyper-Efficiency in the Field</h2>
-            <p>The formalization of this informal process fundamentally changed the unit economics of the bank.</p>
-            <ul>
-                <li><strong>Speed:</strong> Loan application creation dropped from hours of manual writing to <strong>10 minutes</strong> on a tablet.</li>
-                <li><strong>Cycle Time:</strong> The time from request to provision dropped to less than a few hours.</li>
-                <li><strong>Focus:</strong> Loan officers stopped being data-entry clerks and returned to being relationship managers.</li>
-                <li><strong>Agility:</strong> Using our No-Code configuration, Alrahma was able to adjust workflows (e.g., adding a Decision Committee step) in real-time without needing engineering support.</li>
+            <p>Formalizing the informal process fundamentally changed the unit economics for Alrahma:</p>
+            <ul style="color: var(--text-muted); padding-left: 1.5rem; margin-bottom: 2rem;">
+                <li style="margin-bottom: 1rem;"><strong>Extreme Speed:</strong> Application creation dropped from hours of manual writing to just **10 minutes** on a tablet.</li>
+                <li style="margin-bottom: 1rem;"><strong>Instant Disbursal:</strong> The time from request to provision dropped to less than four hours.</li>
+                <li style="margin-bottom: 1rem;"><strong>Agile Configuration:</strong> Using our No-Code configuration, Alrahma adjusted workflows in real-time without needing engineering support.</li>
             </ul>
-
         </article>
 
         <!-- Sidebar -->
         <aside>
             <div class="info-card">
-                <div class="mono" style="margin-bottom: 1rem; color: white;">Project Profile</div>
-                
+                <span class="mono" style="margin-bottom: 1.5rem; color: white;">Project Profile</span>
                 <div class="info-row">
                     <span class="info-label">Client</span>
                     <span class="info-value">Alrahma</span>
@@ -265,34 +298,56 @@
                 </div>
                 <div class="info-row">
                     <span class="info-label">Geography</span>
-                    <span class="info-value">Senegal</span>
+                    <span class="info-value">Senegal / West Africa</span>
                 </div>
                 <div class="info-row">
                     <span class="info-label">Solution</span>
-                    <span class="info-value">BusinessBANKER™, AI Workbench</span>
+                    <span class="info-value">Cognitive Engine, Foundry</span>
                 </div>
             </div>
 
             <div class="info-card">
-                <div class="mono" style="margin-bottom: 1rem; color: white;">Expertise Used</div>
-                <div>
-                    <span class="tech-tag">Cognitive Task Analysis</span>
+                <span class="mono" style="margin-bottom: 1.5rem; color: white;">Expertise Used</span>
+                <div style="margin-top: 1rem;">
+                    <span class="tech-tag">CTA Methodology</span>
                     <span class="tech-tag">Computer Vision</span>
-                    <span class="tech-tag">Deterministic AI</span>
-                    <span class="tech-tag">No-Code Config</span>
+                    <span class="tech-tag">Deterministic Logic</span>
                     <span class="tech-tag">Mobile Field App</span>
                 </div>
             </div>
 
-            <a href="contact.html" style="display: block; text-align: center; background: var(--primary-accent); color: #050A14; padding: 1rem; font-weight: 700; text-decoration: none; border-radius: 4px;">
-                Download Technical Brief
-            </a>
+            <a href="contact.html" class="btn-primary" style="width: 100%; text-align: center; padding: 1rem;">Request Technical Briefing</a>
         </aside>
     </div>
 
-    <!-- Footer -->
-    <footer style="border-top: 1px solid var(--border-color); padding: 3rem 5%; text-align: center; margin-top: 4rem;">
-        <div class="mono" style="color: var(--text-muted);">&copy; 2025 Cognitive Group | Deterministic Banking Infrastructure</div>
+    <!-- Unified Footer -->
+    <footer>
+        <div class="container footer-grid">
+            <div>
+                <h4 style="color: white; margin-bottom: 1.5rem;">About Us</h4>
+                <p style="font-size: 0.9rem; line-height: 1.6; color: var(--text-muted);">
+                    Cognitive specializes in deterministic AI for mission-critical banking. Founded in 1995 by CRIM, our expertise is built on decades of cognitive engineering.
+                </p>
+            </div>
+            <div>
+                <h4 style="color: white; margin-bottom: 1.5rem;">Institutional Links</h4>
+                <a href="products.html" class="footer-link">The Cognitive Suite</a>
+                <a href="blog.html" class="footer-link">Research & Insights</a>
+                <a href="success.html" class="footer-link">Case Study Archive</a>
+            </div>
+            <div>
+                <h4 style="color: white; margin-bottom: 1.5rem;">Get in Touch</h4>
+                <p style="font-size: 0.9rem; color: var(--text-muted);">
+                    1155 René-Lévesque Blvd West #2500<br>
+                    Montréal, QC H3B 2K4, Canada<br><br>
+                    <a href="mailto:info@cognitivegroup.com" style="color: white; text-decoration: none;">info@cognitivegroup.com</a><br>
+                    <span style="color: var(--primary-accent); font-weight: 600;">+1 (415) 493-8559</span>
+                </p>
+            </div>
+        </div>
+        <div style="text-align: center; border-top: 1px solid var(--border-color); padding-top: 2rem; margin-top: 2rem; color: var(--text-muted); font-size: 0.8rem;">
+            &copy; 2025 Cognitive Group. All Rights Reserved.
+        </div>
     </footer>
 
 </body>

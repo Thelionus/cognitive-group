@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Financial Statement Automation | Cognitive Banking</title>
+    <title>Case Study: Financial Capture | Cognitive Banking - Deterministic Spreading</title>
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,12 +28,23 @@
             background-color: var(--bg-dark);
             color: var(--text-main);
             font-family: 'Inter', sans-serif;
-            line-height: 1.6;
+            line-height: 1.7;
+            overflow-x: hidden;
         }
 
         h1, h2, h3, h4 { font-weight: 700; color: white; margin-bottom: 1rem; }
+        
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--primary-accent);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
 
-        /* --- UNIFIED HEADER --- */
+        /* --- UNIFIED STABLE HEADER --- */
         header {
             position: fixed;
             top: 0;
@@ -46,9 +57,10 @@
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid var(--border-color);
+            height: 72px; 
         }
 
-        .real-logo { height: 35px; width: auto; }
+        .real-logo { height: 40px; width: auto; display: block; }
 
         nav ul { display: flex; gap: 2rem; list-style: none; }
         nav a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.3s; }
@@ -64,129 +76,106 @@
             font-size: 0.9rem;
             transition: all 0.2s;
             border: 1px solid var(--action-blue);
-        }
-        .btn-primary:hover { background: #1d4ed8; border-color: #1d4ed8; transform: translateY(-1px); }
-
-        /* Case Study Hero */
-        .cs-hero {
-            padding: 10rem 5% 4rem;
-            background: radial-gradient(circle at top right, rgba(34, 197, 94, 0.1) 0%, transparent 60%);
-            border-bottom: 1px solid var(--border-color);
-        }
-        .cs-container { max-width: 1000px; margin: 0 auto; }
-        
-        .tag { 
-            font-family: 'JetBrains Mono', monospace; 
-            color: var(--primary-accent); 
-            background: rgba(34, 197, 94, 0.1); 
-            padding: 5px 10px; 
-            border-radius: 4px; 
-            font-size: 0.85rem; 
             display: inline-block;
-            margin-bottom: 1.5rem;
         }
 
-        .cs-hero h1 { font-size: 3.5rem; line-height: 1.1; margin-bottom: 1.5rem; }
-        .cs-hero p { font-size: 1.25rem; color: var(--text-muted); max-width: 700px; }
+        /* --- CASE HERO --- */
+        .case-hero {
+            padding: 10rem 5% 4rem;
+            max-width: var(--max-width);
+            margin: 72px auto 0;
+            border-bottom: 1px solid var(--border-color);
+            background: radial-gradient(circle at top right, rgba(34, 197, 94, 0.05) 0%, transparent 60%);
+        }
+        .case-hero h1 { font-size: clamp(2.5rem, 4vw, 3.5rem); line-height: 1.1; margin: 1rem 0; }
+        .hero-lead { font-size: 1.25rem; color: var(--text-muted); max-width: 800px; }
 
         /* Metrics Bar */
-        .metrics-bar {
-            background: var(--bg-card);
-            border-bottom: 1px solid var(--border-color);
-            padding: 2rem 5%;
-        }
         .metrics-grid {
-            max-width: 1000px;
-            margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
+            margin-top: 3.5rem;
+            padding: 2.5rem 0;
+            border-top: 1px solid var(--border-color);
         }
-        .metric-item strong { display: block; font-size: 2.5rem; color: var(--primary-accent); line-height: 1; margin-bottom: 0.5rem; }
-        .metric-item span { color: var(--text-muted); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+        .metric h4 { font-size: 2.5rem; color: var(--primary-accent); margin-bottom: 0.2rem; }
+        .metric span { font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
 
-        /* Content Layout */
-        .content-section { padding: 4rem 5%; }
-        
-        .two-col {
+        /* Main Layout */
+        .content-container {
             display: grid;
-            grid-template-columns: 1fr 300px; /* Main content + Sidebar */
-            gap: 4rem;
+            grid-template-columns: 2fr 1fr;
+            gap: 5rem;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 5rem 5%;
         }
 
-        h2 { font-size: 2rem; margin: 3rem 0 1.5rem; color: var(--text-main); }
-        h3 { font-size: 1.25rem; margin: 1.5rem 0 1rem; color: var(--primary-accent); }
-        p, li { color: #CBD5E1; margin-bottom: 1rem; font-size: 1.05rem; }
+        article h2 { font-size: 1.8rem; margin-top: 3.5rem; color: white; border-left: 3px solid var(--primary-accent); padding-left: 1.5rem; }
+        article p { margin-bottom: 1.5rem; color: var(--text-muted); font-size: 1.05rem; }
         
-        ul { margin-left: 1.5rem; margin-bottom: 2rem; }
-        li { margin-bottom: 0.5rem; }
-
-        /* Callout Box */
         .glass-box {
-            background: rgba(30, 41, 59, 0.5);
+            background: rgba(15, 23, 42, 0.6);
             border: 1px solid var(--primary-accent);
-            padding: 2rem;
+            padding: 2.5rem;
             border-radius: 8px;
-            margin: 2rem 0;
+            margin: 3rem 0;
         }
-        .glass-box h3 { margin-top: 0; color: white; }
+        .glass-box h3 { color: white; margin-bottom: 1rem; }
 
         /* Step List */
-        .step-list { counter-reset: step; list-style: none; margin-left: 0; }
-        .step-list li { position: relative; padding-left: 3rem; margin-bottom: 2rem; }
+        .step-list { counter-reset: step; list-style: none; margin: 3rem 0; }
+        .step-list li { position: relative; padding-left: 4rem; margin-bottom: 2.5rem; }
         .step-list li::before {
             counter-increment: step;
             content: counter(step);
             position: absolute;
             left: 0; top: 0;
-            width: 2rem; height: 2rem;
+            width: 2.5rem; height: 2.5rem;
             background: var(--bg-card);
             border: 1px solid var(--primary-accent);
             color: var(--primary-accent);
             border-radius: 50%;
             text-align: center;
-            line-height: 2rem;
+            line-height: 2.5rem;
             font-weight: 700;
+            font-family: 'JetBrains Mono';
         }
 
-        /* Sidebar Styles */
+        /* Sidebar Styling */
+        aside { position: sticky; top: 100px; height: fit-content; }
         .sidebar-card {
             background: var(--bg-card);
-            padding: 1.5rem;
             border: 1px solid var(--border-color);
+            padding: 2rem;
             border-radius: 8px;
             margin-bottom: 2rem;
         }
-        .sidebar-title { font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; }
+        .sidebar-title { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; margin-bottom: 1.5rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; }
 
-        /* Footer */
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 1.5fr 1.5fr 1fr;
-            gap: 4rem;
-            margin-bottom: 4rem;
-        }
-        .footer-link {
-            color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 0.8rem; transition: color 0.3s;
-        }
+        /* --- UNIFIED FOOTER --- */
+        footer { padding: 4rem 5%; background: #020617; border-top: 1px solid var(--border-color); }
+        .footer-grid { display: grid; grid-template-columns: 1.5fr 1.5fr 1fr; gap: 4rem; }
+        .footer-link { color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 0.8rem; font-size: 0.9rem; transition: color 0.3s; }
         .footer-link:hover { color: var(--primary-accent); }
 
-        @media (max-width: 768px) {
+        @media (max-width: 968px) {
+            .content-container { grid-template-columns: 1fr; }
             .metrics-grid { grid-template-columns: 1fr; gap: 2rem; text-align: center; }
-            .two-col { grid-template-columns: 1fr; }
-            .cs-hero h1 { font-size: 2.5rem; }
+            header { height: auto; padding: 1rem 5%; }
             nav { display: none; }
-            .footer-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Unified Header -->
+    <!-- Unified Stable Header -->
     <header>
-        <div style="display:flex; align-items:center; gap:10px;">
-            <a href="index.html" style="text-decoration: none; border: none;">
-                <img src="https://placehold.co/150x40/050A14/22C55E?text=COGNITIVE&font=monospace" alt="Cognitive Logo" class="real-logo">
+        <div style="display:flex; align-items:center;">
+            <a href="index.html">
+                <img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Cognitive Group Logo" class="real-logo">
             </a>
         </div>
         <nav>
@@ -202,146 +191,141 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="cs-hero">
-        <div class="cs-container">
-            <span class="tag">Financial Spreading</span>
-            <h1>Automated Statement Capture.</h1>
-            <p>From Canadian Tax Returns to Informal Micro-Ledgers. We replaced manual "spreading" with deterministic agents that read, reclassify, and validate financial data without hallucinations.</p>
-        </div>
-    </section>
-
-    <!-- Key Metrics -->
-    <section class="metrics-bar">
+    <div class="case-hero">
+        <a href="success.html" style="color: var(--primary-accent); text-decoration: none; font-size: 0.85rem; font-family: 'JetBrains Mono';">&larr; BACK TO SUCCESS STORIES</a>
+        <div class="mono" style="margin-top: 2rem;">Global Solution | Multi-Continent Deployment</div>
+        <h1>Deterministic Spreading.</h1>
+        <p class="hero-lead">Replacing manual financial spreading with <strong>Deterministic Agents</strong> that read, reclassify, and validate data with zero math hallucinations.</p>
+        
         <div class="metrics-grid">
-            <div class="metric-item">
-                <strong>98%</strong>
+            <div class="metric">
+                <h4>98%</h4>
                 <span>Time Reduction</span>
             </div>
-            <div class="metric-item">
-                <strong>0%</strong>
-                <span>Math Hallucinations</span>
+            <div class="metric">
+                <h4>0.0%</h4>
+                <span>Calculation Drift</span>
             </div>
-            <div class="metric-item">
-                <strong>3</strong>
-                <span>Continents Deployed</span>
+            <div class="metric">
+                <h4>100%</h4>
+                <span>Bilingual Traceability</span>
             </div>
         </div>
-    </section>
+    </div>
 
     <!-- Main Content -->
-    <section class="content-section cs-container">
-        <div class="two-col">
+    <div class="content-container">
+        <article>
+            <span class="mono">01 | The Global Context</span>
+            <h2>The Chaos of Financial Formats</h2>
+            <p>Commercial banks rely on standardized financial "spreading" to feed credit risk models. However, the source documents vary wildly—from structured Canadian T2 tax returns to informal, handwritten micro-ledgers in West Africa.</p>
+            <p>We successfully deployed the <strong>Cognitive Engine</strong> across three distinct financial environments:</p>
+            <ul style="color: var(--text-muted); padding-left: 1.5rem; list-style: square; margin-bottom: 2rem;">
+                <li><strong>DUCA Financial (Canada):</strong> Bilingual English/French T2 returns and Notices of Assessment.</li>
+                <li><strong>Alrahma (Micro-Credit):</strong> Informal, non-standardized ledgers from unbanked entrepreneurs.</li>
+                <li><strong>BSIC (Benin):</strong> OHADA-compliant records across diverse regional accounting standards.</li>
+            </ul>
+
+            <span class="mono">02 | The Solution</span>
+            <h2>Cognition for Reasoning. Math for Math.</h2>
+            <p>Our breakthrough was separating the workflow: <strong>Generative AI for reasoning and reclassification, and Deterministic engines for calculation.</strong> This ensures 100% accuracy in financial ratios.</p>
             
-            <!-- Left Column: The Narrative -->
-            <article>
-                <h2>The Global Data Challenge</h2>
-                <p>Commercial banks rely on standardized financial statements to feed downstream risk models. However, the source documents vary wildly depending on the region and the client type.</p>
-                <p>We successfully deployed our "Glass Box" capture engine across three distinct financial environments:</p>
-                <ul>
-                    <li><strong>DUCA Financial (Canada):</strong> Handling complex Canadian tax returns (T2), Notices of Assessment, and bilingual (English/French) statements.</li>
-                    <li><strong>Alrahma (Micro-Credit):</strong> Ingesting informal, non-standardized ledgers and handwritten income statements from unbanked entrepreneurs.</li>
-                    <li><strong>BSIC (Benin):</strong> Managing OHADA-compliant accounting records and diverse West African financial formats.</li>
+            <ul class="step-list">
+                <li>
+                    <strong style="color: white;">Lossless Ingestion:</strong><br>
+                    The Engine captures the statement exactly as presented. If a client provides 40 unique line items, we ingest all 40. No initial assumptions.
+                </li>
+                <li>
+                    <strong style="color: white;">Cognitive Reclassification via Foundry:</strong><br>
+                    Specialized agents perform expert-level mapping. They combine equivalent items (e.g., Cash + ST Reserves) based on specific bank policy.
+                </li>
+                <li>
+                    <strong style="color: white;">Cross-Agent Validation:</strong><br>
+                    Multiple agents perform the tasks independently and cross-check outcomes, flagging only the low-confidence outliers for human review.
+                </li>
+                <li>
+                    <strong style="color: white;">The Deterministic Math Guard:</strong><br>
+                    We never ask an LLM to do math. Once data is standardized, a traditional calculation engine computes Leverage, EBITDA, and Liquidity ratios.
+                </li>
+                <li>
+                    <strong style="color: white;">Audit-Ready Spreading:</strong><br>
+                    Every reclassified dollar is linked back to the original pixel in the source PDF for regulatory auditability.
+                </li>
+            </ul>
+
+            <div class="glass-box">
+                <h3>The "Glass Box" Edge</h3>
+                <p style="margin-bottom: 0;">This is not simple OCR. This is the <strong>industrialization of financial expertise</strong>. We captured how senior analysts think about risk reclassification and Formalized it into a machine-speed workflow.</p>
+            </div>
+        </article>
+
+        <!-- Sidebar -->
+        <aside>
+            <div class="sidebar-card">
+                <div class="sidebar-title">Deployed Institutions</div>
+                <ul style="list-style: none; margin: 0; padding: 0;">
+                    <li style="margin-bottom: 1.5rem; border-bottom: 1px solid #1E293B; padding-bottom: 1rem;">
+                        <strong style="color: white; font-size: 1.1rem; display: block;">DUCA Financial</strong>
+                        <span style="font-size: 0.85rem; color: var(--primary-accent);">Canada (Tier-2 Credit Union)</span>
+                    </li>
+                    <li style="margin-bottom: 1.5rem; border-bottom: 1px solid #1E293B; padding-bottom: 1rem;">
+                        <strong style="color: white; font-size: 1.1rem; display: block;">Alrahma</strong>
+                        <span style="font-size: 0.85rem; color: var(--primary-accent);">West Africa (Micro-Credit)</span>
+                    </li>
+                    <li style="margin-bottom: 1.5rem;">
+                        <strong style="color: white; font-size: 1.1rem; display: block;">BSIC Benin</strong>
+                        <span style="font-size: 0.85rem; color: var(--primary-accent);">Regional Commercial Banking</span>
+                    </li>
                 </ul>
+            </div>
 
-                <h2>The Breakthrough: Cognition vs. Computation</h2>
-                <p>We solved this by separating the workflow into two distinct engines. <strong>Generative AI captures and reasons. Deterministic engines calculate and validate.</strong> This ensures we get the flexibility of LLMs to read diverse formats without the risk of math hallucinations.</p>
-                
-                <h3>The 5-Step Process</h3>
-                <ul class="step-list">
-                    <li>
-                        <strong>Faithful Capture (Lossless)</strong><br>
-                        The first agent captures the statement exactly as presented. If the source has 20 fields, we capture 20. No assumptions, just pure ingestion.
-                    </li>
-                    <li>
-                        <strong>Cognitive Reclassification</strong><br>
-                        Specialized agents perform the expert-level reasoning. They combine equivalent items (e.g., Cash + Reserves), exclude non-pertinent assets based on bank policy, and map every element to the standardized structure.
-                    </li>
-                    <li>
-                        <strong>Cross-Agent Consistency</strong><br>
-                        Multiple agents perform the tasks independently and cross-check each other. This allows the system to measure confidence and flag edge cases for human review only when necessary.
-                    </li>
-                    <li>
-                        <strong>Deterministic Calculation</strong><br>
-                        <span style="color: white; font-weight: 700;">Crucial:</span> We do NOT use GenAI for math. Once the data is standardized, a traditional calculation engine computes ratios (Leverage, Liquidity, EBITDA). This eliminates calculation drift and regulatory risk.
-                    </li>
-                    <li>
-                        <strong>Automated Risk Scoring</strong><br>
-                        The output is fed directly into internal risk models and benchmarked against industry data (Sector, Capital Intensity, etc.).
-                    </li>
+            <div class="sidebar-card">
+                <div class="sidebar-title">Suite Deployed</div>
+                <ul style="font-size: 0.9rem; list-style: none; margin: 0;">
+                    <li style="margin-bottom: 0.5rem;"><strong style="color: white;">• Cognitive Engine</strong></li>
+                    <li style="margin-bottom: 0.5rem;"><strong style="color: white;">• Cognitive Foundry</strong></li>
+                    <li style="margin-bottom: 0.5rem;">• Audit-Trail Logger</li>
+                    <li>• Bilingual OCR Layer</li>
                 </ul>
+            </div>
 
-                <div class="glass-box">
-                    <h3>Why This Matters</h3>
-                    <p style="margin-bottom: 0;">This is not OCR. This is the <strong>industrialization of financial expertise</strong>. We captured how expert analysts <em>think</em> about reclassification and formalized it into a machine-speed workflow that is fully traceable for auditors.</p>
-                </div>
-            </article>
+            <div class="sidebar-card" style="border-color: var(--primary-accent); background: rgba(34, 197, 94, 0.03);">
+                <div class="sidebar-title" style="color: var(--primary-accent);">The Moat</div>
+                <p style="font-size: 0.95rem; font-style: italic; color: white;">
+                    "We use GenAI to understand the document context, but we use hard-coded math engines for the numbers. Trust is built on calculation, not probability."
+                </p>
+            </div>
 
-            <!-- Right Column: Sidebar -->
-            <aside>
-                <div class="sidebar-card">
-                    <div class="sidebar-title">Deployed At</div>
-                    <!-- CLIENT LIST ADDED HERE -->
-                    <ul style="list-style: none; margin: 0; padding: 0;">
-                        <li style="margin-bottom: 1rem; border-bottom: 1px solid #1E293B; padding-bottom: 0.5rem;">
-                            <strong style="color: white; font-size: 1.1rem; display: block;">DUCA Financial</strong>
-                            <span style="font-size: 0.85rem; color: var(--primary-accent);">Canada (Credit Union)</span>
-                        </li>
-                        <li style="margin-bottom: 1rem; border-bottom: 1px solid #1E293B; padding-bottom: 0.5rem;">
-                            <strong style="color: white; font-size: 1.1rem; display: block;">Alrahma</strong>
-                            <span style="font-size: 0.85rem; color: var(--primary-accent);">Micro-Credit / Inclusive Finance</span>
-                        </li>
-                        <li style="margin-bottom: 1rem;">
-                            <strong style="color: white; font-size: 1.1rem; display: block;">BSIC Benin</strong>
-                            <span style="font-size: 0.85rem; color: var(--primary-accent);">Commercial Banking</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="sidebar-card">
-                    <div class="sidebar-title">Tech Stack</div>
-                    <ul style="font-size: 0.9rem; list-style: none; margin: 0;">
-                        <li style="margin-bottom: 0.5rem;">• AI Workbench</li>
-                        <li style="margin-bottom: 0.5rem;">• Cognitive Re-classifier</li>
-                        <li style="margin-bottom: 0.5rem;">• Deterministic Math Engine</li>
-                        <li>• Audit Logger</li>
-                    </ul>
-                </div>
-
-                <div class="sidebar-card" style="border-color: var(--primary-accent);">
-                    <div class="sidebar-title" style="color: var(--primary-accent);">Key Differentiator</div>
-                    <p style="font-size: 0.95rem; font-style: italic; color: white;">
-                        "Generative AI captures and reasons. Deterministic engines calculate. We never ask an LLM to do math."
-                    </p>
-                </div>
-            </aside>
-
-        </div>
-    </section>
+            <a href="contact.html" class="btn-primary" style="width: 100%; text-align: center; padding: 1rem;">Request Technical Briefing</a>
+        </aside>
+    </div>
 
     <!-- Unified Footer -->
-    <footer style="padding: 4rem 5%; background: #020617; border-top: 1px solid var(--border-color);">
+    <footer>
         <div class="container footer-grid">
             <div>
-                <h4 style="margin-bottom: 1.5rem;">About Us</h4>
+                <h4 style="color: white; margin-bottom: 1.5rem;">About Us</h4>
                 <p style="font-size: 0.9rem; line-height: 1.6; color: var(--text-muted);">
-                    Cognitive was founded in 1995 by the Computer Research Institute of Montreal (CRIM). Our experts have advanced degrees in human factors and interaction design.
+                    Cognitive specializes in deterministic AI for mission-critical banking. Founded in 1995 by CRIM, our expertise is built on decades of cognitive engineering.
                 </p>
             </div>
             <div>
-                <h4 style="margin-bottom: 1.5rem;">Recent Posts</h4>
-                <a href="#" class="footer-link">AI-Assisted Supervision of Abnormal Situations</a>
-                <a href="#" class="footer-link">Original Paper (1994): From Task Analysis to User Interface</a>
+                <h4 style="color: white; margin-bottom: 1.5rem;">Institutional Links</h4>
+                <a href="products.html" class="footer-link">The Cognitive Suite</a>
+                <a href="blog.html" class="footer-link">Research & Insights</a>
+                <a href="success.html" class="footer-link">Case Study Archive</a>
             </div>
             <div>
-                <h4 style="margin-bottom: 1.5rem;">Get in Touch</h4>
+                <h4 style="color: white; margin-bottom: 1.5rem;">Global Headquarters</h4>
                 <p style="font-size: 0.9rem; color: var(--text-muted);">
-                    Montréal, QC H3B 2K4<br>
+                    1155 René-Lévesque Blvd West #2500<br>
+                    Montréal, QC H3B 2K4, Canada<br><br>
                     <a href="mailto:info@cognitivegroup.com" style="color: white; text-decoration: none;">info@cognitivegroup.com</a><br>
-                    <span style="color: var(--primary-accent);">+1 (415) 493-8559</span>
+                    <span style="color: var(--primary-accent); font-weight: 600;">+1 (415) 493-8559</span>
                 </p>
             </div>
         </div>
-        <div style="text-align: center; border-top: 1px solid var(--border-color); padding-top: 2rem; color: var(--text-muted); font-size: 0.85rem;">
+        <div style="text-align: center; border-top: 1px solid var(--border-color); padding-top: 2rem; margin-top: 2rem; color: var(--text-muted); font-size: 0.8rem;">
             &copy; 2025 Cognitive Group. All Rights Reserved.
         </div>
     </footer>

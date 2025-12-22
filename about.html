@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us | Cognitive Banking</title>
+    <title>About Us | Cognitive Banking - Our Origins & Vision</title>
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,7 +11,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
-        /* --- CSS STYLES (MATCHING INDEX) --- */
         :root {
             --bg-dark: #050A14;
             --bg-card: #0F172A;
@@ -45,7 +44,7 @@
             margin-bottom: 0.5rem;
         }
 
-        /* --- UNIFIED HEADER --- */
+        /* --- UNIFIED STABLE HEADER --- */
         header {
             position: fixed;
             top: 0;
@@ -58,9 +57,10 @@
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid var(--border-color);
+            height: 72px; 
         }
 
-        .real-logo { height: 35px; width: auto; }
+        .real-logo { height: 40px; width: auto; display: block; }
 
         nav ul { display: flex; gap: 2rem; list-style: none; }
         nav a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.3s; }
@@ -76,24 +76,25 @@
             font-size: 0.9rem;
             transition: all 0.2s;
             border: 1px solid var(--action-blue);
+            display: inline-block;
         }
         .btn-primary:hover { background: #1d4ed8; border-color: #1d4ed8; transform: translateY(-1px); }
 
-        /* --- Page Sections --- */
+        /* --- PAGE SECTIONS --- */
         .container { max-width: var(--max-width); margin: 0 auto; }
         section { padding: 6rem 5%; border-bottom: 1px solid var(--border-color); }
 
-        /* --- About Page Specifics --- */
         .hero-small {
-            padding: 10rem 0 4rem; /* Adjusted to clear the fixed header */
+            padding: 10rem 5% 4rem;
             text-align: center;
             border-bottom: 1px solid var(--border-color);
             background: radial-gradient(circle at center, rgba(34, 197, 94, 0.05) 0%, transparent 70%);
+            margin-top: 72px;
         }
-        .hero-small h1 { font-size: 3rem; margin: 1rem 0; }
+        .hero-small h1 { font-size: clamp(2.5rem, 3.5vw, 3.5rem); letter-spacing: -0.02em; }
 
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
-        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2rem; }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
 
         .card {
             background: var(--bg-card);
@@ -106,7 +107,7 @@
         .timeline-item {
             padding-left: 2rem;
             border-left: 1px solid var(--border-color);
-            padding-bottom: 2rem;
+            padding-bottom: 2.5rem;
             position: relative;
         }
         .timeline-item::before {
@@ -121,56 +122,55 @@
         }
         .timeline-year { font-weight: 700; color: var(--primary-accent); margin-bottom: 0.5rem; font-family: 'JetBrains Mono', monospace; }
 
-        /* Team Images */
+        /* Team Section */
+        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 3rem; margin-top: 3rem; }
         .team-member img {
             width: 100%;
-            height: 350px; 
+            height: 400px; 
             object-fit: cover; 
             border-radius: 4px;
             filter: grayscale(100%);
-            transition: filter 0.3s;
-            margin-bottom: 1rem;
+            transition: all 0.4s;
+            margin-bottom: 1.5rem;
             display: block;
+            border: 1px solid var(--border-color);
         }
-        .team-member:hover img { filter: grayscale(0%); }
+        .team-member:hover img { filter: grayscale(0%); border-color: var(--primary-accent); }
+        .team-member p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; margin-top: 0.5rem; }
 
         /* Footer */
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 1.5fr 1.5fr 1fr;
-            gap: 4rem;
-            margin-bottom: 4rem;
-        }
+        footer { padding: 4rem 5%; background: #020617; border-top: 1px solid var(--border-color); }
+        .footer-grid { display: grid; grid-template-columns: 1.5fr 1.5fr 1fr; gap: 4rem; }
+        .footer-link { color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 0.8rem; font-size: 0.9rem; transition: color 0.3s; }
+        .footer-link:hover { color: var(--primary-accent); }
 
-        @media (max-width: 768px) {
-            .grid-2, .grid-3, .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+        @media (max-width: 968px) {
+            .grid-2, .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+            header { padding: 1rem 5%; }
             nav { display: none; }
         }
     </style>
 </head>
 <body>
 
-   <!-- UNIFIED HEADER START -->
-   <header>
-    <div style="display:flex; align-items:center; gap:10px;">
-        <a href="index.html" style="text-decoration: none; border: none;">
-            <!-- Updated Logo to match Index Page -->
-            <img src="https://placehold.co/150x40/050A14/22C55E?text=COGNITIVE&font=monospace" alt="Cognitive Logo" class="real-logo">
-        </a>
-    </div>
-    <nav>
-        <ul>
-            <!-- Navigation Links -->
-            <li><a href="products.html">Products</a></li>
-            <li><a href="success.html">Success Stories</a></li>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="blog.html">Insights</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </nav>
-    <a href="contact.html" class="btn-primary">Strategy Session</a>
-</header>
-<!-- UNIFIED HEADER END -->
+    <!-- Unified Stable Header -->
+    <header>
+        <div style="display:flex; align-items:center;">
+            <a href="index.html">
+                <img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Cognitive Group Logo" class="real-logo">
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="success.html">Success Stories</a></li>
+                <li><a href="about.html" class="active">About Us</a></li>
+                <li><a href="blog.html">Insights</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <a href="contact.html" class="btn-primary">Strategy Session</a>
+    </header>
 
     <!-- Hero -->
     <div class="hero-small">
@@ -184,42 +184,42 @@
     <section>
         <div class="container">
             <div class="grid-2">
-                <!-- Left Column: History -->
+                <!-- History -->
                 <div>
-                    <span class="mono">History</span>
-                    <h3>Born from Research</h3>
-                    <p>The Cognitive Group (CG), headquartered in Montreal, was founded in 1995 by the <strong>Montreal Computer Research Institute (CRIM)</strong> to develop a Cognitive Engineering consulting practice.</p>
+                    <span class="mono">The Pedigree</span>
+                    <h3>Born from Deep Research</h3>
+                    <p style="margin-bottom: 1.5rem;">The Cognitive Group, headquartered in Montreal, was founded in 1995 as a specialized spinoff of the <strong>Computer Research Institute of Montreal (CRIM)</strong>.</p>
                     
-                    <p>Building on deep expertise in <strong>cognitive ergonomics</strong> and system design, we spent over a decade collaborating with <strong>Royal Bank of Canada (RBC)</strong> to optimize their loan origination processes. This foundation of "Tier-1 rigor" allowed us to develop <strong>BusinessBANKER</strong>.</p>
+                    <p style="margin-bottom: 1.5rem;">Building on decades of expertise in <strong>Cognitive Ergonomics</strong>, we partnered with <strong>Royal Bank of Canada (RBC)</strong> for over 10 years to optimize high-stakes loan origination. This institutional rigor is the DNA of our deterministic AI engine.</p>
                     
-                    <div style="margin-top: 2rem;">
-                        <span class="mono">Strategic Ecosystem</span>
-                        <p>Our alliance with <strong>CGI</strong> allows us to combine deep-tech agility with global delivery assurance.</p>
+                    <div style="margin-top: 2rem; padding: 1.5rem; border-left: 2px solid var(--action-blue); background: rgba(37, 99, 235, 0.03);">
+                        <span class="mono" style="color: var(--action-blue);">Strategic Scale</span>
+                        <p style="font-size: 0.95rem;">Our alliance with <strong>CGI</strong> allows us to combine the agility of a deep-tech lab with the global delivery assurance required by Tier-1 institutions.</p>
                     </div>
                 </div>
 
-                <!-- Right Column: Corporate Profile -->
+                <!-- Corporate Profile Card -->
                 <div>
                     <div class="card" style="padding: 0; overflow: hidden; border: 1px solid var(--border-color); background: #0B1120;">
                         <div style="padding: 1.5rem; border-bottom: 1px solid var(--border-color); background: rgba(34, 197, 94, 0.05);">
-                            <h3 style="margin: 0; font-size: 1.2rem; color: white;">Corporate Profile</h3>
+                            <h3 style="margin: 0; font-size: 1.1rem; color: white;">Institutional Profile</h3>
                         </div>
-                        <div style="padding: 1.5rem;">
-                            <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 1rem; border-bottom: 1px solid #1E293B; margin-bottom: 1rem;">
-                                <span class="mono" style="margin: 0; color: #64748B;">FOUNDED</span>
+                        <div style="padding: 2rem;">
+                            <div style="display: flex; justify-content: space-between; padding-bottom: 1rem; border-bottom: 1px solid #1E293B; margin-bottom: 1rem;">
+                                <span class="mono" style="color: #64748B;">ESTABLISHED</span>
                                 <span style="color: white; font-weight: 600;">1995 (CRIM Spinoff)</span>
                             </div>
-                            <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 1rem; border-bottom: 1px solid #1E293B; margin-bottom: 1rem;">
-                                <span class="mono" style="margin: 0; color: #64748B;">HEAD OFFICE</span>
+                            <div style="display: flex; justify-content: space-between; padding-bottom: 1rem; border-bottom: 1px solid #1E293B; margin-bottom: 1rem;">
+                                <span class="mono" style="color: #64748B;">HEADQUARTERS</span>
                                 <span style="color: white; font-weight: 600;">Montréal, Canada</span>
                             </div>
-                            <div style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 1rem; border-bottom: 1px solid #1E293B; margin-bottom: 1rem;">
-                                <span class="mono" style="margin: 0; color: #64748B;">KEY PARTNER</span>
+                            <div style="display: flex; justify-content: space-between; padding-bottom: 1rem; border-bottom: 1px solid #1E293B; margin-bottom: 1rem;">
+                                <span class="mono" style="color: #64748B;">DELIVERY PARTNER</span>
                                 <span style="color: white; font-weight: 600;">CGI</span>
                             </div>
-                            <div style="display: flex; justify-content: space-between; align-items: center;">
-                                <span class="mono" style="margin: 0; color: #64748B;">GLOBAL REACH</span>
-                                <span style="color: white; font-weight: 600;">90,000+ Employees</span>
+                            <div style="display: flex; justify-content: space-between;">
+                                <span class="mono" style="color: #64748B;">NETWORK REACH</span>
+                                <span style="color: white; font-weight: 600;">90,000+ Professionals</span>
                             </div>
                         </div>
                     </div>
@@ -229,162 +229,100 @@
     </section>
 
     <!-- Timeline -->
-    <section style="background: var(--bg-card);">
+    <section style="background: #020617;">
         <div class="container">
-            <h2 style="margin-bottom: 3rem;">The BusinessBANKER Timeline</h2>
-            <div style="max-width: 800px;">
+            <span class="mono">Development Path</span>
+            <h2 style="margin-bottom: 4rem;">The Evolution of Deterministic AI</h2>
+            <div style="max-width: 900px;">
                 <div class="timeline-item">
-                    <div class="timeline-year">2008</div>
-                    <p>Start of a 10-year collaboration with <strong>RBC (Royal Bank of Canada)</strong> for their loan origination process.</p>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-year">2015</div>
-                    <p>Investment phase: 3 years dedicated to developing the proprietary BusinessBANKER engine.</p>
+                    <div class="timeline-year">2008 — 2018</div>
+                    <p>Decade-long collaboration with <strong>RBC</strong> to re-engineer the cognitive flow of commercial loan adjudication.</p>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-year">2017</div>
-                    <p>First software deployment at BNDE (Senegal).</p>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-year">2018</div>
-                    <p>Contract win with GBDK in Lisbon, expanding into Europe.</p>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-year">2020</div>
-                    <p>BNDE becomes the first bank in Africa to offer COVID-19 relief loans due to our ease of configuration.</p>
+                    <p>First international deployment at BNDE (Senegal), proving the engine's adaptability to emerging markets.</p>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-year">2024</div>
-                    <p><strong>AI Workbench Launch:</strong> Fully integrated into BusinessBANKER. This allows the capture of financial statements in any format (structured or unstructured) to advance automation.</p>
+                    <p><strong>AI Workbench Launch:</strong> Integrating automated financial statement spreading to eliminate manual data entry in credit reviews.</p>
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-year">2025</div>
-                    <p><strong>Strategic Partnership with CGI:</strong> Established to provide global scale and "best of both worlds" delivery for institutional clients.</p>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-year">2025</div>
-                    <p><strong>The Universal Banker:</strong> Unlocking thousands of hours of cognitive analysis. The AI Workbench now allows the sharing of encapsulated expertise from major Tier-1 banks through specialized AI agents.</p>
+                    <p><strong>CGI Strategic Alliance:</strong> Scaling the "Universal Banker" model to global Tier-1 institutions.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Philosophy Section -->
+    <!-- Leadership Section -->
     <section>
         <div class="container">
-            <span class="mono">Our Philosophy</span>
-            <h2 style="max-width: 800px; margin-bottom: 3rem;">Human-Centered, Trustworthy AI—Built as a Product.</h2>
-            
-            <p style="font-size: 1.1rem; color: white; margin-bottom: 3rem; max-width: 800px;">
-                Our philosophy begins with a fundamental belief: <strong>human expertise is a structured asset.</strong> Expert judgment is not intangible intuition—it can be observed, decomposed, formalized, and engineered into systems.
-            </p>
-
-            <div class="grid-3">
-                <div class="card">
-                    <span class="mono">01. Cognitive Design</span>
-                    <h4>From Human Expertise to System Design</h4>
-                    <p>We apply Cognitive Task Analysis (CTA) to enter the decision-maker’s mental model. We capture how experts perceive situations and manage uncertainty, encoding human reasoning itself, not just correlations.</p>
-                </div>
-                <div class="card">
-                    <span class="mono">02. Co-Designers</span>
-                    <h4>Collaboration Over Vendor Dynamics</h4>
-                    <p>We operate as co-designers of intelligence. We work collaboratively with domain experts to construct systems that reflect real-world decision processes—not abstract theoretical models.</p>
-                </div>
-                <div class="card">
-                    <span class="mono">03. Product First</span>
-                    <h4>From Consulting to Product</h4>
-                    <p>We made a deliberate shift to become a fully product-oriented company. Our mission: eliminate bespoke configuration and reduce setup effort to near zero. Human expertise is captured once, then industrialized.</p>
-                </div>
-                <div class="card">
-                    <span class="mono">04. Performance</span>
-                    <h4>Excellence by Design</h4>
-                    <p>Our products are built with a non-negotiable standard: deterministic performance, high availability, and enterprise-grade speed. Intelligence is only valuable if it is dependable under pressure.</p>
-                </div>
-                <div class="card">
-                    <span class="mono">05. Auditability</span>
-                    <h4>Trust Is Not Claimed—It Is Proven</h4>
-                    <p>Every result must be explainable. Every discrepancy must be traceable. We do not hide uncertainty—we surface it. Trust is a core requirement, not a marketing claim.</p>
-                </div>
-                <div class="card">
-                    <span class="mono">06. Glass Box</span>
-                    <h4>Radical Transparency</h4>
-                    <p>From the first interaction, our systems are designed to be transparent by default. Users can see exactly which rules, evidence, or reasoning paths were used to reach a conclusion.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Leadership Team -->
-    <section style="background: var(--bg-card);">
-        <div class="container">
             <span class="mono">Leadership</span>
-            <h2>Officers & Architects</h2>
-            <br>
-            <div class="grid-2">
-                
+            <h2 style="margin-bottom: 1rem;">The Architects of Cognitive Banking</h2>
+            <p style="color: var(--text-muted); max-width: 600px;">A multidisciplinary team of physicists, engineers, and risk strategists dedicated to industrializing human expertise.</p>
+            
+            <div class="team-grid">
                 <!-- Francois Aubin -->
                 <div class="team-member">
                     <img src="https://i.postimg.cc/FKxgzvhF/fa2.jpg" alt="Francois Aubin">
                     <h3>Francois Aubin</h3>
                     <span class="mono">CEO & Founder</span>
-                    <p>A veteran operator with a track record of scaling deep-tech ventures (Founder of Cognitive Systems). François spent 20+ years inside Fortune 500 environments (Amazon, Ericsson, PG&E). He applies his background in Physics and Cognitive Science to architect the Cognitive Compiler, converting banking intuition into audit-ready IP.</p>
+                    <p>Deep-tech operator with 20+ years inside Fortune 500 environments (Amazon, Ericsson, PG&E). Francois applies Cognitive Science to convert banking intuition into audit-ready IP.</p>
                 </div>
 
                 <!-- Marie-Claude Prevost -->
                 <div class="team-member">
-                    <img src="https://placehold.co/400x400/1E293B/ffffff?text=Marie-Claude+Prevost" alt="Marie-Claude Prevost">
+                    <img src="https://placehold.co/400x500/1E293B/ffffff?text=Marie-Claude+Prevost" alt="Marie-Claude Prevost">
                     <h3>Marie-Claude Prévost</h3>
-                    <span class="mono">President & Associé Principal</span>
-                    <p>Electrical Engineer with 20 years experience in process optimization and UX. Former consultant for CAE, Hydro-Quebec, and RBC. Marie-Claude specializes in designing processes that align with human behavior.</p>
+                    <span class="mono">President & Principal Partner</span>
+                    <p>Electrical Engineer with 20 years in process optimization and UX. Former lead consultant for CAE, Hydro-Quebec, and RBC.</p>
                 </div>
 
                 <!-- Zain Ahmad Khan -->
                 <div class="team-member">
-                    <img src="https://placehold.co/400x400/1E293B/ffffff?text=Zain+Ahmad+Khan" alt="Zain Ahmad Khan">
+                    <img src="https://placehold.co/400x500/1E293B/ffffff?text=Zain+Ahmad+Khan" alt="Zain Ahmad Khan">
                     <h3>Zain Ahmad Khan</h3>
                     <span class="mono">Chief Architect</span>
-                    <p>Fintech product leader with 5+ years building and scaling secure banking platforms. Over 10 years of experience with nCino, Sopra, and core banking technologies. Expert in Agile/Scrum, secure architecture, and high-performance refactoring.</p>
+                    <p>Product leader specializing in high-performance banking platforms (nCino, Sopra). Expert in secure, scalable financial architecture.</p>
                 </div>
 
                 <!-- Sylvain Leith -->
                 <div class="team-member">
-                    <img src="https://placehold.co/400x400/1E293B/ffffff?text=Sylvain+Leith" alt="Sylvain Leith">
+                    <img src="https://placehold.co/400x500/1E293B/ffffff?text=Sylvain+Leith" alt="Sylvain Leith">
                     <h3>Sylvain Leith</h3>
                     <span class="mono">Chief Financial Analyst</span>
-                    <p>Expert in risk management and credit modeling (Basel II/III). Former VP of Risk Strategy at National Bank of Canada. Sylvain has consulted for the World Bank (IFC) and the European Investment Bank, implementing credit risk policies in China, Haiti, and globally.</p>
+                    <p>Former VP of Risk Strategy at National Bank. Basel II/III expert with global experience implementing credit policies for the World Bank (IFC).</p>
                 </div>
-
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer style="padding: 4rem 5%; background: #020617; border-top: 1px solid var(--border-color);">
+    <footer>
         <div class="container footer-grid">
             <div>
-                <h4 style="margin-bottom: 1.5rem;">About Us</h4>
+                <h4 style="color: white; margin-bottom: 1.5rem;">About Us</h4>
                 <p style="font-size: 0.9rem; line-height: 1.6; color: var(--text-muted);">
-                    Cognitive was founded in 1995 by the Computer Research Institute of Montreal (CRIM). Our experts have advanced degrees in human factors and interaction design. Our specialists are located in Montreal, Toronto, Hong Kong, and San Francisco.
+                    Cognitive was founded in 1995 by CRIM. We specialize in deterministic AI for mission-critical banking and regulated industries.
                 </p>
             </div>
             <div>
-                <h4 style="margin-bottom: 1.5rem;">Recent Posts</h4>
-                <a href="#" class="footer-link" style="color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 0.8rem; transition: color 0.3s;">AI-Assisted Supervision of Abnormal Situations: Lessons from the 2025 Louvre Burglary</a>
-                <a href="#" class="footer-link" style="color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 0.8rem; transition: color 0.3s;">Original Paper (1994) “From Task Analysis to User Interface Design”</a>
-                <a href="#" class="footer-link" style="color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 0.8rem; transition: color 0.3s;">Why Simple Scoring Systems Beat Human Judgment in Lending</a>
+                <h4 style="color: white; margin-bottom: 1.5rem;">Institutional Links</h4>
+                <a href="blog.html" class="footer-link">Research & Knowledge Base</a>
+                <a href="products.html" class="footer-link">The Cognitive Suite</a>
+                <a href="success.html" class="footer-link">Case Study Archive</a>
             </div>
             <div>
-                <h4 style="margin-bottom: 1.5rem;">Get in Touch</h4>
+                <h4 style="color: white; margin-bottom: 1.5rem;">Global Headquarters</h4>
                 <p style="font-size: 0.9rem; color: var(--text-muted);">
                     1155 René-Lévesque Blvd West #2500<br>
                     Montréal, QC H3B 2K4<br><br>
                     <a href="mailto:info@cognitivegroup.com" style="color: white; text-decoration: none;">info@cognitivegroup.com</a><br>
-                    <span style="color: var(--primary-accent);">+1 (415) 493-8559</span>
+                    <span style="color: var(--primary-accent); font-weight: 600;">+1 (415) 493-8559</span>
                 </p>
             </div>
         </div>
-
-        <div style="text-align: center; border-top: 1px solid var(--border-color); padding-top: 2rem; color: var(--text-muted); font-size: 0.85rem;">
+        <div style="text-align: center; border-top: 1px solid var(--border-color); padding-top: 2rem; margin-top: 2rem; color: var(--text-muted); font-size: 0.8rem;">
             &copy; 2025 Cognitive Group. All Rights Reserved.
         </div>
     </footer>

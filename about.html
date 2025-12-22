@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us | Cognitive Banking - Our Origins & Vision</title>
+    <title>About Us | Cognitive Banking</title>
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,99 +44,109 @@
             margin-bottom: 0.5rem;
         }
 
-        /* --- UNIFIED STABLE HEADER --- */
+        /* --- HEADER --- */
         header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 1rem 5%;
-            background: rgba(5, 10, 20, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--border-color);
-            height: 72px; 
+            position: fixed; top: 0; width: 100%; padding: 1rem 5%;
+            background: rgba(5, 10, 20, 0.95); backdrop-filter: blur(10px);
+            z-index: 1000; display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid var(--border-color); height: 72px; 
         }
-
-        .real-logo { height: 40px; width: auto; display: block; }
-
+        .real-logo { height: 35px; width: auto; display: block; }
         nav ul { display: flex; gap: 2rem; list-style: none; }
         nav a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.3s; }
         nav a:hover, nav a.active { color: white; }
 
         .btn-primary {
-            background: var(--action-blue);
-            color: white;
-            padding: 0.6rem 1.2rem;
-            font-weight: 600;
-            text-decoration: none;
-            border-radius: 4px;
-            font-size: 0.9rem;
-            transition: all 0.2s;
-            border: 1px solid var(--action-blue);
-            display: inline-block;
+            background: var(--action-blue); color: white; padding: 0.6rem 1.2rem;
+            font-weight: 600; text-decoration: none; border-radius: 4px; font-size: 0.9rem;
+            transition: all 0.2s; border: 1px solid var(--action-blue); display: inline-block; cursor: pointer;
         }
         .btn-primary:hover { background: #1d4ed8; border-color: #1d4ed8; transform: translateY(-1px); }
 
-        /* --- PAGE SECTIONS --- */
+        /* --- MODAL --- */
+        .modal-overlay {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(5px);
+            z-index: 2000; align-items: center; justify-content: center;
+        }
+        .modal-card {
+            background: #0F172A; border: 1px solid #1E293B;
+            padding: 3rem; border-radius: 8px; width: 100%; max-width: 450px;
+            position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+        .close-modal {
+            position: absolute; top: 15px; right: 20px; font-size: 1.5rem; color: #94A3B8;
+            cursor: pointer; transition: color 0.2s;
+        }
+        .close-modal:hover { color: white; }
+        .form-group { margin-bottom: 1.5rem; text-align: left; }
+        .form-label { display: block; font-size: 0.85rem; color: #94A3B8; margin-bottom: 0.5rem; }
+        .form-input {
+            width: 100%; padding: 0.8rem; background: #020617; border: 1px solid #1E293B;
+            color: white; border-radius: 4px; font-family: sans-serif; outline: none;
+        }
+        .form-input:focus { border-color: #22C55E; }
+        .modal-btn {
+            width: 100%; padding: 1rem; background: #22C55E; color: #000;
+            font-weight: 700; border: none; border-radius: 4px; cursor: pointer; font-size: 1rem;
+            margin-top: 1rem;
+        }
+        .modal-btn:hover { opacity: 0.9; }
+
+        /* --- SECTIONS --- */
         .container { max-width: var(--max-width); margin: 0 auto; }
         section { padding: 6rem 5%; border-bottom: 1px solid var(--border-color); }
 
         .hero-small {
-            padding: 10rem 5% 4rem;
-            text-align: center;
-            border-bottom: 1px solid var(--border-color);
+            padding: 10rem 5% 4rem; text-align: center; border-bottom: 1px solid var(--border-color);
             background: radial-gradient(circle at center, rgba(34, 197, 94, 0.05) 0%, transparent 70%);
             margin-top: 72px;
         }
         .hero-small h1 { font-size: clamp(2.5rem, 3.5vw, 3.5rem); letter-spacing: -0.02em; }
 
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
-        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .card { background: var(--bg-card); border: 1px solid var(--border-color); padding: 2rem; border-radius: 6px; }
 
-        .card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            padding: 2rem;
-            border-radius: 6px;
-        }
-
-        /* Timeline Styles */
-        .timeline-item {
-            padding-left: 2rem;
-            border-left: 1px solid var(--border-color);
-            padding-bottom: 2.5rem;
-            position: relative;
-        }
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -5px;
-            top: 5px;
-            width: 9px;
-            height: 9px;
-            background: var(--primary-accent);
-            border-radius: 50%;
-        }
+        /* Timeline */
+        .timeline-item { padding-left: 2rem; border-left: 1px solid var(--border-color); padding-bottom: 2.5rem; position: relative; }
+        .timeline-item::before { content: ''; position: absolute; left: -5px; top: 5px; width: 9px; height: 9px; background: var(--primary-accent); border-radius: 50%; }
         .timeline-year { font-weight: 700; color: var(--primary-accent); margin-bottom: 0.5rem; font-family: 'JetBrains Mono', monospace; }
 
-        /* Team Section */
-        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 3rem; margin-top: 3rem; }
+        /* --- TEAM GRID --- */
+        .team-grid { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 2rem; 
+            margin-top: 3rem; 
+        }
+        
+        .photo-wrapper {
+            width: 100%;
+            height: 340px; /* Reduced from 400px to avoid "too big" feeling */
+            overflow: hidden; 
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
         .team-member img {
             width: 100%;
-            height: 400px; 
-            object-fit: cover; 
-            border-radius: 4px;
-            filter: grayscale(100%);
-            transition: all 0.4s;
-            margin-bottom: 1.5rem;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center; 
+            transition: transform 0.4s ease;
             display: block;
-            border: 1px solid var(--border-color);
+            filter: grayscale(0%);
         }
-        .team-member:hover img { filter: grayscale(0%); border-color: var(--primary-accent); }
-        .team-member p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; margin-top: 0.5rem; }
+        
+        /* Hover Effect */
+        .team-member:hover img { transform: scale(1.05); }
+        /* Special Hover for Zain so he scales correctly from his base scale */
+        .team-member:hover img.zain-img { transform: scale(1.8); }
+
+        .team-member h3 { font-size: 1.4rem; margin-bottom: 0.3rem; }
+        .team-member p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin-top: 0.5rem; }
 
         /* Footer */
         footer { padding: 4rem 5%; background: #020617; border-top: 1px solid var(--border-color); }
@@ -148,14 +158,16 @@
             .grid-2, .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
             header { padding: 1rem 5%; }
             nav { display: none; }
+            .team-grid { gap: 1rem; } 
+            .photo-wrapper { height: 280px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Unified Stable Header -->
+    <!-- Header -->
     <header>
-        <div style="display:flex; align-items:center;">
+        <div style="display:flex; align-items:center; gap:10px;">
             <a href="index.html">
                 <img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Cognitive Group Logo" class="real-logo">
             </a>
@@ -169,7 +181,7 @@
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
-        <a href="contact.html" class="btn-primary">Strategy Session</a>
+        <button onclick="openModal()" class="btn-primary">Strategy Session</button>
     </header>
 
     <!-- Hero -->
@@ -180,25 +192,20 @@
         </div>
     </div>
 
-    <!-- History & Corporate Profile -->
+    <!-- History -->
     <section>
         <div class="container">
             <div class="grid-2">
-                <!-- History -->
                 <div>
                     <span class="mono">The Pedigree</span>
                     <h3>Born from Deep Research</h3>
                     <p style="margin-bottom: 1.5rem;">The Cognitive Group, headquartered in Montreal, was founded in 1995 as a specialized spinoff of the <strong>Computer Research Institute of Montreal (CRIM)</strong>.</p>
-                    
                     <p style="margin-bottom: 1.5rem;">Building on decades of expertise in <strong>Cognitive Ergonomics</strong>, we partnered with <strong>Royal Bank of Canada (RBC)</strong> for over 10 years to optimize high-stakes loan origination. This institutional rigor is the DNA of our deterministic AI engine.</p>
-                    
                     <div style="margin-top: 2rem; padding: 1.5rem; border-left: 2px solid var(--action-blue); background: rgba(37, 99, 235, 0.03);">
                         <span class="mono" style="color: var(--action-blue);">Strategic Scale</span>
                         <p style="font-size: 0.95rem;">Our alliance with <strong>CGI</strong> allows us to combine the agility of a deep-tech lab with the global delivery assurance required by Tier-1 institutions.</p>
                     </div>
                 </div>
-
-                <!-- Corporate Profile Card -->
                 <div>
                     <div class="card" style="padding: 0; overflow: hidden; border: 1px solid var(--border-color); background: #0B1120;">
                         <div style="padding: 1.5rem; border-bottom: 1px solid var(--border-color); background: rgba(34, 197, 94, 0.05);">
@@ -264,7 +271,9 @@
             <div class="team-grid">
                 <!-- Francois Aubin -->
                 <div class="team-member">
-                    <img src="https://i.postimg.cc/FKxgzvhF/fa2.jpg" alt="Francois Aubin">
+                    <div class="photo-wrapper">
+                        <img src="https://i.postimg.cc/FKxgzvhF/fa2.jpg" alt="Francois Aubin">
+                    </div>
                     <h3>Francois Aubin</h3>
                     <span class="mono">CEO & Founder</span>
                     <p>Deep-tech operator with 20+ years inside Fortune 500 environments (Amazon, Ericsson, PG&E). Francois applies Cognitive Science to convert banking intuition into audit-ready IP.</p>
@@ -272,15 +281,20 @@
 
                 <!-- Marie-Claude Prevost -->
                 <div class="team-member">
-                    <img src="https://placehold.co/400x500/1E293B/ffffff?text=Marie-Claude+Prevost" alt="Marie-Claude Prevost">
+                    <div class="photo-wrapper">
+                        <img src="https://i.postimg.cc/G3ysXDnq/Screenshot-2025-12-22-at-9-22-48-AM.png" alt="Marie-Claude Prevost">
+                    </div>
                     <h3>Marie-Claude Prévost</h3>
                     <span class="mono">President & Principal Partner</span>
                     <p>Electrical Engineer with 20 years in process optimization and UX. Former lead consultant for CAE, Hydro-Quebec, and RBC.</p>
                 </div>
 
-                <!-- Zain Ahmad Khan -->
+                <!-- Zain Ahmad Khan (Scaled) -->
                 <div class="team-member">
-                    <img src="https://placehold.co/400x500/1E293B/ffffff?text=Zain+Ahmad+Khan" alt="Zain Ahmad Khan">
+                    <div class="photo-wrapper">
+                        <!-- SCALED 1.7x to Zoom in on Face & Match Size -->
+                        <img src="https://i.postimg.cc/j22pxT6f/Whats-App-Image-2025-12-22-at-09-26-53.jpg" class="zain-img" alt="Zain Ahmad Khan" style="transform: scale(1.7); transform-origin: center 40%;">
+                    </div>
                     <h3>Zain Ahmad Khan</h3>
                     <span class="mono">Chief Architect</span>
                     <p>Product leader specializing in high-performance banking platforms (nCino, Sopra). Expert in secure, scalable financial architecture.</p>
@@ -288,7 +302,9 @@
 
                 <!-- Sylvain Leith -->
                 <div class="team-member">
-                    <img src="https://placehold.co/400x500/1E293B/ffffff?text=Sylvain+Leith" alt="Sylvain Leith">
+                    <div class="photo-wrapper">
+                        <img src="https://i.postimg.cc/FKwHSPz9/Screenshot-2025-12-22-at-9-24-04-AM.png" alt="Sylvain Leith">
+                    </div>
                     <h3>Sylvain Leith</h3>
                     <span class="mono">Chief Financial Analyst</span>
                     <p>Former VP of Risk Strategy at National Bank. Basel II/III expert with global experience implementing credit policies for the World Bank (IFC).</p>
@@ -326,6 +342,50 @@
             &copy; 2025 Cognitive Group. All Rights Reserved.
         </div>
     </footer>
+
+    <!-- GLOBAL BOOKING MODAL -->
+    <div id="bookingModal" class="modal-overlay">
+        <div class="modal-card">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <span style="font-family: monospace; color: #22C55E; text-transform: uppercase;">Strategy Session</span>
+                <h3 style="margin-top: 0.5rem; color: white; font-size: 1.5rem;">Book a Briefing</h3>
+                <p style="font-size: 0.9rem; color: #94A3B8;">Tell us who you are, and we'll take you straight to the calendar.</p>
+            </div>
+            <form onsubmit="handleGlobalSubmit(event)">
+                <div class="form-group">
+                    <label class="form-label">Full Name</label>
+                    <input type="text" id="g-name" class="form-input" required placeholder="Jane Doe">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Work Email</label>
+                    <input type="email" id="g-email" class="form-input" required placeholder="jane@bank.com">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Organization</label>
+                    <input type="text" id="g-org" class="form-input" required placeholder="Bank Name">
+                </div>
+                <button type="submit" class="modal-btn">Continue to Calendar &rarr;</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const gModal = document.getElementById('bookingModal');
+        function openModal() { gModal.style.display = 'flex'; }
+        function closeModal() { gModal.style.display = 'none'; }
+        window.onclick = function(e) { if (e.target == gModal) closeModal(); }
+
+        function handleGlobalSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('g-name').value;
+            const email = document.getElementById('g-email').value;
+            const org = document.getElementById('g-org').value;
+            const url = `https://cal.com/francoisaubin?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&notes=${encodeURIComponent("Organization: " + org)}`;
+            window.open(url, '_blank');
+            closeModal();
+        }
+    </script>
 
 </body>
 </html>

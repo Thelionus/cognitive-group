@@ -44,14 +44,15 @@
             margin-bottom: 0.5rem;
         }
 
-        /* HEADER */
+        /* --- UNIFIED HEADER --- */
         header {
             position: fixed; top: 0; width: 100%; padding: 1rem 5%;
             background: rgba(5, 10, 20, 0.95); backdrop-filter: blur(10px);
             z-index: 1000; display: flex; justify-content: space-between; align-items: center;
             border-bottom: 1px solid var(--border-color); height: 72px;
         }
-        .real-logo { height: 35px; width: auto; }
+        .real-logo { height: 35px; width: auto; display: block; }
+        
         nav ul { display: flex; gap: 2rem; list-style: none; }
         nav a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.3s; }
         nav a:hover, nav a.active { color: white; }
@@ -61,9 +62,9 @@
             font-weight: 600; text-decoration: none; border-radius: 4px; font-size: 0.9rem;
             cursor: pointer; border: 1px solid var(--action-blue);
         }
-        .btn-primary:hover { background: #1d4ed8; border-color: #1d4ed8; }
+        .btn-primary:hover { background: #1d4ed8; border-color: #1d4ed8; transform: translateY(-1px); }
 
-        /* MODAL STYLES */
+        /* --- MODAL STYLES --- */
         .modal-overlay {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(5px);
@@ -93,7 +94,7 @@
         }
         .modal-btn:hover { opacity: 0.9; }
 
-        /* HERO */
+        /* --- HERO --- */
         .hero-small {
             padding: 10rem 0 4rem; text-align: center;
             border-bottom: 1px solid var(--border-color);
@@ -155,11 +156,12 @@
 </head>
 <body>
 
-    <!-- Header -->
+    <!-- Unified Header -->
     <header>
         <div style="display:flex; align-items:center; gap:10px;">
             <a href="index.html">
-                <img src="https://placehold.co/150x40/050A14/22C55E?text=COGNITIVE&font=monospace" alt="Cognitive Logo" class="real-logo">
+                <!-- Using Official Image Logo -->
+                <img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Cognitive Logo" class="real-logo">
             </a>
         </div>
         <nav>
@@ -234,7 +236,7 @@
                     </div>
                 </div>
 
-                <!-- Dallas (Fixed: Phone & Email Added) -->
+                <!-- Dallas (Phone & Email Added) -->
                 <div class="contact-card">
                     <iframe class="map-frame" 
                         src="https://maps.google.com/maps?q=109%20Main%20St%20Lewisville%20TX&t=&z=14&ie=UTF8&iwloc=&output=embed" 
@@ -245,7 +247,7 @@
                         <p>109 Main Street</p>
                         <p>Lewisville, Texas 75057, USA</p>
                         <br>
-                        <!-- ADDED CONTACT INFO HERE -->
+                        <!-- Updated Contact Info -->
                         <p style="color: white; font-weight: 600; margin-bottom: 0.3rem;">+1 (214) 298-8019</p>
                         <a href="mailto:info@cognitivegroup.com" class="email-link">info@cognitivegroup.com</a>
                         <br><br>
@@ -301,7 +303,7 @@
         </div>
     </footer>
 
-    <!-- GLOBAL BOOKING MODAL & SCRIPT -->
+    <!-- GLOBAL BOOKING MODAL -->
     <div id="bookingModal" class="modal-overlay">
         <div class="modal-card">
             <span class="close-modal" onclick="closeModal()">&times;</span>
@@ -310,7 +312,6 @@
                 <h3 style="margin-top: 0.5rem; color: white; font-size: 1.5rem;">Book a Briefing</h3>
                 <p style="font-size: 0.9rem; color: #94A3B8;">Tell us who you are, and we'll take you straight to the calendar.</p>
             </div>
-            
             <form onsubmit="handleGlobalSubmit(event)">
                 <div class="form-group">
                     <label class="form-label">Full Name</label>
@@ -319,6 +320,10 @@
                 <div class="form-group">
                     <label class="form-label">Work Email</label>
                     <input type="email" id="g-email" class="form-input" required placeholder="jane@bank.com">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Organization</label>
+                    <input type="text" id="g-org" class="form-input" required placeholder="Bank Name">
                 </div>
                 <button type="submit" class="modal-btn">Continue to Calendar &rarr;</button>
             </form>
@@ -335,8 +340,8 @@
             e.preventDefault();
             const name = document.getElementById('g-name').value;
             const email = document.getElementById('g-email').value;
-            // Redirect to Calendly with pre-filled data
-            const url = `https://cal.com/francoisaubin?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}`;
+            const org = document.getElementById('g-org').value;
+            const url = `https://cal.com/francoisaubin?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&notes=${encodeURIComponent("Organization: " + org)}`;
             window.open(url, '_blank');
             closeModal();
         }

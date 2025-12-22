@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
+        /* --- CORE STYLES --- */
         :root {
             --bg-dark: #050A14;
             --bg-card: #0F172A;
@@ -46,212 +47,105 @@
 
         /* --- UNIFIED HEADER --- */
         header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 1rem 5%;
-            background: rgba(5, 10, 20, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--border-color);
+            position: fixed; top: 0; width: 100%; padding: 1rem 5%;
+            background: rgba(5, 10, 20, 0.95); backdrop-filter: blur(10px);
+            z-index: 1000; display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid var(--border-color); height: 72px;
         }
-
-        /* Updated logo height to look good */
-        .real-logo { height: 40px; width: auto; }
+        .real-logo { height: 35px; width: auto; display: block; }
 
         nav ul { display: flex; gap: 2rem; list-style: none; }
         nav a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.3s; }
         nav a:hover, nav a.active { color: white; }
 
         .btn-primary {
-            background: var(--action-blue);
-            color: white;
-            padding: 0.6rem 1.2rem;
-            font-weight: 600;
-            text-decoration: none;
-            border-radius: 4px;
-            font-size: 0.9rem;
-            transition: all 0.2s;
-            border: 1px solid var(--action-blue);
+            background: var(--action-blue); color: white; padding: 0.6rem 1.2rem;
+            font-weight: 600; text-decoration: none; border-radius: 4px; font-size: 0.9rem;
+            transition: all 0.2s; border: 1px solid var(--action-blue); cursor: pointer; display: inline-block;
         }
         .btn-primary:hover { background: #1d4ed8; border-color: #1d4ed8; transform: translateY(-1px); }
 
-        /* --- Hero --- */
-        .hero {
-            padding: 10rem 5% 4rem;
-            max-width: var(--max-width);
-            margin: 0 auto;
+        /* --- MODAL STYLES (Popup) --- */
+        .modal-overlay {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(5px);
+            z-index: 2000; align-items: center; justify-content: center;
         }
-        .hero h1 { 
-            font-size: clamp(2.5rem, 4vw, 4.5rem); 
-            line-height: 1.1; 
-            margin-bottom: 1.5rem; 
-            max-width: 950px;
-            letter-spacing: -0.03em;
+        .modal-card {
+            background: #0F172A; border: 1px solid #1E293B;
+            padding: 3rem; border-radius: 8px; width: 100%; max-width: 450px;
+            position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
+        .close-modal {
+            position: absolute; top: 15px; right: 20px; font-size: 1.5rem; color: #94A3B8;
+            cursor: pointer; transition: color 0.2s;
+        }
+        .close-modal:hover { color: white; }
+        .form-group { margin-bottom: 1.5rem; text-align: left; }
+        .form-label { display: block; font-size: 0.85rem; color: #94A3B8; margin-bottom: 0.5rem; }
+        .form-input {
+            width: 100%; padding: 0.8rem; background: #020617; border: 1px solid #1E293B;
+            color: white; border-radius: 4px; font-family: sans-serif; outline: none;
+        }
+        .form-input:focus { border-color: #22C55E; }
+        .modal-btn {
+            width: 100%; padding: 1rem; background: #22C55E; color: #000;
+            font-weight: 700; border: none; border-radius: 4px; cursor: pointer; font-size: 1rem;
+            margin-top: 1rem; transition: transform 0.1s;
+        }
+        .modal-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+
+        /* --- PAGE SECTIONS --- */
+        .hero { padding: 10rem 5% 4rem; max-width: var(--max-width); margin: 0 auto; margin-top: 72px; }
+        .hero h1 { font-size: clamp(2.5rem, 4vw, 4.5rem); line-height: 1.1; margin-bottom: 1.5rem; max-width: 950px; letter-spacing: -0.03em; }
         .hero p { font-size: 1.25rem; color: var(--text-muted); max-width: 600px; margin-bottom: 2rem; }
 
         .trust-badge {
-            background: rgba(34, 197, 94, 0.1);
-            border: 1px solid var(--primary-accent);
-            color: var(--primary-accent);
-            padding: 4px 12px;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            display: inline-block;
-            margin-bottom: 1rem;
+            background: rgba(34, 197, 94, 0.1); border: 1px solid var(--primary-accent);
+            color: var(--primary-accent); padding: 4px 12px; border-radius: 4px;
+            font-size: 0.75rem; font-weight: 700; display: inline-block; margin-bottom: 1rem;
             font-family: 'JetBrains Mono', monospace;
         }
 
-        .stats-bar {
-            display: flex;
-            gap: 4rem;
-            border-top: 1px solid var(--border-color);
-            padding-top: 2rem;
-            margin-top: 5rem;
-            flex-wrap: wrap;
-        }
-        .money-stat {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--primary-accent);
-            display: block;
-            line-height: 1;
-            margin-bottom: 0.5rem;
-        }
-        .money-label {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--text-muted);
-        }
+        .stats-bar { display: flex; gap: 4rem; border-top: 1px solid var(--border-color); padding-top: 2rem; margin-top: 5rem; flex-wrap: wrap; }
+        .money-stat { font-size: 2.5rem; font-weight: 800; color: var(--primary-accent); display: block; line-height: 1; margin-bottom: 0.5rem; }
+        .money-label { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); }
 
-        /* --- LOGOS --- */
-        .trusted {
-            background: #020617;
-            padding: 3rem 5%;
-            border-top: 1px solid var(--border-color);
-            border-bottom: 1px solid var(--border-color);
-        }
-        .logo-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            gap: 3rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .client-logo {
-            max-height: 50px !important; 
-            width: auto;
-            max-width: 160px;
-            object-fit: contain;
-            opacity: 0.7;
-            filter: grayscale(100%);
-            transition: all 0.3s;
-        }
+        .trusted { background: #020617; padding: 3rem 5%; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
+        .logo-grid { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 3rem; max-width: 1200px; margin: 0 auto; }
+        .client-logo { max-height: 50px !important; width: auto; max-width: 160px; object-fit: contain; opacity: 0.7; filter: grayscale(100%); transition: all 0.3s; }
         .client-logo:hover { opacity: 1; filter: grayscale(0%); transform: scale(1.05); }
 
-        /* --- Sections & Cards --- */
         section { padding: 6rem 5%; border-bottom: 1px solid var(--border-color); }
         .container { max-width: var(--max-width); margin: 0 auto; }
-        
         .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem; }
         
-        .card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            padding: 2rem;
-            border-radius: 6px;
-            transition: border-color 0.3s;
-        }
+        .card { background: var(--bg-card); border: 1px solid var(--border-color); padding: 2rem; border-radius: 6px; transition: border-color 0.3s; }
         .card:hover { border-color: var(--primary-accent); }
         .card h3 { font-size: 1.4rem; margin-top: 1rem; }
         .card p { color: var(--text-muted); font-size: 0.95rem; }
 
-        /* --- Tech Visual --- */
         .tech-container { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
-        .tech-visual {
-            background: linear-gradient(145deg, #0F172A, #020617);
-            border: 1px solid var(--border-color);
-            height: 420px;
-            display: flex; flex-direction: column; justify-content: center;
-            padding: 2rem; border-radius: 8px;
-        }
+        .tech-visual { background: linear-gradient(145deg, #0F172A, #020617); border: 1px solid var(--border-color); height: 420px; display: flex; flex-direction: column; justify-content: center; padding: 2rem; border-radius: 8px; }
         .code-line { height: 2px; background: #334155; margin: 10px 0; position: relative; overflow: hidden; }
-        .code-line::after {
-            content: ''; position: absolute; left: -100%; top:0; width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, var(--primary-accent), transparent);
-            animation: scan 2s infinite linear;
-        }
+        .code-line::after { content: ''; position: absolute; left: -100%; top:0; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, var(--primary-accent), transparent); animation: scan 2s infinite linear; }
         @keyframes scan { 100% { left: 100%; } }
 
-        /* --- Comparison Table --- */
-        .comp-wrapper {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            overflow: hidden;
-            margin-top: 3rem;
-            max-width: 850px;
-            margin-left: auto; margin-right: auto;
-        }
-        .comp-row {
-            display: grid;
-            grid-template-columns: 1.2fr 1fr 1fr;
-            border-bottom: 1px solid var(--border-color);
-        }
+        .comp-wrapper { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; margin-top: 3rem; max-width: 850px; margin-left: auto; margin-right: auto; }
+        .comp-row { display: grid; grid-template-columns: 1.2fr 1fr 1fr; border-bottom: 1px solid var(--border-color); }
         .comp-header-row { background: #020617; font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; color: var(--text-muted); }
         .comp-cell { padding: 1.5rem; display: flex; align-items: center; }
-        
-        .cell-cognitive {
-            background: rgba(34, 197, 94, 0.05);
-            color: white; font-weight: 600;
-            border-left: 1px solid var(--border-color);
-        }
+        .cell-cognitive { background: rgba(34, 197, 94, 0.05); color: white; font-weight: 600; border-left: 1px solid var(--border-color); }
         .status-good { color: var(--primary-accent); }
         .status-bad { color: #ef4444; }
 
-        /* --- Quote Block --- */
-        .quote-block {
-            background: rgba(34, 197, 94, 0.03); 
-            border: 1px solid var(--border-color); 
-            padding: 3rem; 
-            border-radius: 8px; 
-            position: relative; 
-            overflow: hidden;
-            text-align: center;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        .quote-mark {
-            position: absolute; 
-            top: -20px; 
-            left: 20px; 
-            font-size: 8rem; 
-            color: var(--primary-accent); 
-            opacity: 0.1; 
-            font-family: serif;
-        }
+        .quote-block { background: rgba(34, 197, 94, 0.03); border: 1px solid var(--border-color); padding: 3rem; border-radius: 8px; position: relative; overflow: hidden; text-align: center; max-width: 1000px; margin: 0 auto; }
+        .quote-mark { position: absolute; top: -20px; left: 20px; font-size: 8rem; color: var(--primary-accent); opacity: 0.1; font-family: serif; }
 
-        /* --- Footer --- */
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 1.5fr 1.5fr 1fr;
-            gap: 4rem;
-            margin-bottom: 4rem;
-        }
-        .footer-link {
-            color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 0.8rem; transition: color 0.3s;
-        }
+        .footer-grid { display: grid; grid-template-columns: 1.5fr 1.5fr 1fr; gap: 4rem; margin-bottom: 4rem; }
+        .footer-link { color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 0.8rem; transition: color 0.3s; }
         .footer-link:hover { color: var(--primary-accent); }
 
-        /* Mobile Fixes */
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.5rem; }
             .tech-container { grid-template-columns: 1fr; }
@@ -269,7 +163,6 @@
     <header>
         <div style="display:flex; align-items:center; gap:10px;">
             <a href="index.html">
-                <!-- OFFICIAL LOGO ADDED HERE -->
                 <img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Cognitive Group Logo" class="real-logo">
             </a>
         </div>
@@ -282,7 +175,8 @@
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
-        <a href="contact.html" class="btn-primary">Strategy Session</a>
+        <!-- Button triggers Modal -->
+        <button onclick="openModal()" class="btn-primary">Strategy Session</button>
     </header>
 
     <!-- Hero Section -->
@@ -292,7 +186,7 @@
         <p>Replace "black box" probabilistic models with auditable, pre-trained expert agents. Reduce cost-of-risk by 30% and adjudication time by 90%—with zero hallucination risk.</p>
         
         <div style="margin-top: 2rem;">
-            <a href="products.html" class="btn-primary">The "Glass Box" Engine</a>
+            <a href="products.html" class="btn-primary" style="text-decoration: none;">The "Glass Box" Engine</a>
             <a href="about.html" style="color: white; text-decoration: none; margin-left: 2rem; font-weight: 500; border-bottom: 1px solid var(--primary-accent);">See the Audit Trail &rarr;</a>
         </div>
 
@@ -331,7 +225,7 @@
             <p style="color: var(--text-muted); margin-bottom: 1.5rem; font-size: 0.95rem;">
                 Deploying critical decision logic for <strong style="color: white;">Aviva, World Bank Group, Manulife Bank, Hydro-Quebec, Thales,</strong> and 50+ others.
             </p>
-            <a href="clients.html" class="btn-primary" style="background: transparent; border: 1px solid var(--action-blue); color: var(--action-blue);">View Full Client List &rarr;</a>
+            <a href="clients.html" class="btn-primary" style="background: transparent; border: 1px solid var(--action-blue); color: var(--action-blue); text-decoration:none;">View Full Client List &rarr;</a>
         </div>
     </div>
 
@@ -473,6 +367,50 @@
             &copy; 2025 Cognitive Group. All Rights Reserved.
         </div>
     </footer>
+
+    <!-- GLOBAL BOOKING MODAL -->
+    <div id="bookingModal" class="modal-overlay">
+        <div class="modal-card">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <span style="font-family: monospace; color: #22C55E; text-transform: uppercase;">Strategy Session</span>
+                <h3 style="margin-top: 0.5rem; color: white; font-size: 1.5rem;">Book a Briefing</h3>
+                <p style="font-size: 0.9rem; color: #94A3B8;">Tell us who you are, and we'll take you straight to the calendar.</p>
+            </div>
+            <form onsubmit="handleGlobalSubmit(event)">
+                <div class="form-group">
+                    <label class="form-label">Full Name</label>
+                    <input type="text" id="g-name" class="form-input" required placeholder="Jane Doe">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Work Email</label>
+                    <input type="email" id="g-email" class="form-input" required placeholder="jane@bank.com">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Organization</label>
+                    <input type="text" id="g-org" class="form-input" required placeholder="Bank Name">
+                </div>
+                <button type="submit" class="modal-btn">Continue to Calendar &rarr;</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const gModal = document.getElementById('bookingModal');
+        function openModal() { gModal.style.display = 'flex'; }
+        function closeModal() { gModal.style.display = 'none'; }
+        window.onclick = function(e) { if (e.target == gModal) closeModal(); }
+
+        function handleGlobalSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('g-name').value;
+            const email = document.getElementById('g-email').value;
+            const org = document.getElementById('g-org').value;
+            const url = `https://cal.com/francoisaubin?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&notes=${encodeURIComponent("Organization: " + org)}`;
+            window.open(url, '_blank');
+            closeModal();
+        }
+    </script>
 
 </body>
 </html>

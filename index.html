@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- SEO: Added Meta Description -->
+    <meta name="description" content="Cognitive Banking provides deterministic, auditable AI decision engines for regulated financial institutions. OSFI & SOC2 Compliant.">
     <title>Cognitive Banking | The Operating System for Banking Decisions</title>
     
     <!-- Fonts -->
@@ -45,7 +47,7 @@
             margin-bottom: 0.5rem;
         }
 
-        /* --- UNIFIED HEADER (MATCHING PRODUCT PAGE) --- */
+        /* --- UNIFIED HEADER --- */
         header {
             position: fixed; top: 0; width: 100%; padding: 1rem 5%;
             background: rgba(5, 10, 20, 0.95); backdrop-filter: blur(10px);
@@ -65,7 +67,7 @@
         }
         .btn-primary:hover { background: #1d4ed8; border-color: #1d4ed8; transform: translateY(-1px); }
 
-        /* --- MODAL STYLES (Popup) --- */
+        /* --- MODAL STYLES --- */
         .modal-overlay {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(5px);
@@ -95,8 +97,7 @@
         }
         .modal-btn:hover { opacity: 0.9; transform: translateY(-1px); }
 
-        /* --- PAGE SECTIONS --- */
-        /* Added margin-top: 72px to account for fixed header like product page */
+        /* --- HERO --- */
         .hero { padding: 10rem 5% 4rem; max-width: var(--max-width); margin: 0 auto; margin-top: 72px; }
         .hero h1 { font-size: clamp(2.5rem, 4vw, 4.5rem); line-height: 1.1; margin-bottom: 1.5rem; max-width: 950px; letter-spacing: -0.03em; }
         .hero p { font-size: 1.25rem; color: var(--text-muted); max-width: 600px; margin-bottom: 2rem; }
@@ -113,10 +114,28 @@
         .money-stat { font-size: 2.5rem; font-weight: 800; color: var(--primary-accent); display: block; line-height: 1; margin-bottom: 0.5rem; }
         .money-label { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); }
 
+        /* --- TRUSTED SECTION UPDATES --- */
         .trusted { background: #020617; padding: 3rem 5%; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
-        .logo-grid { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 3rem; max-width: 1200px; margin: 0 auto; }
-        .client-logo { max-height: 45px !important; width: auto; max-width: 160px; object-fit: contain; opacity: 0.6; filter: grayscale(100%); transition: all 0.3s; }
-        .client-logo:hover { opacity: 1; filter: grayscale(0%); transform: scale(1.05); }
+        
+        .logo-grid { 
+            display: flex; flex-wrap: wrap; justify-content: center; align-items: center; 
+            gap: 3rem; max-width: 1200px; margin: 0 auto; 
+        }
+
+        /* LOGO FIX: Full Color & Opacity */
+        .client-logo { 
+            max-height: 45px !important; width: auto; max-width: 160px; object-fit: contain; 
+            opacity: 1; /* Was 0.6 */
+            filter: none; /* Was grayscale(100%) */
+            transition: transform 0.3s; 
+        }
+        .client-logo:hover { transform: scale(1.05); }
+
+        /* Text logos (Amazon/Air Canada) styles to match opacity 1 */
+        .text-logo {
+            font-weight: 700; font-size: 1.5rem; color: #fff; /* White instead of gray */
+            letter-spacing: -1px; opacity: 0.9;
+        }
 
         section { padding: 6rem 5%; border-bottom: 1px solid var(--border-color); }
         .container { max-width: var(--max-width); margin: 0 auto; }
@@ -148,6 +167,7 @@
         .footer-link { color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 0.8rem; transition: color 0.3s; }
         .footer-link:hover { color: var(--primary-accent); }
 
+        /* Responsive Mobile Adjustments */
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.5rem; }
             .tech-container { grid-template-columns: 1fr; }
@@ -157,12 +177,17 @@
             .comp-wrapper { overflow-x: scroll; }
             .comp-row { min-width: 600px; }
             .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+            
+            /* Logo grid mobile adjustment */
+            .logo-grid { gap: 1.5rem; }
+            .client-logo { max-height: 35px !important; }
+            .text-logo { font-size: 1.2rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Unified Header (Exact match to Products Page) -->
+    <!-- Unified Header -->
     <header>
         <div style="display:flex; align-items:center; gap:10px;">
             <a href="index.html">
@@ -207,21 +232,24 @@
         </div>
     </div>
 
-    <!-- TRUSTED INFRASTRUCTURE -->
+    <!-- TRUSTED INFRASTRUCTURE (UPDATED) -->
     <div class="trusted">
         <div class="mono" style="text-align: center; margin-bottom: 2rem; opacity: 0.7;">TRUSTED INFRASTRUCTURE FOR TIER-1 BANKS</div>
+        
+        <!-- LOGOS: Full Color & Opacity 1 -->
         <div class="logo-grid">
             <img src="https://i.postimg.cc/cJydGYv9/RBC-idzqe-B0Oz8-0.png" alt="RBC Royal Bank" class="client-logo"> 
             <img src="https://i.postimg.cc/9XDVzV63/id-EHPMw-9s-1766250464561.png" alt="National Bank" class="client-logo">
             <img src="https://i.postimg.cc/Gtr8QtwL/Desjardins-Group-idm-Z036r-RK-1.png" alt="Desjardins" class="client-logo">
-            <span style="font-weight:700; font-size: 1.5rem; color: #52525b; letter-spacing: -1px; opacity: 0.6;">amazon</span>
-            <span style="font-weight:700; font-size: 1.5rem; color: #52525b; letter-spacing: -1px; opacity: 0.6;">AIR CANADA</span>
+            <img src="https://i.imghippo.com/files/dSBI9595LU.png" alt="DUCA" class="client-logo">
+            <img src="https://i.imghippo.com/files/lO3106vbg.jpeg" alt="TD" class="client-logo">
+            <img src="https://i.imghippo.com/files/ezLO8362EE.png" alt="BNDE" class="client-logo">
+            
+
         </div>
 
-        <div style="text-align: center; margin-top: 3rem; border-top: 1px dashed var(--border-color); padding-top: 2rem;">
-            <p style="color: var(--text-muted); margin-bottom: 1.5rem; font-size: 0.95rem;">
-                Deploying critical decision logic for <strong style="color: white;">Aviva, World Bank Group, Manulife Bank, Hydro-Quebec, Thales,</strong> and 50+ others.
-            </p>
+        <!-- Button Moved Up (Text Removed) -->
+        <div style="text-align: center; margin-top: 2.5rem;">
             <a href="clients.html" class="btn-primary" style="background: transparent; border: 1px solid var(--action-blue); color: var(--action-blue); text-decoration:none;">View Full Client List &rarr;</a>
         </div>
     </div>

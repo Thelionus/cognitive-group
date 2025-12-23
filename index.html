@@ -47,12 +47,25 @@
 
         /* --- UNIFIED HEADER --- */
         header {
-            position: fixed; top: 0; width: 100%; padding: 1rem 5%;
+            position: fixed; top: 0; width: 100%; padding: 0 5%;
             background: rgba(5, 10, 20, 0.95); backdrop-filter: blur(10px);
             z-index: 1000; display: flex; justify-content: space-between; align-items: center;
             border-bottom: 1px solid var(--border-color); height: 72px;
         }
-        .real-logo { height: 35px; width: auto; display: block; }
+
+        /* SVG Logo Styles */
+        .logo-link {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        .real-logo { 
+            height: 32px; 
+            width: auto; 
+            display: block; 
+            transition: opacity 0.2s;
+        }
+        .real-logo:hover { opacity: 0.9; }
 
         nav ul { display: flex; gap: 2rem; list-style: none; }
         nav a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.3s; }
@@ -96,7 +109,7 @@
         .modal-btn:hover { opacity: 0.9; transform: translateY(-1px); }
 
         /* --- PAGE SECTIONS --- */
-        .hero { padding: 10rem 5% 4rem; max-width: var(--max-width); margin: 0 auto; margin-top: 72px; }
+        .hero { padding: 10rem 5% 4rem; max-width: var(--max-width); margin: 0 auto; margin-top: 0px; }
         .hero h1 { font-size: clamp(2.5rem, 4vw, 4.5rem); line-height: 1.1; margin-bottom: 1.5rem; max-width: 950px; letter-spacing: -0.03em; }
         .hero p { font-size: 1.25rem; color: var(--text-muted); max-width: 600px; margin-bottom: 2rem; }
 
@@ -108,12 +121,13 @@
         }
 
         .stats-bar { display: flex; gap: 4rem; border-top: 1px solid var(--border-color); padding-top: 2rem; margin-top: 5rem; flex-wrap: wrap; }
+        .stat-item { flex: 1; min-width: 150px; }
         .money-stat { font-size: 2.5rem; font-weight: 800; color: var(--primary-accent); display: block; line-height: 1; margin-bottom: 0.5rem; }
         .money-label { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); }
 
         .trusted { background: #020617; padding: 3rem 5%; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
         .logo-grid { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 3rem; max-width: 1200px; margin: 0 auto; }
-        .client-logo { max-height: 50px !important; width: auto; max-width: 160px; object-fit: contain; opacity: 0.7; filter: grayscale(100%); transition: all 0.3s; }
+        .client-logo { max-height: 45px !important; width: auto; max-width: 160px; object-fit: contain; opacity: 0.6; filter: grayscale(100%); transition: all 0.3s; }
         .client-logo:hover { opacity: 1; filter: grayscale(0%); transform: scale(1.05); }
 
         section { padding: 6rem 5%; border-bottom: 1px solid var(--border-color); }
@@ -161,9 +175,26 @@
 
     <!-- Unified Header -->
     <header>
-        <div style="display:flex; align-items:center; gap:10px;">
-            <a href="index.html">
-                <img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Cognitive Group Logo" class="real-logo">
+        <div>
+            <a href="index.html" class="logo-link">
+                <!-- SVG Logo: Glass Box Logic Engine -->
+                <svg class="real-logo" viewBox="0 0 240 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Cognitive Banking Logo">
+                    <g transform="translate(0, 2)">
+                        <!-- Outer Box (Structure - Blue) -->
+                        <path d="M10 2L26 2C28.2 2 30 3.8 30 6V22C30 24.2 28.2 26 26 26H10C7.8 26 6 24.2 6 22V6C6 3.8 7.8 2 10 2Z" stroke="#2563EB" stroke-width="2.5" />
+                        <!-- Internal Logic (Decision Core - Green) -->
+                        <rect x="14" y="10" width="8" height="8" rx="1" fill="#22C55E" />
+                        <!-- Connectivity Lines -->
+                        <path d="M30 14H34" stroke="#22C55E" stroke-width="2" />
+                        <path d="M2 14H6" stroke="#2563EB" stroke-width="2" stroke-opacity="0.5" />
+                    </g>
+                    <!-- TEXT -->
+                    <text x="44" y="24" font-family="'Inter', sans-serif" font-weight="700" font-size="20" letter-spacing="-0.5" fill="#F8FAFC">COGNITIVE</text>
+                    <!-- SUBTEXT -->
+                    <text x="156" y="24" font-family="'JetBrains Mono', monospace" font-weight="400" font-size="20" fill="#94A3B8">OS</text>
+                    <!-- DOT -->
+                    <circle cx="186" cy="18" r="2" fill="#22C55E"/>
+                </svg>
             </a>
         </div>
         <nav>
@@ -182,19 +213,14 @@
     <!-- Hero Section -->
     <div class="hero">
         <div class="trust-badge">OSFI & EU AI ACT COMPLIANT</div>
-        <h1>The Only Deterministic AI Approved for Regulated Lending.</h1>
-        <p>Replace "black box" probabilistic models with auditable, pre-trained expert agents. Reduce cost-of-risk by 30% and adjudication time by 90%—with zero hallucination risk.</p>
+        <h1>Deterministic Decision Automation for Regulated Institutions.</h1>
+        <p>Designed for high-stakes environments where explainability, traceability, and control are non-negotiable.</p>
         
         <div style="margin-top: 2rem;">
             <a href="products.html" class="btn-primary" style="text-decoration: none;">The "Glass Box" Engine</a>
-            <a href="about.html" style="color: white; text-decoration: none; margin-left: 2rem; font-weight: 500; border-bottom: 1px solid var(--primary-accent);">See the Audit Trail &rarr;</a>
         </div>
 
         <div class="stats-bar">
-            <div class="stat-item">
-                <span class="money-stat">$100B+</span>
-                <span class="money-label">Loan Volume Processed</span>
-            </div>
             <div class="stat-item">
                 <span class="money-stat">90%</span>
                 <span class="money-label">Faster Decisions</span>
@@ -214,11 +240,11 @@
     <div class="trusted">
         <div class="mono" style="text-align: center; margin-bottom: 2rem; opacity: 0.7;">TRUSTED INFRASTRUCTURE FOR TIER-1 BANKS</div>
         <div class="logo-grid">
-            <img src="https://i.postimg.cc/cJydGYv9/RBC-idzqe-B0Oz8-0.png" alt="RBC Royal Bank" class="client-logo" style="height: 38px;"> 
+            <img src="https://i.postimg.cc/cJydGYv9/RBC-idzqe-B0Oz8-0.png" alt="RBC Royal Bank" class="client-logo"> 
             <img src="https://i.postimg.cc/9XDVzV63/id-EHPMw-9s-1766250464561.png" alt="National Bank" class="client-logo">
-            <img src="https://i.postimg.cc/Gtr8QtwL/Desjardins-Group-idm-Z036r-RK-1.png" alt="Desjardins" class="client-logo" style="height: 42px;">
-            <span style="font-weight:700; font-size: 1.5rem; color: #52525b; letter-spacing: -1px;">amazon</span>
-            <span style="font-weight:700; font-size: 1.5rem; color: #52525b; letter-spacing: -1px;">AIR CANADA</span>
+            <img src="https://i.postimg.cc/Gtr8QtwL/Desjardins-Group-idm-Z036r-RK-1.png" alt="Desjardins" class="client-logo">
+            <span style="font-weight:700; font-size: 1.5rem; color: #52525b; letter-spacing: -1px; opacity: 0.6;">amazon</span>
+            <span style="font-weight:700; font-size: 1.5rem; color: #52525b; letter-spacing: -1px; opacity: 0.6;">AIR CANADA</span>
         </div>
 
         <div style="text-align: center; margin-top: 3rem; border-top: 1px dashed var(--border-color); padding-top: 2rem;">
@@ -243,7 +269,7 @@
                 <div class="card">
                     <span class="mono">RISK 02: THE GEN-AI TRAP</span>
                     <h3>LLMs are a Compliance Nightmare</h3>
-                    <p>Standard LLMs hallucinate. They are probabilistic "Black Boxes." You cannot explain their decisions to OSFI or the ECB. They are a regulatory non-starter.</p>
+                    <p>Large Language Models (LLMs), such as ChatGPT, generate outputs that cannot be fully explained or audited, making them unsuitable as decision engines in regulated environments.</p>
                 </div>
                 <div class="card">
                     <span class="mono">RISK 03: LEGACY ANCHORS</span>
@@ -299,24 +325,24 @@
         <div class="container">
             <div style="text-align: center; margin-bottom: 3rem;">
                 <span class="mono">COMPETITIVE LANDSCAPE</span>
-                <h2>Why Regulators Approve Cognitive OS</h2>
+                <h2>Why Regulators Approve Cognitive Engine</h2>
             </div>
             
             <div class="comp-wrapper">
                 <div class="comp-row comp-header-row">
                     <div class="comp-cell">Decision Criteria</div>
                     <div class="comp-cell">GenAI / LLMs</div>
-                    <div class="comp-cell cell-cognitive">Cognitive OS</div>
+                    <div class="comp-cell cell-cognitive">Cognitive Engine</div>
                 </div>
                 <div class="comp-row">
                     <div class="comp-cell" style="color: white; font-weight: 600;">Auditability</div>
-                    <div class="comp-cell status-bad">Black Box (Unknown)</div>
+                    <div class="comp-cell status-bad">Black Box (Not Possible)</div>
                     <div class="comp-cell cell-cognitive status-good">Glass Box (Traceable)</div>
                 </div>
                 <div class="comp-row">
                     <div class="comp-cell" style="color: white; font-weight: 600;">Logic Model</div>
                     <div class="comp-cell status-bad">Probabilistic (Guesses)</div>
-                    <div class="comp-cell cell-cognitive status-good">Deterministic (Reasoning)</div>
+                    <div class="comp-cell cell-cognitive status-good">Explainable (Reasoning)</div>
                 </div>
                 <div class="comp-row">
                     <div class="comp-cell" style="color: white; font-weight: 600;">Hallucinations</div>

@@ -22,24 +22,30 @@
             --max-width: 1400px;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        /* Consistent font reset */
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+            font-family: 'Inter', sans-serif; /* Global default */
+        }
 
         body {
             background-color: var(--bg-dark);
             color: var(--text-main);
-            font-family: 'Inter', sans-serif;
             line-height: 1.6;
             overflow-x: hidden;
         }
 
         h1, h2, h3, h4 { font-weight: 700; color: white; margin-bottom: 1rem; }
         
+        /* Consistent Mono Style */
         .mono {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
+            font-family: 'JetBrains Mono', monospace !important;
+            font-size: 0.8rem;
             color: var(--primary-accent);
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.08em;
             display: block;
             margin-bottom: 0.5rem;
         }
@@ -83,15 +89,14 @@
         .form-label { display: block; font-size: 0.85rem; color: #94A3B8; margin-bottom: 0.5rem; }
         .form-input {
             width: 100%; padding: 0.8rem; background: #020617; border: 1px solid #1E293B;
-            color: white; border-radius: 4px; font-family: sans-serif; outline: none;
+            color: white; border-radius: 4px; outline: none; font-family: 'Inter', sans-serif;
         }
         .form-input:focus { border-color: #22C55E; }
         .modal-btn {
             width: 100%; padding: 1rem; background: #22C55E; color: #000;
             font-weight: 700; border: none; border-radius: 4px; cursor: pointer; font-size: 1rem;
-            margin-top: 1rem;
+            margin-top: 1rem; font-family: 'Inter', sans-serif;
         }
-        .modal-btn:hover { opacity: 0.9; }
 
         /* --- SECTIONS --- */
         .container { max-width: var(--max-width); margin: 0 auto; }
@@ -122,29 +127,25 @@
         
         .photo-wrapper {
             width: 100%;
-            height: 340px; /* Reduced from 400px to avoid "too big" feeling */
+            height: 380px; /* Framing fix */
             overflow: hidden; 
             border-radius: 6px;
             border: 1px solid var(--border-color);
             margin-bottom: 1.5rem;
             position: relative;
+            background: #020617;
         }
 
         .team-member img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: top center; 
+            object-position: center 15%; /* Centering fix for faces */
             transition: transform 0.4s ease;
             display: block;
-            filter: grayscale(0%);
         }
         
-        /* Hover Effect */
         .team-member:hover img { transform: scale(1.05); }
-        /* Special Hover for Zain so he scales correctly from his base scale */
-        .team-member:hover img.zain-img { transform: scale(1.8); }
-
         .team-member h3 { font-size: 1.4rem; margin-bottom: 0.3rem; }
         .team-member p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin-top: 0.5rem; }
 
@@ -159,7 +160,7 @@
             header { padding: 1rem 5%; }
             nav { display: none; }
             .team-grid { gap: 1rem; } 
-            .photo-wrapper { height: 280px; }
+            .photo-wrapper { height: 320px; }
         }
     </style>
 </head>
@@ -192,15 +193,16 @@
         </div>
     </div>
 
-    <!-- History -->
+    <!-- History Section -->
     <section>
         <div class="container">
             <div class="grid-2">
                 <div>
                     <span class="mono">The Pedigree</span>
                     <h3>Born from Deep Research</h3>
-                    <p style="margin-bottom: 1.5rem;">The Cognitive Group, headquartered in Montreal, was founded in 1995 as a specialized spinoff of the <strong>Computer Research Institute of Montreal (CRIM)</strong>.</p>
-                    <p style="margin-bottom: 1.5rem;">Building on decades of expertise in <strong>Cognitive Ergonomics</strong>, we partnered with <strong>Royal Bank of Canada (RBC)</strong> for over 10 years to optimize high-stakes loan origination. This institutional rigor is the DNA of our deterministic AI engine.</p>
+                    <p style="margin-bottom: 1.5rem;">The Cognitive Group, headquartered in Montreal, was founded in 1995 as a specialized spinoff of the Computer Research Institute of Montreal (CRIM).</p>
+                    <p style="margin-bottom: 1.5rem;">Leveraging decades of proprietary <strong>cognitive analysis</strong> capturing expert reasoning not present in public datasets or large language models, we partnered with the <strong>Royal Bank of Canada</strong> for over a decade to optimize high-stakes loan origination. This institutional discipline is embedded in the core of our deterministic AI engine.</p>
+                    
                     <div style="margin-top: 2rem; padding: 1.5rem; border-left: 2px solid var(--action-blue); background: rgba(37, 99, 235, 0.03);">
                         <span class="mono" style="color: var(--action-blue);">Strategic Scale</span>
                         <p style="font-size: 0.95rem;">Our alliance with <strong>CGI</strong> allows us to combine the agility of a deep-tech lab with the global delivery assurance required by Tier-1 institutions.</p>
@@ -225,7 +227,7 @@
                                 <span style="color: white; font-weight: 600;">CGI</span>
                             </div>
                             <div style="display: flex; justify-content: space-between;">
-                                <span class="mono" style="color: #64748B;">NETWORK REACH</span>
+                                <span class="mono" style="color: #64748B;">NUMBER OF EMPLOYEES</span>
                                 <span style="color: white; font-weight: 600;">90,000+ Professionals</span>
                             </div>
                         </div>
@@ -269,41 +271,36 @@
             <p style="color: var(--text-muted); max-width: 600px;">A multidisciplinary team of physicists, engineers, and risk strategists dedicated to industrializing human expertise.</p>
             
             <div class="team-grid">
-                <!-- Francois Aubin -->
                 <div class="team-member">
                     <div class="photo-wrapper">
-                        <img src="https://i.postimg.cc/FKxgzvhF/fa2.jpg" alt="Francois Aubin">
+                        <img src="https://i.postimg.cc/xjB97SCz/fa.jpg" alt="Francois Aubin">
                     </div>
                     <h3>Francois Aubin</h3>
                     <span class="mono">CEO & Founder</span>
-                    <p>Deep-tech operator with 20+ years inside Fortune 500 environments (Amazon, Ericsson, PG&E). Francois applies Cognitive Science to convert banking intuition into audit-ready IP.</p>
+                    <p>Deep-tech operator with 20+ years inside Fortune 500 environments (Amazon, Ericsson, PG&E). François specializes in embedding cognitive ergonomics into mission-critical systems.</p>
                 </div>
 
-                <!-- Marie-Claude Prevost -->
                 <div class="team-member">
                     <div class="photo-wrapper">
-                        <img src="https://i.postimg.cc/G3ysXDnq/Screenshot-2025-12-22-at-9-22-48-AM.png" alt="Marie-Claude Prevost">
+                        <img src="https://i.postimg.cc/KzgH3C24/mc.jpg" alt="Marie-Claude Prevost">
                     </div>
                     <h3>Marie-Claude Prévost</h3>
-                    <span class="mono">President & Principal Partner</span>
-                    <p>Electrical Engineer with 20 years in process optimization and UX. Former lead consultant for CAE, Hydro-Quebec, and RBC.</p>
+                    <span class="mono">Managing Partner</span>
+                    <p>Marie-Claude brings rare depth in translating human factors into industrial-scale, regulator-ready systems, ensuring complex operations remain resilient.</p>
                 </div>
 
-                <!-- Zain Ahmad Khan (Scaled) -->
                 <div class="team-member">
                     <div class="photo-wrapper">
-                        <!-- SCALED 1.7x to Zoom in on Face & Match Size -->
-                        <img src="https://i.postimg.cc/j22pxT6f/Whats-App-Image-2025-12-22-at-09-26-53.jpg" class="zain-img" alt="Zain Ahmad Khan" style="transform: scale(1.7); transform-origin: center 40%;">
+                        <img src="https://i.postimg.cc/Z5T2sfr6/zain.jpg" alt="Zain Ahmad Khan">
                     </div>
-                    <h3>Zain Ahmad Khan</h3>
+                    <h3>Zain Khan</h3>
                     <span class="mono">Chief Architect</span>
                     <p>Product leader specializing in high-performance banking platforms (nCino, Sopra). Expert in secure, scalable financial architecture.</p>
                 </div>
 
-                <!-- Sylvain Leith -->
                 <div class="team-member">
                     <div class="photo-wrapper">
-                        <img src="https://i.postimg.cc/FKwHSPz9/Screenshot-2025-12-22-at-9-24-04-AM.png" alt="Sylvain Leith">
+                        <img src="https://i.postimg.cc/jdTFC8k0/sy.jpg" alt="Sylvain Leith">
                     </div>
                     <h3>Sylvain Leith</h3>
                     <span class="mono">Chief Financial Analyst</span>
@@ -348,7 +345,7 @@
         <div class="modal-card">
             <span class="close-modal" onclick="closeModal()">&times;</span>
             <div style="text-align: center; margin-bottom: 2rem;">
-                <span style="font-family: monospace; color: #22C55E; text-transform: uppercase;">Strategy Session</span>
+                <span class="mono">Strategy Session</span>
                 <h3 style="margin-top: 0.5rem; color: white; font-size: 1.5rem;">Book a Briefing</h3>
                 <p style="font-size: 0.9rem; color: #94A3B8;">Tell us who you are, and we'll take you straight to the calendar.</p>
             </div>

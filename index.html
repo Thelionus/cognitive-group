@@ -45,28 +45,15 @@
             margin-bottom: 0.5rem;
         }
 
-        /* --- UNIFIED HEADER --- */
+        /* --- UNIFIED HEADER (MATCHING PRODUCT PAGE) --- */
         header {
-            position: fixed; top: 0; width: 100%; padding: 0 5%;
+            position: fixed; top: 0; width: 100%; padding: 1rem 5%;
             background: rgba(5, 10, 20, 0.95); backdrop-filter: blur(10px);
             z-index: 1000; display: flex; justify-content: space-between; align-items: center;
-            border-bottom: 1px solid var(--border-color); height: 72px;
+            border-bottom: 1px solid var(--border-color); height: 72px; 
         }
-
-        /* SVG Logo Styles */
-        .logo-link {
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-        }
-        .real-logo { 
-            height: 32px; 
-            width: auto; 
-            display: block; 
-            transition: opacity 0.2s;
-        }
-        .real-logo:hover { opacity: 0.9; }
-
+        .real-logo { height: 35px; width: auto; display: block; }
+        
         nav ul { display: flex; gap: 2rem; list-style: none; }
         nav a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.3s; }
         nav a:hover, nav a.active { color: white; }
@@ -74,7 +61,7 @@
         .btn-primary {
             background: var(--action-blue); color: white; padding: 0.6rem 1.2rem;
             font-weight: 600; text-decoration: none; border-radius: 4px; font-size: 0.9rem;
-            transition: all 0.2s; border: 1px solid var(--action-blue); cursor: pointer; display: inline-block;
+            transition: all 0.2s; border: 1px solid var(--action-blue); display: inline-block; cursor: pointer;
         }
         .btn-primary:hover { background: #1d4ed8; border-color: #1d4ed8; transform: translateY(-1px); }
 
@@ -109,7 +96,8 @@
         .modal-btn:hover { opacity: 0.9; transform: translateY(-1px); }
 
         /* --- PAGE SECTIONS --- */
-        .hero { padding: 10rem 5% 4rem; max-width: var(--max-width); margin: 0 auto; margin-top: 0px; }
+        /* Added margin-top: 72px to account for fixed header like product page */
+        .hero { padding: 10rem 5% 4rem; max-width: var(--max-width); margin: 0 auto; margin-top: 72px; }
         .hero h1 { font-size: clamp(2.5rem, 4vw, 4.5rem); line-height: 1.1; margin-bottom: 1.5rem; max-width: 950px; letter-spacing: -0.03em; }
         .hero p { font-size: 1.25rem; color: var(--text-muted); max-width: 600px; margin-bottom: 2rem; }
 
@@ -164,6 +152,7 @@
             .hero h1 { font-size: 2.5rem; }
             .tech-container { grid-template-columns: 1fr; }
             .stats-bar { flex-direction: column; gap: 1.5rem; }
+            header { padding: 1rem 5%; }
             nav { display: none; }
             .comp-wrapper { overflow-x: scroll; }
             .comp-row { min-width: 600px; }
@@ -173,28 +162,11 @@
 </head>
 <body>
 
-    <!-- Unified Header -->
+    <!-- Unified Header (Exact match to Products Page) -->
     <header>
-        <div>
-            <a href="index.html" class="logo-link">
-                <!-- SVG Logo: Glass Box Logic Engine -->
-                <svg class="real-logo" viewBox="0 0 240 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Cognitive Banking Logo">
-                    <g transform="translate(0, 2)">
-                        <!-- Outer Box (Structure - Blue) -->
-                        <path d="M10 2L26 2C28.2 2 30 3.8 30 6V22C30 24.2 28.2 26 26 26H10C7.8 26 6 24.2 6 22V6C6 3.8 7.8 2 10 2Z" stroke="#2563EB" stroke-width="2.5" />
-                        <!-- Internal Logic (Decision Core - Green) -->
-                        <rect x="14" y="10" width="8" height="8" rx="1" fill="#22C55E" />
-                        <!-- Connectivity Lines -->
-                        <path d="M30 14H34" stroke="#22C55E" stroke-width="2" />
-                        <path d="M2 14H6" stroke="#2563EB" stroke-width="2" stroke-opacity="0.5" />
-                    </g>
-                    <!-- TEXT -->
-                    <text x="44" y="24" font-family="'Inter', sans-serif" font-weight="700" font-size="20" letter-spacing="-0.5" fill="#F8FAFC">COGNITIVE</text>
-                    <!-- SUBTEXT -->
-                    <text x="156" y="24" font-family="'JetBrains Mono', monospace" font-weight="400" font-size="20" fill="#94A3B8">OS</text>
-                    <!-- DOT -->
-                    <circle cx="186" cy="18" r="2" fill="#22C55E"/>
-                </svg>
+        <div style="display:flex; align-items:center; gap:10px;">
+            <a href="index.html">
+                <img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Cognitive Group Logo" class="real-logo">
             </a>
         </div>
         <nav>
@@ -206,7 +178,6 @@
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
-        <!-- Button triggers Modal -->
         <button onclick="openModal()" class="btn-primary">Strategy Session</button>
     </header>
 
@@ -342,7 +313,7 @@
                 <div class="comp-row">
                     <div class="comp-cell" style="color: white; font-weight: 600;">Logic Model</div>
                     <div class="comp-cell status-bad">Probabilistic (Guesses)</div>
-                    <div class="comp-cell cell-cognitive status-good">Explainable (Reasoning)</div>
+                    <div class="comp-cell cell-cognitive status-good">Explainable and traceable (Reasoning)</div>
                 </div>
                 <div class="comp-row">
                     <div class="comp-cell" style="color: white; font-weight: 600;">Hallucinations</div>

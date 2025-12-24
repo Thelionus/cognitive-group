@@ -23,6 +23,7 @@
             --text-muted: #94A3B8;
             --border-color: #1E293B;
             --max-width: 1400px;
+            --header-height: 72px;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -49,10 +50,10 @@
 
         /* --- UNIFIED HEADER (MATCHING INDEX EXACTLY) --- */
         header {
-            position: fixed; top: 0; width: 100%; padding: 1rem 5%;
+            position: fixed; top: 0; width: 100%; padding: 0 5%;
             background: rgba(5, 10, 20, 0.95); backdrop-filter: blur(10px);
             z-index: 1000; display: flex; justify-content: space-between; align-items: center;
-            border-bottom: 1px solid var(--border-color); height: 72px; 
+            border-bottom: 1px solid var(--border-color); height: var(--header-height); 
         }
         .real-logo { height: 35px; width: auto; display: block; }
         
@@ -75,7 +76,7 @@
         /* --- HERO & STATS --- */
         .hero-small {
             padding: 10rem 5% 4rem; text-align: center; border-bottom: 1px solid var(--border-color);
-            margin-top: 72px;
+            margin-top: var(--header-height);
         }
         .hero-small h1 { font-size: clamp(2.2rem, 4vw, 3.5rem); letter-spacing: -0.02em; }
 
@@ -147,7 +148,7 @@
 </head>
 <body>
 
-    <!-- Unified Header (Corrected) -->
+    <!-- Unified Header -->
     <header>
         <div style="display:flex; align-items:center; gap:10px;">
             <a href="index.html">
@@ -236,13 +237,14 @@
                         Expert judgment is digitized through advanced protocols based on Cognitive Task Analysis (CTA), transforming implicit reasoning into explicit decision structures.
                     </p>
                     <p style="margin-bottom: 2rem;">
-                        <a href="api-documentation.pdf" download class="api-link">
-                            <span style="margin-right: 8px;">&#128196;</span> Download the API documentation here
+                        <!-- LINK FIXED: Matches clean filename and added ./ for direct folder reference -->
+                        <a href="./Cognitive-Engine-Technical-Briefing.pdf" target="_blank" class="api-link">
+                            <span style="margin-right: 8px;">&#128196;</span> Download System Documentation Here
                         </a>
                     </p>
                     <div style="margin-bottom: 1.5rem; border-left: 2px solid var(--primary-accent); padding-left: 1.5rem;">
                         <strong style="color: white;">Encapsulated Brains</strong><br>
-                        <span style="color: var(--text-muted); font-size: 0.9rem;">We have already encapsulated thousands of hours of cognitive analysis, translating expert knowledge, such as that of mortgage adjudicators, risk managers, and related roles into explicit, production-ready logic blocks available for deployment within your systems..</span>
+                        <span style="color: var(--text-muted); font-size: 0.9rem;">We have already encapsulated thousands of hours of cognitive analysis, translating expert knowledge into production-ready logic blocks.</span>
                     </div>
                 </div>
             </div>
@@ -269,7 +271,7 @@
         </div>
     </section>
 
-    <!-- Footer (Matching Index) -->
+    <!-- Footer -->
     <footer>
         <div class="container footer-grid">
             <div>
@@ -303,7 +305,6 @@
     </div>
 
     <script>
-        // Hamburger Toggle
         const hamburger = document.getElementById('hamburger');
         const navMenu = document.getElementById('nav-menu');
         hamburger.addEventListener('click', () => {
@@ -311,7 +312,6 @@
             navMenu.classList.toggle('active');
         });
 
-        // Modal Logic
         const gModal = document.getElementById('bookingModal');
         function openModal() { gModal.style.display = 'flex'; }
         function closeModal() { gModal.style.display = 'none'; }

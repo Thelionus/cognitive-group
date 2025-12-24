@@ -20,6 +20,7 @@
             --text-muted: #94A3B8;
             --border-color: #1E293B;
             --max-width: 1400px;
+            --header-height: 72px;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -44,15 +45,16 @@
             margin-bottom: 0.5rem;
         }
 
-        /* --- UNIFIED STABLE HEADER --- */
+        /* --- UPDATED UNIFIED HEADER (MATCHING INDEX) --- */
         header {
-            position: fixed; top: 0; width: 100%; padding: 1rem 5%;
+            position: fixed; top: 0; width: 100%; padding: 0 5%;
             background: rgba(5, 10, 20, 0.95); backdrop-filter: blur(10px);
             z-index: 1000; display: flex; justify-content: space-between; align-items: center;
-            border-bottom: 1px solid var(--border-color); height: 72px; 
+            border-bottom: 1px solid var(--border-color); height: var(--header-height); 
         }
         .real-logo { height: 35px; width: auto; display: block; }
-        nav ul { display: flex; gap: 2rem; list-style: none; }
+        
+        nav ul { display: flex; gap: 2rem; list-style: none; align-items: center; }
         nav a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.3s; }
         nav a:hover, nav a.active { color: white; }
 
@@ -62,6 +64,11 @@
             transition: all 0.2s; border: 1px solid var(--action-blue); display: inline-block; cursor: pointer;
         }
         .btn-primary:hover { background: #1d4ed8; border-color: #1d4ed8; transform: translateY(-1px); }
+
+        /* Mobile Hamburger Styles */
+        .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1100; }
+        .hamburger span { display: block; width: 25px; height: 2px; background: white; transition: 0.3s; }
+        .mobile-only { display: none; }
 
         /* --- MODAL --- */
         .modal-overlay {
@@ -166,34 +173,55 @@
         .footer-link { color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 0.8rem; font-size: 0.9rem; transition: color 0.3s; }
         .footer-link:hover { color: var(--primary-accent); }
 
-        @media (max-width: 968px) {
-            header { height: auto; padding: 1rem 5%; }
-            nav { display: none; }
+        /* RESPONSIVE MOBILE FIXES */
+        @media (max-width: 768px) {
+            .hamburger { display: flex; }
+            nav {
+                position: fixed; top: 0; right: -100%; width: 80%; height: 100vh;
+                background: #0F172A; padding: 100px 10% 0; transition: 0.4s;
+                border-left: 1px solid var(--border-color);
+            }
+            nav.active { right: 0; }
+            nav ul { flex-direction: column; align-items: flex-start; gap: 2rem; }
+            
+            #desktop-cta { display: none; }
+            .mobile-only { display: block; margin-top: 20px; }
+
             .hero-banner { height: 400px; }
             .hero-overlay h1 { font-size: 2.2rem; }
             .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+
+            .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+            .hamburger.active span:nth-child(2) { opacity: 0; }
+            .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header -->
+    <!-- Unified Header (Matches Index Exactly) -->
     <header>
         <div style="display:flex; align-items:center; gap:10px;">
             <a href="index.html">
-                <img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Cognitive Logo" class="real-logo">
+                <img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Cognitive Group Logo" class="real-logo">
             </a>
         </div>
-        <nav>
+        <nav id="nav-menu">
             <ul>
                 <li><a href="products.html">Products</a></li>
                 <li><a href="success.html" class="active">Success Stories</a></li>
                 <li><a href="about.html">About Us</a></li>
                 <li><a href="blog.html">Insights</a></li>
                 <li><a href="contact.html">Contact</a></li>
+                <li class="mobile-only"><button onclick="openModal()" class="btn-primary">Strategy Session</button></li>
             </ul>
         </nav>
-        <button onclick="openModal()" class="btn-primary">Strategy Session</button>
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <button onclick="openModal()" class="btn-primary" id="desktop-cta">Strategy Session</button>
+            <div class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
     </header>
 
     <!-- Hero Banner -->
@@ -345,22 +373,21 @@
             <div>
                 <h4 style="color: white; margin-bottom: 1.5rem;">About Us</h4>
                 <p style="font-size: 0.9rem; line-height: 1.6; color: var(--text-muted);">
-                    Cognitive was founded in 1995 by the Computer Research Institute of Montreal (CRIM). We specialize in deterministic AI for mission-critical banking.
+                    Cognitive was founded in 1995. We specialize in deterministic AI for mission-critical banking.
                 </p>
             </div>
             <div>
-                <h4 style="color: white; margin-bottom: 1.5rem;">Recent Research</h4>
-                <a href="blog.html" class="footer-link">Lessons from the 2025 Louvre Burglary</a>
-                <a href="blog.html" class="footer-link">Why Scoring Systems Beat Intuition</a>
-                <a href="products.html" class="footer-link">The "Glass Box" Methodology</a>
+                <h4 style="color: white; margin-bottom: 1.5rem;">Institutional Links</h4>
+                <a href="products.html" class="footer-link">The Cognitive Suite</a>
+                <a href="success.html" class="footer-link">Case Study Archive</a>
+                <a href="blog.html" class="footer-link">Research & Knowledge Base</a>
             </div>
             <div>
                 <h4 style="color: white; margin-bottom: 1.5rem;">Get in Touch</h4>
                 <p style="font-size: 0.9rem; color: var(--text-muted);">
                     1155 René-Lévesque Blvd West #2500<br>
                     Montréal, QC H3B 2K4<br><br>
-                    <a href="mailto:info@cognitivegroup.com" style="color: white; text-decoration: none;">info@cognitivegroup.com</a><br>
-                    <span style="color: var(--primary-accent); font-weight: 600;">+1 (415) 493-8559</span>
+                    info@cognitivegroup.com
                 </p>
             </div>
         </div>
@@ -374,7 +401,7 @@
         <div class="modal-card">
             <span class="close-modal" onclick="closeModal()">&times;</span>
             <div style="text-align: center; margin-bottom: 2rem;">
-                <span style="font-family: monospace; color: #22C55E; text-transform: uppercase;">Strategy Session</span>
+                <span class="mono">Strategy Session</span>
                 <h3 style="margin-top: 0.5rem; color: white; font-size: 1.5rem;">Book a Briefing</h3>
                 <p style="font-size: 0.9rem; color: #94A3B8;">Tell us who you are, and we'll take you straight to the calendar.</p>
             </div>
@@ -396,7 +423,16 @@
         </div>
     </div>
 
+    <!-- HAMBURGER & MODAL SCRIPT -->
     <script>
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
         const gModal = document.getElementById('bookingModal');
         function openModal() { gModal.style.display = 'flex'; }
         function closeModal() { gModal.style.display = 'none'; }

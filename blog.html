@@ -20,6 +20,7 @@
             --text-muted: #94A3B8;
             --border-color: #1E293B;
             --max-width: 1400px;
+            --header-height: 72px;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -44,16 +45,16 @@
             margin-bottom: 0.5rem;
         }
 
-        /* --- UNIFIED STABLE HEADER --- */
+        /* --- UPDATED UNIFIED HEADER (MATCHING INDEX) --- */
         header {
-            position: fixed; top: 0; width: 100%; padding: 1rem 5%;
+            position: fixed; top: 0; width: 100%; padding: 0 5%;
             background: rgba(5, 10, 20, 0.95); backdrop-filter: blur(10px);
             z-index: 1000; display: flex; justify-content: space-between; align-items: center;
-            border-bottom: 1px solid var(--border-color); height: 72px; 
+            border-bottom: 1px solid var(--border-color); height: var(--header-height); 
         }
         .real-logo { height: 35px; width: auto; display: block; }
         
-        nav ul { display: flex; gap: 2rem; list-style: none; }
+        nav ul { display: flex; gap: 2rem; list-style: none; align-items: center; }
         nav a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.3s; }
         nav a:hover, nav a.active { color: white; }
 
@@ -63,6 +64,11 @@
             transition: all 0.2s; border: 1px solid var(--action-blue); display: inline-block; cursor: pointer;
         }
         .btn-primary:hover { background: #1d4ed8; border-color: #1d4ed8; transform: translateY(-1px); }
+
+        /* Mobile Hamburger Styles */
+        .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1100; }
+        .hamburger span { display: block; width: 25px; height: 2px; background: white; transition: 0.3s; }
+        .mobile-only { display: none; }
 
         /* --- MODAL STYLES --- */
         .modal-overlay {
@@ -144,33 +150,55 @@
         .footer-link { color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 0.8rem; font-size: 0.9rem; transition: color 0.3s; }
         .footer-link:hover { color: var(--primary-accent); }
 
-        @media (max-width: 968px) {
-            header { padding: 1rem 5%; }
-            nav { display: none; }
+        /* RESPONSIVE MOBILE FIXES FOR HEADER */
+        @media (max-width: 768px) {
+            .hamburger { display: flex; }
+            nav {
+                position: fixed; top: 0; right: -100%; width: 80%; height: 100vh;
+                background: #0F172A; padding: 100px 10% 0; transition: 0.4s;
+                border-left: 1px solid var(--border-color);
+            }
+            nav.active { right: 0; }
+            nav ul { flex-direction: column; align-items: flex-start; gap: 2rem; }
+            
+            #desktop-cta { display: none; }
+            .mobile-only { display: block; margin-top: 20px; }
+
+            .hero-small { padding: 8rem 0 3rem; }
             .grid-3 { grid-template-columns: 1fr; }
             .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+
+            .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+            .hamburger.active span:nth-child(2) { opacity: 0; }
+            .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
         }
     </style>
 </head>
 <body>
 
-    <!-- Unified Stable Header -->
+    <!-- UPDATED HEADER (MATCHING INDEX EXACTLY) -->
     <header>
         <div style="display:flex; align-items:center; gap:10px;">
             <a href="index.html">
                 <img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Cognitive Group Logo" class="real-logo">
             </a>
         </div>
-        <nav>
+        <nav id="nav-menu">
             <ul>
                 <li><a href="products.html">Products</a></li>
                 <li><a href="success.html">Success Stories</a></li>
                 <li><a href="about.html">About Us</a></li>
                 <li><a href="blog.html" class="active">Insights</a></li>
                 <li><a href="contact.html">Contact</a></li>
+                <li class="mobile-only"><button onclick="openModal()" class="btn-primary">Strategy Session</button></li>
             </ul>
         </nav>
-        <button onclick="openModal()" class="btn-primary">Strategy Session</button>
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <button onclick="openModal()" class="btn-primary" id="desktop-cta">Strategy Session</button>
+            <div class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
     </header>
 
     <!-- HERO: List View (Default) -->
@@ -184,7 +212,7 @@
         </div>
     </div>
 
-    <!-- HERO: Detail View (Hidden by default) -->
+    <!-- HERO: Detail View -->
     <div id="hero-detail" class="hero-small" style="display: none; text-align: left; background: var(--bg-dark); border-bottom: 1px solid var(--border-color);">
         <div class="container" style="max-width: 850px;">
             <a href="blog.html" class="back-link">&larr; BACK TO INSIGHTS</a>
@@ -270,9 +298,18 @@
         </div>
     </div>
 
-    <!-- Scripts: Blog Logic + Modal Logic -->
+    <!-- Hamburger & Blog Logic Scripts -->
     <script src="blog_data.js"></script> 
     <script>
+        // --- UPDATED HAMBURGER LOGIC ---
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
         // --- MODAL LOGIC ---
         const gModal = document.getElementById('bookingModal');
         function openModal() { gModal.style.display = 'flex'; }
@@ -289,7 +326,7 @@
             closeModal();
         }
 
-        // --- BLOG LOADING LOGIC ---
+        // --- BLOG LOADING LOGIC (UNTOUCHED) ---
         const gridEl = document.getElementById('blog-grid');
         const listHeroEl = document.getElementById('hero-list');
         const detailViewEl = document.getElementById('single-post-view');

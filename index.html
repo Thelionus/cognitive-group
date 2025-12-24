@@ -47,16 +47,16 @@
             margin-bottom: 0.5rem;
         }
 
-        /* --- UNIFIED HEADER --- */
+        /* --- UPDATED HEADER STYLES --- */
         header {
-            position: fixed; top: 0; width: 100%; padding: 1rem 5%;
+            position: fixed; top: 0; width: 100%; padding: 0 5%;
             background: rgba(5, 10, 20, 0.95); backdrop-filter: blur(10px);
             z-index: 1000; display: flex; justify-content: space-between; align-items: center;
             border-bottom: 1px solid var(--border-color); height: 72px; 
         }
         .real-logo { height: 35px; width: auto; display: block; }
         
-        nav ul { display: flex; gap: 2rem; list-style: none; }
+        nav ul { display: flex; gap: 2rem; list-style: none; align-items: center; }
         nav a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.3s; }
         nav a:hover, nav a.active { color: white; }
 
@@ -66,6 +66,11 @@
             transition: all 0.2s; border: 1px solid var(--action-blue); display: inline-block; cursor: pointer;
         }
         .btn-primary:hover { background: #1d4ed8; border-color: #1d4ed8; transform: translateY(-1px); }
+
+        /* Hamburger Styles */
+        .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1100; }
+        .hamburger span { display: block; width: 25px; height: 2px; background: white; transition: 0.3s; }
+        .mobile-only { display: none; }
 
         /* --- MODAL STYLES --- */
         .modal-overlay {
@@ -169,15 +174,31 @@
 
         /* Responsive Mobile Adjustments */
         @media (max-width: 768px) {
+            .hamburger { display: flex; }
+            nav {
+                position: fixed; top: 0; right: -100%; width: 80%; height: 100vh;
+                background: #0F172A; padding: 100px 10% 0; transition: 0.4s;
+                border-left: 1px solid var(--border-color);
+            }
+            nav.active { right: 0; }
+            nav ul { flex-direction: column; align-items: flex-start; gap: 2rem; }
+            
+            #desktop-cta { display: none; }
+            .mobile-only { display: block; margin-top: 20px; }
+
             .hero h1 { font-size: 2.5rem; }
             .tech-container { grid-template-columns: 1fr; }
             .stats-bar { flex-direction: column; gap: 1.5rem; }
-            header { padding: 1rem 5%; }
-            nav { display: none; }
+            header { padding: 0 5%; }
             .comp-wrapper { overflow-x: scroll; }
             .comp-row { min-width: 600px; }
             .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
             
+            /* Hamburger anim */
+            .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+            .hamburger.active span:nth-child(2) { opacity: 0; }
+            .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
             /* Logo grid mobile adjustment */
             .logo-grid { gap: 1.5rem; }
             .client-logo { max-height: 35px !important; }
@@ -187,23 +208,29 @@
 </head>
 <body>
 
-    <!-- Unified Header -->
+    <!-- UPDATED HEADER -->
     <header>
         <div style="display:flex; align-items:center; gap:10px;">
             <a href="index.html">
                 <img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Cognitive Group Logo" class="real-logo">
             </a>
         </div>
-        <nav>
+        <nav id="nav-menu">
             <ul>
                 <li><a href="products.html">Products</a></li>
                 <li><a href="success.html">Success Stories</a></li>
                 <li><a href="about.html">About Us</a></li>
                 <li><a href="blog.html">Insights</a></li>
                 <li><a href="contact.html">Contact</a></li>
+                <li class="mobile-only"><button onclick="openModal()" class="btn-primary">Strategy Session</button></li>
             </ul>
         </nav>
-        <button onclick="openModal()" class="btn-primary">Strategy Session</button>
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <button onclick="openModal()" class="btn-primary" id="desktop-cta">Strategy Session</button>
+            <div class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
     </header>
 
     <!-- Hero Section -->
@@ -232,11 +259,10 @@
         </div>
     </div>
 
-    <!-- TRUSTED INFRASTRUCTURE (UPDATED) -->
+    <!-- TRUSTED INFRASTRUCTURE -->
     <div class="trusted">
         <div class="mono" style="text-align: center; margin-bottom: 2rem; opacity: 0.7;">TRUSTED INFRASTRUCTURE FOR TIER-1 BANKS</div>
         
-        <!-- LOGOS: Full Color & Opacity 1 -->
         <div class="logo-grid">
             <img src="https://i.postimg.cc/cJydGYv9/RBC-idzqe-B0Oz8-0.png" alt="RBC Royal Bank" class="client-logo"> 
             <img src="https://i.postimg.cc/9XDVzV63/id-EHPMw-9s-1766250464561.png" alt="National Bank" class="client-logo">
@@ -244,11 +270,8 @@
             <img src="https://i.imghippo.com/files/dSBI9595LU.png" alt="DUCA" class="client-logo">
             <img src="https://i.imghippo.com/files/lO3106vbg.jpeg" alt="TD" class="client-logo">
             <img src="https://i.imghippo.com/files/ezLO8362EE.png" alt="BNDE" class="client-logo">
-            
-
         </div>
 
-        <!-- Button Moved Up (Text Removed) -->
         <div style="text-align: center; margin-top: 2.5rem;">
             <a href="clients.html" class="btn-primary" style="background: transparent; border: 1px solid var(--action-blue); color: var(--action-blue); text-decoration:none;">View Full Client List &rarr;</a>
         </div>
@@ -420,7 +443,24 @@
         </div>
     </div>
 
+    <!-- HAMBURGER LOGIC -->
     <script>
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when clicking a link
+        document.querySelectorAll('#nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
         const gModal = document.getElementById('bookingModal');
         function openModal() { gModal.style.display = 'flex'; }
         function closeModal() { gModal.style.display = 'none'; }

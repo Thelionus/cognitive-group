@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- SEO: Added Meta Description -->
+    <meta name="description" content="Cognitive Banking provides deterministic, auditable AI decision engines for regulated financial institutions. OSFI & SOC2 Compliant.">
     <title>Products | Cognitive Banking - The Institutional Suite</title>
     
     <!-- Fonts -->
@@ -11,6 +13,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
+        /* --- CORE STYLES (MATCHING INDEX) --- */
         :root {
             --bg-dark: #050A14;
             --bg-card: #0F172A;
@@ -44,7 +47,7 @@
             margin-bottom: 0.5rem;
         }
 
-        /* --- HEADER --- */
+        /* --- UNIFIED HEADER (MATCHING INDEX EXACTLY) --- */
         header {
             position: fixed; top: 0; width: 100%; padding: 1rem 5%;
             background: rgba(5, 10, 20, 0.95); backdrop-filter: blur(10px);
@@ -52,7 +55,8 @@
             border-bottom: 1px solid var(--border-color); height: 72px; 
         }
         .real-logo { height: 35px; width: auto; display: block; }
-        nav ul { display: flex; gap: 2rem; list-style: none; }
+        
+        nav ul { display: flex; gap: 2rem; list-style: none; align-items: center; }
         nav a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.3s; }
         nav a:hover, nav a.active { color: white; }
 
@@ -63,50 +67,25 @@
         }
         .btn-primary:hover { background: #1d4ed8; border-color: #1d4ed8; transform: translateY(-1px); }
 
-        /* --- MODAL --- */
-        .modal-overlay {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(5px);
-            z-index: 2000; align-items: center; justify-content: center;
-        }
-        .modal-card {
-            background: #0F172A; border: 1px solid #1E293B;
-            padding: 3rem; border-radius: 8px; width: 100%; max-width: 450px;
-            position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-        }
-        .close-modal {
-            position: absolute; top: 15px; right: 20px; font-size: 1.5rem; color: #94A3B8;
-            cursor: pointer; transition: color 0.2s;
-        }
-        .close-modal:hover { color: white; }
-        .form-group { margin-bottom: 1.5rem; text-align: left; }
-        .form-label { display: block; font-size: 0.85rem; color: #94A3B8; margin-bottom: 0.5rem; }
-        .form-input {
-            width: 100%; padding: 0.8rem; background: #020617; border: 1px solid #1E293B;
-            color: white; border-radius: 4px; font-family: sans-serif; outline: none;
-        }
-        .form-input:focus { border-color: #22C55E; }
-        .modal-btn {
-            width: 100%; padding: 1rem; background: #22C55E; color: #000;
-            font-weight: 700; border: none; border-radius: 4px; cursor: pointer; font-size: 1rem;
-            margin-top: 1rem;
-        }
-        .modal-btn:hover { opacity: 0.9; }
+        /* Mobile Hamburger Styles */
+        .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1100; }
+        .hamburger span { display: block; width: 25px; height: 2px; background: white; transition: 0.3s; }
+        .mobile-only { display: none; }
 
-        /* --- HERO & SECTIONS --- */
+        /* --- HERO & STATS --- */
         .hero-small {
             padding: 10rem 5% 4rem; text-align: center; border-bottom: 1px solid var(--border-color);
             margin-top: 72px;
         }
-        .hero-small h1 { font-size: clamp(2rem, 3vw, 3.5rem); letter-spacing: -0.02em; }
+        .hero-small h1 { font-size: clamp(2.2rem, 4vw, 3.5rem); letter-spacing: -0.02em; }
 
-        /* Stats */
-        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 1px solid var(--border-color); background: #020617; }
-        .stat-box { padding: 3rem 2rem; text-align: center; border-right: 1px solid var(--border-color); }
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); background: #020617; border-bottom: 1px solid var(--border-color); }
+        .stat-box { padding: 3rem 1rem; text-align: center; border-right: 1px solid var(--border-color); }
         .stat-box:last-child { border-right: none; }
         .stat-box .number { font-size: 2.5rem; font-weight: 800; color: white; display: block; }
         .stat-box .label { font-family: 'JetBrains Mono', monospace; color: var(--primary-accent); font-size: 0.75rem; text-transform: uppercase; margin-top: 0.5rem; }
 
+        /* --- PRODUCT SECTIONS --- */
         section { padding: 8rem 5%; border-bottom: 1px solid var(--border-color); }
         .container { max-width: var(--max-width); margin: 0 auto; }
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
@@ -117,71 +96,80 @@
         }
         .product-image img { width: 100%; height: auto; display: block; }
 
-        /* Beyond Banking Cards */
-        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; margin-top: 4rem; }
-        .industry-card {
-            background: var(--bg-card); border: 1px solid var(--border-color);
-            border-radius: 8px; overflow: hidden; transition: border-color 0.3s ease;
-        }
-        .industry-card:hover { border-color: var(--primary-accent); }
-        
-        .industry-image {
-            height: 220px; width: 100%;
-            background-position: center; background-size: cover; background-repeat: no-repeat;
-            border-bottom: 1px solid var(--border-color);
-            filter: grayscale(40%) contrast(1.1); transition: filter 0.4s ease;
-        }
-        .industry-card:hover .industry-image { filter: grayscale(0%); }
+        .api-link { color: var(--primary-accent); text-decoration: none; font-weight: 600; border-bottom: 1px solid transparent; transition: 0.3s; }
+        .api-link:hover { border-bottom-color: var(--primary-accent); }
 
-        .industry-content { padding: 2.5rem; }
-        .industry-content h3 { font-size: 1.4rem; margin-bottom: 0.75rem; }
-        .industry-content p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
-
-        .quote-block {
-            margin-top: 3rem; padding: 2rem; border-left: 3px solid var(--primary-accent);
-            background: rgba(34, 197, 94, 0.05); border-radius: 0 8px 8px 0;
+        /* --- MODAL STYLES (MATCHING INDEX) --- */
+        .modal-overlay {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(5px);
+            z-index: 2000; align-items: center; justify-content: center;
         }
-        
-        /* Stack Section Header */
-        .stack-header { text-align: center; margin-bottom: 4rem; max-width: 700px; margin-left: auto; margin-right: auto; }
-        .stack-header h2 { font-size: 2.5rem; }
+        .modal-card {
+            background: #0F172A; border: 1px solid #1E293B;
+            padding: 3rem; border-radius: 8px; width: 100%; max-width: 450px;
+            position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+        .close-modal { position: absolute; top: 15px; right: 20px; font-size: 1.5rem; color: #94A3B8; cursor: pointer; }
+        .form-input { width: 100%; padding: 0.8rem; background: #020617; border: 1px solid #1E293B; color: white; border-radius: 4px; margin-top: 0.5rem; }
 
-        /* Footer Grid Override */
+        /* --- FOOTER (MATCHING INDEX) --- */
         footer { padding: 4rem 5%; background: #020617; border-top: 1px solid var(--border-color); }
         .footer-grid { display: grid; grid-template-columns: 1.5fr 1.5fr 1fr; gap: 4rem; }
-        .footer-link { color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 0.8rem; font-size: 0.9rem; transition: color 0.3s; }
-        .footer-link:hover { color: var(--primary-accent); }
+        .footer-link { color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 0.8rem; transition: color 0.3s; }
 
-        @media (max-width: 968px) {
+        /* --- RESPONSIVE MOBILE FIXES --- */
+        @media (max-width: 768px) {
+            .hamburger { display: flex; }
+            nav {
+                position: fixed; top: 0; right: -100%; width: 80%; height: 100vh;
+                background: #0F172A; padding: 100px 10% 0; transition: 0.4s;
+                border-left: 1px solid var(--border-color);
+            }
+            nav.active { right: 0; }
+            nav ul { flex-direction: column; align-items: flex-start; gap: 2rem; }
+            
+            #desktop-cta { display: none; }
+            .mobile-only { display: block; }
+
+            .hero-small h1 { font-size: 2.5rem; }
             .grid-2 { grid-template-columns: 1fr; gap: 3rem; }
-            .stats-grid { grid-template-columns: 1fr 1fr; }
-            .stat-box:nth-child(2) { border-right: none; }
-            header { padding: 1rem 5%; }
-            nav { display: none; }
-            .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
             .grid-2 > div:nth-child(2) { order: -1; }
+            .stats-grid { grid-template-columns: 1fr 1fr; }
+            .stat-box:nth-child(even) { border-right: none; }
+            .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+
+            .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+            .hamburger.active span:nth-child(2) { opacity: 0; }
+            .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header -->
+    <!-- Unified Header (Corrected) -->
     <header>
         <div style="display:flex; align-items:center; gap:10px;">
             <a href="index.html">
                 <img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Cognitive Group Logo" class="real-logo">
             </a>
         </div>
-        <nav>
+        <nav id="nav-menu">
             <ul>
                 <li><a href="products.html" class="active">Products</a></li>
                 <li><a href="success.html">Success Stories</a></li>
                 <li><a href="about.html">About Us</a></li>
                 <li><a href="blog.html">Insights</a></li>
                 <li><a href="contact.html">Contact</a></li>
+                <li class="mobile-only"><button onclick="openModal()" class="btn-primary">Strategy Session</button></li>
             </ul>
         </nav>
-        <button onclick="openModal()" class="btn-primary">Strategy Session</button>
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <button onclick="openModal()" class="btn-primary" id="desktop-cta">Strategy Session</button>
+            <div class="hamburger" id="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
     </header>
 
     <!-- Hero -->
@@ -215,7 +203,7 @@
         </div>
     </div>
 
-    <!-- STACK COMPONENT 1: ENGINE -->
+    <!-- LAYER 1: ENGINE -->
     <section>
         <div class="container">
             <div class="grid-2">
@@ -223,180 +211,107 @@
                     <span class="mono">Layer 1: Execution</span>
                     <h2>Cognitive Engine</h2>
                     <p style="font-size: 1.2rem; color: white; margin-bottom: 1rem;">The Decision Workflow.</p>
-                    <p style="margin-bottom: 2rem; color: var(--text-muted);">A next-generation Commercial Loan Origination System (CLOS) designed for financial institutions seeking to accelerate lending, reduce operational friction, and embed expert credit judgment directly into automated workflows.</p>
-                    
-                    <ul style="list-style: none; color: var(--text-muted); margin-bottom: 2.5rem;">
-                        <li style="margin-bottom: 1rem;"><strong style="color: white;">&#10003; Zero Hallucination:</strong> Executes logic blocks exactly as defined. No black box.</li>
-                        <li style="margin-bottom: 1rem;"><strong style="color: white;">&#10003; Audit Trail:</strong> Every decision generates a sentence-level justification trail.</li>
-                        <li style="margin-bottom: 1rem;"><strong style="color: white;">&#10003; High Throughput:</strong> Processes complex lending scenarios in milliseconds.</li>
-                    </ul>
-                    
+                    <p style="margin-bottom: 2rem; color: var(--text-muted);">The Glass Box Engine pre-trains decision systems by compiling human expertise into deterministic, repeatable, and fully traceable logic.</p>
                     <a href="business-banker.html" class="btn-primary" style="text-decoration:none;">Technical Briefing</a>
                 </div>
-                
                 <div class="product-image" style="border-color: var(--action-blue);">
-                    <img src="https://i.postimg.cc/x1t7Mf4V/Chat-GPT-Image-Dec-20-2025-03-45-35-PM.png" alt="Cognitive Engine Interface">
+                    <img src="https://i.postimg.cc/x1t7Mf4V/Chat-GPT-Image-Dec-20-2025-03-45-35-PM.png" alt="Cognitive Engine">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- STACK COMPONENT 2: FOUNDRY -->
+    <!-- LAYER 2: FOUNDRY -->
     <section style="background: #020617;">
         <div class="container">
             <div class="grid-2">
-                <!-- Image on Left for visual rhythm -->
                 <div class="product-image">
-                    <img src="https://i.postimg.cc/x8fMv2Zz/Agent-Capture.png" alt="Cognitive Foundry Logic Capture">
+                    <img src="https://i.postimg.cc/x8fMv2Zz/Agent-Capture.png" alt="Cognitive Foundry">
                 </div>
-
                 <div>
-                    <span class="mono">Layer 2: compilation</span>
+                    <span class="mono">Layer 2: Compilation</span>
                     <h2>Cognitive Foundry</h2>
                     <p style="font-size: 1.2rem; color: white; margin-bottom: 1rem;">Expert Knowledge Capture.</p>
                     <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
-                        The Foundry is the "architect" of the system. It is a proprietary environment where senior credit officer intuition is captured via <em>Cognitive Task Analysis (CTA)</em> and synthesized into the rules that feed the Engine.
+                        Expert judgment is digitized through advanced protocols based on Cognitive Task Analysis (CTA), transforming implicit reasoning into explicit decision structures.
                     </p>
-                    
+                    <p style="margin-bottom: 2rem;">
+                        <a href="api-documentation.pdf" download class="api-link">
+                            <span style="margin-right: 8px;">&#128196;</span> Download the API documentation here
+                        </a>
+                    </p>
                     <div style="margin-bottom: 1.5rem; border-left: 2px solid var(--primary-accent); padding-left: 1.5rem;">
                         <strong style="color: white;">Encapsulated Brains</strong><br>
-                        <span style="color: var(--text-muted); font-size: 0.9rem;">Transform implicit expert knowledge into explicit, repeatable logic blocks.</span>
-                    </div>
-
-                    <div style="margin-bottom: 1.5rem; border-left: 2px solid var(--primary-accent); padding-left: 1.5rem;">
-                        <strong style="color: white;">Safe Sandboxing</strong><br>
-                        <span style="color: var(--text-muted); font-size: 0.9rem;">Test logic changes against historical loan portfolios before pushing to production.</span>
+                        <span style="color: var(--text-muted); font-size: 0.9rem;">We have already encapsulated thousands of hours of cognitive analysis, translating expert knowledge, such as that of mortgage adjudicators, risk managers, and related roles into explicit, production-ready logic blocks available for deployment within your systems..</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- STACK COMPONENT 3: WORKBENCH -->
+    <!-- LAYER 3: WORKBENCH -->
     <section>
         <div class="container">
             <div class="grid-2">
                 <div>
                     <span class="mono">Layer 3: Perception</span>
                     <h2>AI Workbench</h2>
-                    <p style="font-size: 1.2rem; color: white; margin-bottom: 1rem;">Document Understanding & Signals.</p>
+                    <p style="font-size: 1.2rem; color: white; margin-bottom: 1rem;">Document Understanding.</p>
                     <p style="margin-bottom: 2rem; color: var(--text-muted);">
-                        The Workbench handles the messy reality of unstructured data. It reads documents, extracts key values, and normalizes signals. Crucially, <strong>it has no decision authority.</strong>
+                        Generative AI functions exclusively as a perception layer—interpreting documents and signals—while the engine maintains exclusive decision-making authority.
                     </p>
-                    
-                    <ul style="list-style: none; color: var(--text-muted); margin-bottom: 2.5rem;">
-                        <li style="margin-bottom: 1rem;"><strong style="color: white;">&#10003; Signal Extraction:</strong> Converts PDFs, emails, and spreadsheets into structured JSON.</li>
-                        <li style="margin-bottom: 1rem;"><strong style="color: white;">&#10003; Human-in-the-Loop:</strong> Flags low-confidence extractions for manual review before they reach the Engine.</li>
-                        <li style="margin-bottom: 1rem;"><strong style="color: white;">&#10003; Separation of Concerns:</strong> AI perceives the world; Deterministic Logic decides the outcome.</li>
-                    </ul>
+                    <button onclick="openModal()" class="btn-primary">Request Demo</button>
                 </div>
-                
                 <div class="product-image">
-                    <img src="https://i.postimg.cc/Jz6cvdRg/imapge.jpg" alt="AI Workbench Signal Processing">
+                    <img src="https://i.postimg.cc/Jz6cvdRg/imapge.jpg" alt="AI Workbench">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Expansion Section: Industries -->
-    <section style="background: #020617;">
-        <div class="container">
-            <div style="text-align: center;">
-                <span class="mono">Expansion & Scaling</span>
-                <h2>Beyond Banking</h2>
-                <p style="color: var(--text-muted);">The Cognitive Stack powers decision-making in the world's most sensitive environments.</p>
-            </div>
-
-            <div class="grid-3">
-                <!-- FINANCE CARD -->
-                <div class="industry-card">
-                    <div class="industry-image" style="background-image: url('https://i.postimg.cc/BQHtYSxM/Generated-Image-December-23-2025-3-19PM.jpg');"></div>
-                    <div class="industry-content">
-                        <h3>Processes Simplification</h3>
-                        <p>Cognitive Group transforms organizations by simplifying decision-intensive processes based on how people think and work—at an unprecedented level.</p>
-                    </div>
-                </div>
-
-                <!-- ENERGY CARD -->
-                <div class="industry-card">
-                    <div class="industry-image" style="background-image: url('https://i.postimg.cc/QxtjFdmQ/Chat-GPT-Image-Dec-20-2025-06-23-24-PM.png');"></div>
-                    <div class="industry-content">
-                        <h3>Energy</h3>
-                        <p>Mission-critical Energy Management Systems (EMS) for real-time grid control and predictive infrastructure maintenance.</p>
-                    </div>
-                </div>
-
-                <!-- AEROSPACE CARD -->
-                <div class="industry-card">
-                    <div class="industry-image" style="background-image: url('https://i.postimg.cc/TY7Y0D1P/Screenshot-2025-12-20-at-6-23-13-PM.png');"></div>
-                    <div class="industry-content">
-                        <h3>Aerospace</h3>
-                        <p>Human-supervised decision automation for mission-critical satellite telemetry and flight control environments.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
+    <!-- Footer (Matching Index) -->
     <footer>
         <div class="container footer-grid">
             <div>
                 <h4 style="color: white; margin-bottom: 1.5rem;">About Us</h4>
-                <p style="font-size: 0.9rem; line-height: 1.6; color: var(--text-muted);">
-                    Cognitive was founded in 1995 by CRIM. We specialize in deterministic AI for mission-critical banking and regulated industries.
-                </p>
+                <p style="font-size: 0.9rem; line-height: 1.6; color: var(--text-muted);">Cognitive was founded in 1995. We specialize in deterministic AI for mission-critical banking.</p>
             </div>
             <div>
                 <h4 style="color: white; margin-bottom: 1.5rem;">Institutional Links</h4>
-                <a href="blog.html" class="footer-link">Research & Knowledge Base</a>
                 <a href="products.html" class="footer-link">The Cognitive Suite</a>
-                <a href="success.html" class="footer-link">Case Study Archive</a>
+                <a href="success.html" class="footer-link">Case Studies</a>
             </div>
             <div>
-                <h4 style="color: white; margin-bottom: 1.5rem;">Global Headquarters</h4>
-                <p style="font-size: 0.9rem; color: var(--text-muted);">
-                    1155 René-Lévesque Blvd<br>
-                    West #2500<br>
-                    Montréal, QC H3B 2K4<br><br>
-                    <a href="mailto:info@cognitivegroup.com" style="color: white; text-decoration: none;">info@cognitivegroup.com</a><br>
-                    <span style="color: var(--primary-accent); font-weight: 600;">+1 (415) 493-8559</span>
-                </p>
+                <h4 style="color: white; margin-bottom: 1.5rem;">Contact</h4>
+                <p style="font-size: 0.9rem; color: var(--text-muted);">1155 René-Lévesque Blvd West #2500<br>Montréal, QC H3B 2K4</p>
             </div>
-        </div>
-        <div style="text-align: center; border-top: 1px solid var(--border-color); padding-top: 2rem; margin-top: 2rem; color: var(--text-muted); font-size: 0.8rem;">
-            &copy; 2025 Cognitive Group. All Rights Reserved.
         </div>
     </footer>
 
-    <!-- GLOBAL BOOKING MODAL -->
+    <!-- Booking Modal -->
     <div id="bookingModal" class="modal-overlay">
         <div class="modal-card">
             <span class="close-modal" onclick="closeModal()">&times;</span>
-            <div style="text-align: center; margin-bottom: 2rem;">
-                <span style="font-family: monospace; color: #22C55E; text-transform: uppercase;">Strategy Session</span>
-                <h3 style="margin-top: 0.5rem; color: white; font-size: 1.5rem;">Book a Briefing</h3>
-                <p style="font-size: 0.9rem; color: #94A3B8;">Tell us who you are, and we'll take you straight to the calendar.</p>
-            </div>
+            <h3 style="text-align:center; color:white;">Strategy Session</h3>
             <form onsubmit="handleGlobalSubmit(event)">
-                <div class="form-group">
-                    <label class="form-label">Full Name</label>
-                    <input type="text" id="g-name" class="form-input" required placeholder="Jane Doe">
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Work Email</label>
-                    <input type="email" id="g-email" class="form-input" required placeholder="jane@bank.com">
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Organization</label>
-                    <input type="text" id="g-org" class="form-input" required placeholder="Bank Name">
-                </div>
-                <button type="submit" class="modal-btn">Continue to Calendar &rarr;</button>
+                <input type="text" id="g-name" class="form-input" placeholder="Full Name" required>
+                <input type="email" id="g-email" class="form-input" placeholder="Work Email" required>
+                <input type="text" id="g-org" class="form-input" placeholder="Organization" required>
+                <button type="submit" class="btn-primary" style="width:100%; margin-top:1.5rem;">Continue &rarr;</button>
             </form>
         </div>
     </div>
 
     <script>
+        // Hamburger Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Modal Logic
         const gModal = document.getElementById('bookingModal');
         function openModal() { gModal.style.display = 'flex'; }
         function closeModal() { gModal.style.display = 'none'; }
@@ -407,11 +322,9 @@
             const name = document.getElementById('g-name').value;
             const email = document.getElementById('g-email').value;
             const org = document.getElementById('g-org').value;
-            const url = `https://cal.com/francoisaubin?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&notes=${encodeURIComponent("Organization: " + org)}`;
-            window.open(url, '_blank');
+            window.open(`https://cal.com/francoisaubin?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&notes=${encodeURIComponent(org)}`, '_blank');
             closeModal();
         }
     </script>
-
 </body>
 </html>

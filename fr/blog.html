@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Insights & White Papers | Cognitive Banking</title>
+    <title>Insights & Livres Blancs | Banque Cognitive</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -187,13 +187,15 @@
 
         <nav id="nav-menu">
             <ul>
-                <li><a href="product.html" onclick="closeMenu()">Products</a></li>
-                <li><a href="success.html" onclick="closeMenu()">Success Stories</a></li>
-                <li><a href="about.html" onclick="closeMenu()">About Us</a></li>
+                <!-- Updated Links: Point to pages inside the current 'fr' directory -->
+                <li><a href="product.html" onclick="closeMenu()">Produits</a></li>
+                <li><a href="success.html" onclick="closeMenu()">Références</a></li>
+                <li><a href="about.html" onclick="closeMenu()">À Propos</a></li>
                 <li><a href="blog.html" class="active-link" onclick="closeMenu()">Insights</a></li>
                 <li><a href="contact.html" onclick="closeMenu()">Contact</a></li>
-                <li class="lang-item"><a href="fr/blog.html" style="color: var(--accent); font-weight: 800;">FR</a></li>
-                <li><a href="#" onclick="openModal()" class="btn-header">System Audit</a></li>
+                <!-- EN Link points back to main directory blog page -->
+                <li class="lang-item"><a href="../blog.html" style="color: var(--accent); font-weight: 800;">EN</a></li>
+                <li><a href="#" onclick="openModal()" class="btn-header">Audit Système</a></li>
             </ul>
         </nav>
     </header>
@@ -201,10 +203,10 @@
     <!-- HERO: List View -->
     <div id="hero-list" class="hero-small">
         <div class="container">
-            <span class="mono-tag">Executive Briefings</span>
-            <h1>Strategic Intelligence</h1>
+            <span class="mono-tag">Briefings Exécutifs</span>
+            <h1>Intelligence Stratégique</h1>
             <p style="color: var(--text-muted); margin-top: 1rem; max-width: 700px; margin-left: auto; margin-right: auto; font-size: 18px;">
-                Actionable white papers on Regulatory Compliance, ROI Quantification, and Deterministic AI Safety.
+                Livres blancs exploitables sur la conformité réglementaire, la quantification du ROI et la sécurité de l'IA déterministe.
             </p>
         </div>
     </div>
@@ -212,9 +214,9 @@
     <!-- HERO: Detail View -->
     <div id="hero-detail" class="hero-small" style="display: none; text-align: left; padding: 140px 10% 60px;">
         <div class="container" style="max-width: 800px; margin: 0 auto;">
-            <a href="blog.html" class="back-link">&larr; BACK TO BRIEFINGS</a>
-            <span class="mono-tag" id="detail-category" style="color: var(--accent);">Category</span>
-            <h1 id="detail-title" style="font-size: 42px; line-height: 1.2; margin-top: 1rem; text-align: left;">Article Title</h1>
+            <a href="blog.html" class="back-link">&larr; RETOUR AUX BRIEFINGS</a>
+            <span class="mono-tag" id="detail-category" style="color: var(--accent);">Catégorie</span>
+            <h1 id="detail-title" style="font-size: 42px; line-height: 1.2; margin-top: 1rem; text-align: left;">Titre de l'Article</h1>
             <span id="detail-date" style="color: var(--text-muted); font-size: 14px; margin-top: 1.5rem; display: block; font-family: 'JetBrains Mono', monospace;">Date</span>
         </div>
     </div>
@@ -235,16 +237,16 @@
     <footer>
         <div class="footer-grid">
             <div>
-                <h4 class="footer-h4">Our Heritage</h4>
+                <h4 class="footer-h4">Notre Héritage</h4>
                 <p style="color: var(--text-muted); line-height: 1.6;">
-                    Founded in 1995. Cognitive specializes in deterministic AI for mission-critical banking.
+                    Fondé en 1995. Cognitive se spécialise dans l'IA déterministe pour les opérations bancaires critiques.
                 </p>
             </div>
             <div>
-                <h4 class="footer-h4">Institutional Links</h4>
-                <a href="product.html" class="footer-link">The Cognitive Suite</a>
-                <a href="about.html" class="footer-link">Our History</a>
-                <a href="success.html" class="footer-link">Case Study Archive</a>
+                <h4 class="footer-h4">Liens Institutionnels</h4>
+                <a href="product.html" class="footer-link">La Suite Cognitive</a>
+                <a href="about.html" class="footer-link">Notre Histoire</a>
+                <a href="success.html" class="footer-link">Archives d'Études de Cas</a>
             </div>
             <div>
                 <h4 class="footer-h4">Contact</h4>
@@ -256,7 +258,7 @@
             </div>
         </div>
         <div class="copyright">
-            &copy; 2025 Cognitive Group. All Rights Reserved.
+            &copy; 2025 Groupe Cognitive. Tous droits réservés.
         </div>
     </footer>
 
@@ -265,24 +267,25 @@
         <div class="modal-card">
             <span class="close-modal" onclick="closeModal()">&times;</span>
             <div style="text-align: center; margin-bottom: 2rem;">
-                <span class="mono-tag" style="display:inline-block;">Strategy Session</span>
-                <h3 style="color: white; font-size: 24px; margin:0;">Book a Briefing</h3>
-                <p style="font-size: 14px; color: #94A3B8; margin-top:10px;">Tell us who you are, and we'll take you straight to the calendar.</p>
+                <span class="mono-tag" style="display:inline-block;">Session Stratégique</span>
+                <h3 style="color: white; font-size: 24px; margin:0;">Réserver un Briefing</h3>
+                <p style="font-size: 14px; color: #94A3B8; margin-top:10px;">Dites-nous qui vous êtes, nous vous dirigerons vers l'agenda.</p>
             </div>
             <form onsubmit="handleGlobalSubmit(event)">
-                <label class="form-label">Full Name</label>
-                <input type="text" id="g-name" class="form-input" required placeholder="Jane Doe">
-                <label class="form-label">Work Email</label>
-                <input type="email" id="g-email" class="form-input" required placeholder="jane@bank.com">
-                <label class="form-label">Organization</label>
-                <input type="text" id="g-org" class="form-input" required placeholder="Bank Name">
-                <button type="submit" class="modal-btn">Continue to Calendar &rarr;</button>
+                <label class="form-label">Nom Complet</label>
+                <input type="text" id="g-name" class="form-input" required placeholder="Jean Dupont">
+                <label class="form-label">Email Professionnel</label>
+                <input type="email" id="g-email" class="form-input" required placeholder="jean@banque.com">
+                <label class="form-label">Organisation</label>
+                <input type="text" id="g-org" class="form-input" required placeholder="Nom de la Banque">
+                <button type="submit" class="modal-btn">Accéder au Calendrier &rarr;</button>
             </form>
         </div>
     </div>
 
-    <!-- DATA SCRIPT -->
-    <script src="blog_data.js"></script>
+    <!-- DATA SCRIPT (Points to the French data file) -->
+    <script src="blog_data_fr.js"></script> 
+    
     <script>
         const hamburger = document.getElementById('hamburger');
         const navMenu = document.getElementById('nav-menu');
@@ -310,7 +313,7 @@
         const detailHeroEl = document.getElementById('hero-detail');
 
         if (typeof blogPosts === 'undefined') {
-            gridEl.innerHTML = "<h3 style='color:white;'>Loading Intelligence...</h3>";
+            gridEl.innerHTML = "<h3 style='color:white;'>Chargement de l'Intelligence...</h3>";
         } else {
             const urlParams = new URLSearchParams(window.location.search);
             const postId = urlParams.get('id');
@@ -325,7 +328,7 @@
                     document.getElementById('detail-title').innerText = post.title;
                     document.getElementById('detail-date').innerText = post.date;
                     document.getElementById('article-body').innerHTML = post.content;
-                    document.title = post.title + " | Cognitive Insights";
+                    document.title = post.title + " | Insights Cognitive";
                 }
             } else {
                 blogPosts.forEach(post => {
@@ -334,7 +337,7 @@
                             <span class="mono-tag">${post.category}</span>
                             <h3>${post.title}</h3>
                             <p>${post.summary}</p>
-                            <a href="blog.html?id=${post.id}" class="read-btn">Read White Paper &rarr;</a>
+                            <a href="blog.html?id=${post.id}" class="read-btn">Lire le Livre Blanc &rarr;</a>
                         </div>`;
                     gridEl.innerHTML += cardHTML;
                 });

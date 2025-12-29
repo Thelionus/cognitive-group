@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us | Cognitive Banking</title>
+    <title>Contactez-nous | Banque Cognitive</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,6 +18,7 @@
             --text-muted: #94A3B8;  
             --accent: #22C55E;      
             
+            /* Overlays */
             --overlay-dark: linear-gradient(to right, rgba(2,6,23,0.95) 0%, rgba(2,6,23,0.85) 50%, rgba(2,6,23,0.2) 100%);
             --card-bg: rgba(255, 255, 255, 0.03);
             --card-border: 1px solid rgba(255, 255, 255, 0.08);
@@ -31,6 +32,7 @@
             background-color: var(--bg-body);
             scroll-behavior: smooth;
             overflow-x: hidden;
+            width: 100%;
         }
 
         /* --- FIXED HEADER (90px STANDARD) --- */
@@ -151,6 +153,7 @@
         .close-modal {
             position: absolute; top: 15px; right: 20px; font-size: 24px; color: #94A3B8; cursor: pointer;
         }
+        .close-modal:hover { color: white; }
         .form-label { display: block; font-size: 12px; color: #94A3B8; margin-bottom: 8px; }
         .form-input {
             width: 100%; padding: 12px; background: #020617; border: 1px solid rgba(255,255,255,0.1);
@@ -188,18 +191,22 @@
         </div>
         
         <div class="hamburger" id="hamburger">
-            <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
         </div>
 
         <nav id="nav-menu">
             <ul>
-                <li><a href="product.html" onclick="closeMenu()">Products</a></li>
-                <li><a href="success.html" onclick="closeMenu()">Success Stories</a></li>
-                <li><a href="about.html" onclick="closeMenu()">About Us</a></li>
+                <!-- Internal FR Links -->
+                <li><a href="product.html" onclick="closeMenu()">Produits</a></li>
+                <li><a href="success.html" onclick="closeMenu()">Références</a></li>
+                <li><a href="about.html" onclick="closeMenu()">À Propos</a></li>
                 <li><a href="blog.html" onclick="closeMenu()">Insights</a></li>
                 <li><a href="contact.html" class="active-link" onclick="closeMenu()">Contact</a></li>
-                <li class="lang-item"><a href="fr/contact.html" style="color: var(--accent); font-weight: 800;">FR</a></li>
-                <li><a href="#" onclick="openModal()" class="btn-header">System Audit</a></li>
+                <!-- Language Toggle: Points back to root (English) Contact page -->
+                <li class="lang-item"><a href="../contact.html" style="color: var(--accent); font-weight: 800;">EN</a></li>
+                <li><a href="#" onclick="openModal()" class="btn-header">Audit Système</a></li>
             </ul>
         </nav>
     </header>
@@ -207,10 +214,10 @@
     <!-- HERO -->
     <div class="hero-small">
         <div class="container">
-            <span class="mono-tag">Implementation Teams</span>
-            <h1>Deploy, Not Consult.</h1>
+            <span class="mono-tag">Équipes d'Implémentation</span>
+            <h1>Déployer, Pas Consulter.</h1>
             <p style="color: var(--text-muted); max-width: 600px; margin: 1rem auto 0; font-size: 18px;">
-                Our solution engineers are available to provide a guided demonstration tailored to your use case.
+                Nos ingénieurs solutions sont disponibles pour fournir une démonstration guidée adaptée à votre cas d'usage.
             </p>
         </div>
     </div>
@@ -221,11 +228,11 @@
             
             <!-- NEW AUDIT CTA SECTION -->
             <div class="audit-section">
-                <h2 style="font-size: 28px; margin-bottom: 10px;">Request a Demonstration</h2>
+                <h2 style="font-size: 28px; margin-bottom: 10px;">Demander une Démonstration</h2>
                 <p style="color: #cbd5e1; max-width: 800px;">
-                    A solution engineer will guide you through a live demonstration of the AI Workbench, tailored to your credit workflows and regulatory context.
+                    Un ingénieur solution vous guidera à travers une démonstration en direct de l'AI Workbench, adaptée à vos flux de crédit et à votre contexte réglementaire.
                 </p>
-                <a href="#" onclick="openModal()" class="audit-btn">Request a Demonstration </a>
+                <a href="#" onclick="openModal()" class="audit-btn">Demander une Démonstration</a>
             </div>
 
             <div class="grid-2">
@@ -236,8 +243,8 @@
                         src="https://maps.google.com/maps?q=1155%20Rene-Levesque%20Blvd%20West%20Montreal&t=&z=14&ie=UTF8&iwloc=&output=embed" 
                         frameborder="0" scrolling="no">
                     </iframe>
-                    <h3>Montréal (HQ)</h3>
-                    <p>1155 René-Lévesque Blvd West #2500</p>
+                    <h3>Montréal (QG)</h3>
+                    <p>1155 René-Lévesque Blvd Ouest #2500</p>
                     <p>Montréal, QC H3B 2K4, Canada</p>
                     <a href="mailto:info@cognitivegroup.com" class="email-link">info@cognitivegroup.com</a>
                 </div>
@@ -260,7 +267,7 @@
                         src="https://maps.google.com/maps?q=109%20Main%20St%20Lewisville%20TX&t=&z=14&ie=UTF8&iwloc=&output=embed" 
                         frameborder="0" scrolling="no">
                     </iframe>
-                    <h3>Dallas Area</h3>
+                    <h3>Zone Dallas</h3>
                     <p>109 Main Street</p>
                     <p>Lewisville, Texas 75057, USA</p>
                     <p style="color: white; font-weight: 600; margin-top: 10px;">+1 (214) 298-8019</p>
@@ -273,9 +280,9 @@
                         src="https://maps.google.com/maps?q=104%20Sicap%20Baobab%20Dakar%20Senegal&t=&z=14&ie=UTF8&iwloc=&output=embed" 
                         frameborder="0" scrolling="no">
                     </iframe>
-                    <h3>Dakar (West Africa Hub)</h3>
+                    <h3>Dakar (Hub Afrique de l'Ouest)</h3>
                     <p>104 Sicap Baobab Pavilion 840</p>
-                    <p>Dakar, Senegal</p>
+                    <p>Dakar, Sénégal</p>
                     <a href="mailto:info@cognitivegroup.com" class="email-link">info@cognitivegroup.com</a>
                 </div>
 
@@ -286,13 +293,13 @@
     <!-- TESTIMONIAL -->
     <div class="testimonial-section">
         <div class="container">
-            <span class="mono-tag">The Institutional Verdict</span>
+            <span class="mono-tag">Le Verdict Institutionnel</span>
             <p class="quote">
-                “Cognitive takes us to a new depth in the way they are able to reference the design and develop the strategy. They are the only ones I’m aware of that can do this.”
+                « Cognitive nous emmène à une nouvelle profondeur dans la manière dont ils sont capables de référencer la conception et de développer la stratégie. Ils sont les seuls que je connaisse capables de faire cela. »
             </p>
             <div>
                 <strong style="color: white; font-size: 18px; display:block; margin-bottom: 5px;">Martin Stevens</strong>
-                <span style="color: var(--accent); font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 1px;">ROYAL BANK OF CANADA (RBC)</span>
+                <span style="color: var(--accent); font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 1px;">BANQUE ROYALE DU CANADA (RBC)</span>
             </div>
         </div>
     </div>
@@ -301,29 +308,29 @@
     <footer>
         <div class="footer-grid">
             <div>
-                <h4 class="footer-h4">Our Heritage</h4>
+                <h4 class="footer-h4">Notre Héritage</h4>
                 <p style="color: var(--text-muted); line-height: 1.6;">
-                    Founded in 1995. Cognitive specializes in deterministic AI for mission-critical banking.
+                    Fondé en 1995. Cognitive se spécialise dans l'IA déterministe pour les opérations bancaires critiques.
                 </p>
             </div>
             <div>
-                <h4 class="footer-h4">Institutional Links</h4>
-                <a href="product.html" class="footer-link">The Cognitive Suite</a>
-                <a href="success.html" class="footer-link">Success Stories</a>
-                <a href="about.html" class="footer-link">Our History</a>
-                <a href="blog.html" class="footer-link">Knowledge Base</a>
+                <h4 class="footer-h4">Liens Institutionnels</h4>
+                <a href="product.html" class="footer-link">La Suite Cognitive</a>
+                <a href="success.html" class="footer-link">Références</a>
+                <a href="about.html" class="footer-link">Notre Histoire</a>
+                <a href="blog.html" class="footer-link">Base de Connaissances</a>
             </div>
             <div>
                 <h4 class="footer-h4">Contact</h4>
                 <p style="font-size: 0.9rem; color: var(--text-muted);">
-                    1155 René-Lévesque Blvd West #2500<br>
+                    1155 René-Lévesque Blvd Ouest #2500<br>
                     Montréal, QC H3B 2K4<br><br>
                     <a href="mailto:info@cognitivegroup.com" style="color: white; text-decoration: none;">info@cognitivegroup.com</a>
                 </p>
             </div>
         </div>
         <div class="copyright">
-            &copy; 2025 Cognitive Group. All Rights Reserved.
+            &copy; 2025 Groupe Cognitive. Tous droits réservés.
         </div>
     </footer>
 
@@ -332,18 +339,18 @@
         <div class="modal-card">
             <span class="close-modal" onclick="closeModal()">&times;</span>
             <div style="text-align: center; margin-bottom: 2rem;">
-                <span class="mono-tag" style="display:inline-block; margin-bottom:10px;">Implementation Audit</span>
-                <h3 style="color: white; font-size: 24px; margin:0;">Request System Audit</h3>
-                <p style="font-size: 14px; color: #94A3B8; margin-top:10px;">Speak with an implementation architect, not a salesperson.</p>
+                <span class="mono-tag" style="display:inline-block; margin-bottom:10px;">Audit d'Implémentation</span>
+                <h3 style="color: white; font-size: 24px; margin:0;">Demander un Audit Système</h3>
+                <p style="font-size: 14px; color: #94A3B8; margin-top:10px;">Parlez avec un architecte d'implémentation, pas un vendeur.</p>
             </div>
             <form onsubmit="handleGlobalSubmit(event)">
-                <label class="form-label">Full Name</label>
-                <input type="text" id="g-name" class="form-input" required placeholder="Jane Doe">
-                <label class="form-label">Work Email</label>
-                <input type="email" id="g-email" class="form-input" required placeholder="jane@bank.com">
-                <label class="form-label">Organization</label>
-                <input type="text" id="g-org" class="form-input" required placeholder="Bank Name">
-                <button type="submit" class="modal-btn">Request Audit & PoC &rarr;</button>
+                <label class="form-label">Nom Complet</label>
+                <input type="text" id="g-name" class="form-input" required placeholder="Jean Dupont">
+                <label class="form-label">Email Professionnel</label>
+                <input type="email" id="g-email" class="form-input" required placeholder="jean@banque.com">
+                <label class="form-label">Organisation</label>
+                <input type="text" id="g-org" class="form-input" required placeholder="Nom de la Banque">
+                <button type="submit" class="modal-btn">Demander Audit & PoC &rarr;</button>
             </form>
         </div>
     </div>

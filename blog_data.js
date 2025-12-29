@@ -31,7 +31,7 @@ const blogPosts = [
             <h3>5. AI as a Vigilance Amplifier</h3>
             <p>Had an AI-based anomaly detection system been integrated into Louvre surveillance, it could have compared real-time activities against pre-established maintenance schedules, staff rosters, and authorized work zones.</p>
             <p>A system might have generated an alert such as:</p>
-            <blockquote style="border-left: 3px solid var(--primary-accent); padding-left: 1rem; color: var(--text-muted); font-style: italic;">Anomaly #2315 — Unscheduled personnel detected on façade B at 09:17 CEST; equipment type (vehicle lift) unregistered; high-value gallery proximity: Galerie d’Apollon.</blockquote>
+            <blockquote style="border-left: 3px solid #22C55E; padding-left: 1rem; color: #94A3B8; font-style: italic;">Anomaly #2315 — Unscheduled personnel detected on façade B at 09:17 CEST; equipment type (vehicle lift) unregistered; high-value gallery proximity: Galerie d’Apollon.</blockquote>
             <p>Such context-aware analytics would not only flag the anomaly but provide interpretable reasoning, enabling human guards to intervene before the event escalated.</p>
             <p>In Wickens’s framework, AI functions as an external attentional cue, combating the vigilance decrement by drawing human focus precisely when cognitive disengagement is most likely. This synergy converts passive monitoring into active, data-driven supervision.</p>
 
@@ -51,7 +51,7 @@ const blogPosts = [
             <p>Modern violent actors—such as active shooters or bombers—often exhibit precursor behavioral patterns: repeated reconnaissance visits, unnatural loitering near sensitive areas, concealed objects, or path deviations inconsistent with crowd flow. Yet these behaviors often appear superficially normal until hindsight reveals their significance.</p>
             <p>AI systems equipped with behavioral analytics can identify such statistical outliers in real time—individuals pacing repeatedly near an entry point, carrying an object inconsistent with environmental norms, or moving counter to evacuation flows.</p>
             <p>For instance:</p>
-            <blockquote style="border-left: 3px solid var(--primary-accent); padding-left: 1rem; color: var(--text-muted); font-style: italic;">Suspicious Pattern #5129 — Subject revisiting entrance gate three times within 12 minutes; dwell time exceeds 95th percentile baseline; object profile matches elongated metallic outline.</blockquote>
+            <blockquote style="border-left: 3px solid #22C55E; padding-left: 1rem; color: #94A3B8; font-style: italic;">Suspicious Pattern #5129 — Subject revisiting entrance gate three times within 12 minutes; dwell time exceeds 95th percentile baseline; object profile matches elongated metallic outline.</blockquote>
             <p>Such alerts can trigger discreet law-enforcement verification, preventing escalation before a threat materializes. Importantly, AI achieves this without profiling individuals, relying instead on behavioral deviation models.</p>
             <p>The same vigilance logic applies to critical infrastructure, transport terminals, and public venues, where prolonged normality conditions dull human sensitivity. Integrating AI anomaly detection within security operations thus extends cognitive engineering from ergonomics to national resilience.</p>
 
@@ -178,7 +178,7 @@ const blogPosts = [
             <p>On these questions, the answer is usually clear, factual, and consistent across evaluators.</p>
             <p>But when asked to combine multiple unrelated metrics—say, strong financials but weak management—humans struggle. One account manager may emphasize the financials and approve the deal, while another may emphasize the management weakness and reject it. The result is inconsistency.</p>
             <p>Kahneman’s research supports this:</p>
-            <blockquote style="border-left: 3px solid var(--primary-accent); padding-left: 1rem; color: var(--text-muted); font-style: italic;">“Wherever there is judgment, there is noise — and more of it than you think.” — Goodreads</blockquote>
+            <blockquote style="border-left: 3px solid #22C55E; padding-left: 1rem; color: #94A3B8; font-style: italic;">“Wherever there is judgment, there is noise — and more of it than you think.” — Goodreads</blockquote>
             <p>“One reason for the inferiority of expert judgment [compared with algorithms] is that humans are incorrigibly inconsistent in making summary judgements of complex information.” — Richard Smith’s non-medical blogs</p>
 
             <h3>The Power of Weighting Systems</h3>
@@ -196,7 +196,7 @@ const blogPosts = [
                 <li>Creates a foundation for further statistical validation.</li>
             </ul>
             <p>Kahneman again:</p>
-            <blockquote style="border-left: 3px solid var(--primary-accent); padding-left: 1rem; color: var(--text-muted); font-style: italic;">“The important conclusion from this research is that an algorithm that is constructed on the back of an envelope is often good enough to compete with an optimally weighted formula, and certainly good enough to outdo expert judgment.” — QuoteFancy</blockquote>
+            <blockquote style="border-left: 3px solid #22C55E; padding-left: 1rem; color: #94A3B8; font-style: italic;">“The important conclusion from this research is that an algorithm that is constructed on the back of an envelope is often good enough to compete with an optimally weighted formula, and certainly good enough to outdo expert judgment.” — QuoteFancy</blockquote>
 
             <h3>A Golf Analogy</h3>
             <p>Think of putting in golf. A skilled golfer evaluates two factors separately:</p>
@@ -217,7 +217,7 @@ const blogPosts = [
 
             <h3>Conclusion</h3>
             <p>Human judgment is valuable, but it is not reliable for integrating multiple dimensions. Scoring systems—by forcing clarity, weighting, and consistency—outperform intuition. As Kahneman has shown, structured models routinely beat expert judgment when decisions involve multiple factors:</p>
-            <blockquote style="border-left: 3px solid var(--primary-accent); padding-left: 1rem; color: var(--text-muted); font-style: italic;">“If you can replace judgements by rules and algorithms, they’ll do better.” — Farnam Street</blockquote>
+            <blockquote style="border-left: 3px solid #22C55E; padding-left: 1rem; color: #94A3B8; font-style: italic;">“If you can replace judgements by rules and algorithms, they’ll do better.” — Farnam Street</blockquote>
             <p>That’s why in banking, sports, or even golf, a simple scoring system is always better than none.</p>
         `
     },

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Case Study: Scaling Inclusion | Cognitive Banking</title>
+    <title>Case Study: Alrahma | Cognitive Banking</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -98,7 +98,7 @@
 
         /* --- METRICS --- */
         .metrics-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; 
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; 
             margin-top: 60px; padding: 40px 0; border-top: 1px solid rgba(255,255,255,0.05);
         }
         .metric h4 { font-size: 48px; color: white; margin-bottom: 5px; font-weight: 800; }
@@ -116,11 +116,23 @@
         }
         article p { margin-bottom: 25px; color: var(--text-muted); font-size: 16px; line-height: 1.7; }
         
-        .glass-box {
-            background: rgba(34, 197, 94, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 30px; margin: 40px 0; border-radius: 4px;
+        .highlight-box {
+            background: rgba(34, 197, 94, 0.05); border-left: 3px solid var(--accent);
+            padding: 30px; margin: 40px 0; font-style: italic; color: white; font-size: 18px;
         }
-        .glass-box h3 { color: var(--accent); font-size: 20px; margin-bottom: 20px; }
+
+        /* GRID VISUAL (For Proxy Data) */
+        .grid-visual {
+            background: #020617;
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 30px;
+            margin: 40px 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 13px;
+            color: #94a3b8;
+        }
+        .grid-row { display: flex; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.05); padding: 15px 0; }
+        .grid-header { color: var(--accent); font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
 
         /* SIDEBAR */
         aside { position: sticky; top: 120px; height: fit-content; }
@@ -231,22 +243,26 @@
     <!-- HERO -->
     <div class="case-hero">
         <a href="success.html" style="color: var(--accent); text-decoration: none; font-size: 13px; font-family: 'JetBrains Mono';">&larr; BACK TO SUCCESS STORIES</a>
-        <div class="mono-tag" style="margin-top: 2rem; color: #94A3B8;">Sector: Impact Finance | Region: Canada</div>
-        <h1>Scaling Inclusion with Behavioral AI.</h1>
-        <p class="hero-lead">How Impact Labs used <strong>Cognitive Agents</strong> to reduce loan origination time from 6 hours to 15 minutes, rescuing clients from predatory lending cycles.</p>
+        <div class="mono-tag" style="margin-top: 2rem; color: #94A3B8;">Client: Alrahma | Region: West Africa</div>
+        <h1>Digitizing the Informal Economy.</h1>
+        <p class="hero-lead">Replacing "gut feeling" with deterministic data for micro-lenders through the deployment of the <strong>Cognitive Suite.</strong></p>
         
         <div class="metrics-grid">
             <div class="metric">
-                <h4>96%</h4>
-                <span>Origination Speed-up</span>
+                <h4>10m</h4>
+                <span>Origination Time</span>
             </div>
             <div class="metric">
-                <h4>6x</h4>
-                <span>Operational Scaling</span>
+                <h4>&lt;4h</h4>
+                <span>Disbursal Cycle</span>
+            </div>
+            <div class="metric">
+                <h4>100%</h4>
+                <span>Digital Audit Trail</span>
             </div>
             <div class="metric">
                 <h4>Zero</h4>
-                <span>Predatory Interest</span>
+                <span>Paperwork Required</span>
             </div>
         </div>
     </div>
@@ -255,54 +271,78 @@
     <div class="content-container">
         <article>
             <span class="mono-tag">01 | The Challenge</span>
-            <h2>The Economic Unviability of Inclusion</h2>
-            <p>Impact Labs serves clients trapped in a vicious financial circle. Rejected by traditional institutions due to poor credit scores, these individuals turn to predatory lenders. Impact Labs refinances these loans at reasonable rates, but the market is "underserved" for a critical reason: cost.</p>
-            <p>Traditional credit scoring fails this demographic, requiring painstaking manual forensic analysis of pay stubs, bank statements, and personal history. Historically, it took <strong>6 hours</strong> to process a single low-value loan, making the mission economically unsustainable.</p>
+            <h2>The "Data Darkness" of the Informal Sector</h2>
+            <p>Providing financing to small businesses in emerging economies is primarily an information problem. In West Africa, 80% of the population operates without formal bank accounts. Market stalls, tailors, and agricultural traders rarely possess formal ledgers.</p>
+            <p>For decades, microfinance institutions relied on the subjective "gut feeling" of loan officers. This lack of standardization made scaling impossible and risk assessment a game of chance.</p>
 
             <span class="mono-tag">02 | The Solution</span>
-            <h2>"Shadow Cores" & Pre-Trained Agents</h2>
-            <p>To scale, we had to automate the un-automatable. We deployed the <strong>Cognitive Engine</strong> as a "Shadow Core"—a lightweight, API-driven layer specifically for inclusion lending that bypasses legacy core banking costs.</p>
-            
-            <div class="glass-box">
-                <h3>Behavioral Adjudication via Foundry</h3>
-                <p>We replaced manual forensic work with specialized AI agents pre-trained on expert banking logic:</p>
-                <ul style="color: var(--text-muted); padding-left: 1.5rem; list-style: square; margin-top: 1rem; line-height: 1.7;">
-                    <li style="margin-bottom: 0.5rem;"><strong>The Cross-Check Agent:</strong> Validates identity by cross-referencing credit data with pay stubs to detect fraud without relying on scores.</li>
-                    <li style="margin-bottom: 0.5rem;"><strong>The Behavioral Analyzer:</strong> Encodes expert intuition to assess "Character"—analyzing punctual behavior and consistency across bank statement signals.</li>
-                    <li><strong>Income Synthesizer:</strong> Interprets variable-frequency pay stubs that typically confuse standard OCR tools.</li>
-                </ul>
+            <h2>Cognitive Task Analysis (CTA) for Proxy Data</h2>
+            <p>We did not just build an app. We deployed our <strong>Cognitive Foundry</strong> to extract how expert micro-lenders verify solvency without a paper trail. We identified heuristic proxies and codified them into the mobile platform.</p>
+
+            <div class="highlight-box">
+                "The solution transforms the credit industry. We created a simple way to generate quantitative financial information from a qualitative assessment."
             </div>
 
+            <h3>The "Grid Array" Protocol</h3>
+            <p>Instead of asking for a Balance Sheet, the system prompts Field Agents to collect "Proxy Data" using a structured grid. The deterministic engine then triangulates this into a financial profile.</p>
+
+            <div class="grid-visual">
+                <div class="grid-row grid-header">
+                    <span>INPUT (Field Agent)</span>
+                    <span>AI CALCULATION</span>
+                </div>
+                <div class="grid-row">
+                    <span>> Cash on "Bad Day"</span>
+                    <span>> Lower Bound Revenue</span>
+                </div>
+                <div class="grid-row">
+                    <span>> Cash on "Good Day"</span>
+                    <span>> Upper Bound Revenue</span>
+                </div>
+                <div class="grid-row">
+                    <span>> Visual Inventory Photo</span>
+                    <span>> Stock Validation</span>
+                </div>
+                <div class="grid-row">
+                    <span>> GPS Location Data</span>
+                    <span>> Foot Traffic Est.</span>
+                </div>
+                <div class="grid-row" style="color: var(--accent); margin-top: 10px; border: none;">
+                    <span>STATUS: VALIDATED</span>
+                    <span>OUTPUT: P&L STATEMENT</span>
+                </div>
+            </div>
+
+            <p>This allows a loan officer to visit a client, take pictures, and input answers to simple questions. The system auto-generates a P&L statement in real-time, removing subjectivity from the equation.</p>
+
             <span class="mono-tag">03 | The Impact</span>
-            <h2>From Paperwork to Consulting</h2>
-            <p>The transformation was drastic. By automating the verification and risk layers, adjudication time dropped from <strong>6 hours to 15 minutes</strong>.</p>
-            <p>Crucially, this shifted the human role. Instead of spending hours as data-entry clerks, loan officers now act as <strong>financial coaches</strong>, focusing on the client's sociological recovery and life events rather than document forensic work.</p>
+            <h2>Hyper-Efficiency in the Field</h2>
+            <p>Formalizing the informal process fundamentally changed the unit economics for Alrahma:</p>
+            <ul style="color: var(--text-muted); padding-left: 1.5rem; margin-bottom: 2rem; list-style: disc; line-height: 1.7;">
+                <li><strong>Extreme Speed:</strong> Application creation dropped from hours of manual writing to just <strong>10 minutes</strong> on a tablet.</li>
+                <li><strong>Instant Disbursal:</strong> The time from request to provision dropped to less than four hours.</li>
+                <li><strong>Agile Configuration:</strong> Using our No-Code configuration, Alrahma adjusted workflows in real-time without needing engineering support.</li>
+            </ul>
         </article>
 
         <!-- SIDEBAR -->
         <aside>
             <div class="info-card">
-                <div class="info-title">Client Profile</div>
-                <p class="info-value">Entity: Impact Labs</p>
-                <p class="info-value">Mission: Financial Inclusion</p>
-                <p class="info-value">Target: Underserved / Refinancing</p>
+                <div class="info-title">Project Profile</div>
+                <p class="info-value">Client: Alrahma</p>
+                <p class="info-value">Industry: Microfinance / SME</p>
+                <p class="info-value">Geography: Senegal / West Africa</p>
+                <p class="info-value">Solution: Cognitive Engine</p>
             </div>
 
             <div class="info-card">
-                <div class="info-title">Suite Deployed</div>
-                <ul style="font-size: 14px; list-style: none; margin: 0; color: white; padding: 0; line-height: 1.6;">
-                    <li><strong>• Cognitive Engine</strong></li>
-                    <li><strong>• Cognitive Foundry</strong></li>
-                    <li style="color:var(--text-muted);">• Behavioral AI Agents</li>
-                    <li style="color:var(--text-muted);">• API Shadow Core</li>
-                </ul>
-            </div>
-
-            <div class="info-card" style="border-color: var(--accent); background: rgba(34, 197, 94, 0.05);">
-                <div class="info-title" style="color: var(--accent);">The Insight</div>
-                <p style="font-size: 14px; font-style: italic; color: white;">
-                    "We used AI to assess 'Character'—consistency and punctuality—enabling us to safely lend where traditional algorithms only see failure."
-                </p>
+                <div class="info-title">Expertise Used</div>
+                <div style="margin-top: 1rem;">
+                    <span class="tech-tag">CTA Methodology</span>
+                    <span class="tech-tag">Computer Vision</span>
+                    <span class="tech-tag">Deterministic Logic</span>
+                    <span class="tech-tag">Mobile Field App</span>
+                </div>
             </div>
 
             <button onclick="openModal()" class="btn-primary">Request Technical Briefing</button>

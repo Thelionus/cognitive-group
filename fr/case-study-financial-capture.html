@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Case Study: Commercial Lending | Cognitive Banking</title>
+    <title>Étude de Cas : Saisie Financière | Cognitive Banking</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,7 +12,7 @@
 
     <style>
         :root {
-            /* DARK EXECUTIVE THEME */
+            /* THÈME EXÉCUTIF SOMBRE */
             --bg-body: #020617;     
             --text-main: #FFFFFF;   
             --text-muted: #94A3B8;  
@@ -33,10 +33,10 @@
             overflow-x: hidden;
         }
 
-        /* --- STANDARDIZED HEADER (Matches Index) --- */
+        /* --- HEADER --- */
         header {
             position: fixed; top: 0; width: 100%; 
-            height: 90px; /* Standard 90px */
+            height: 90px;
             display: flex; justify-content: space-between; align-items: center;
             padding: 0 5%; z-index: 1000;
             background: rgba(2, 6, 23, 0.9);
@@ -44,36 +44,23 @@
             border-bottom: 1px solid rgba(255,255,255,0.05);
         }
         
-        .logo img { 
-            height: 30px; /* Standard 30px */
-            width: auto; display: block; 
-        }
+        .logo img { height: 30px; width: auto; display: block; }
 
-        nav ul { 
-            display: flex; 
-            gap: 40px; /* Standard 40px */
-            list-style: none; align-items: center; 
-        }
+        nav ul { display: flex; gap: 40px; list-style: none; align-items: center; }
         
         nav a { 
             color: var(--text-muted); text-decoration: none; 
-            font-size: 14px; /* Standard 14px */
-            text-transform: uppercase; letter-spacing: 1px;
+            font-size: 14px; text-transform: uppercase; letter-spacing: 1px;
             font-weight: 600; transition: 0.3s;
         }
         nav a:hover { color: var(--text-main); }
         .active-link { color: var(--text-main); border-bottom: 2px solid var(--accent); padding-bottom: 4px; }
 
-        /* Strategy Session Button */
         .btn-header {
-            background-color: #FFFFFF; 
-            color: #020617 !important; 
-            padding: 12px 24px; /* Standard Padding */
-            border-radius: 4px; 
-            font-weight: 700 !important; 
-            text-transform: none !important; 
-            letter-spacing: 0.5px;
-            cursor: pointer;
+            background-color: #FFFFFF; color: #020617 !important; 
+            padding: 12px 24px; border-radius: 4px; 
+            font-weight: 700 !important; text-transform: none !important; 
+            letter-spacing: 0.5px; cursor: pointer;
         }
         .btn-header:hover { background-color: var(--accent); color: #FFFFFF !important; }
 
@@ -133,6 +120,18 @@
             letter-spacing: 1px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 10px;
         }
         
+        /* Step List */
+        .step-list { counter-reset: step; list-style: none; margin: 40px 0; padding: 0; }
+        .step-list li { position: relative; padding-left: 60px; margin-bottom: 40px; color: var(--text-muted); font-size: 16px; line-height: 1.6; }
+        .step-list li::before {
+            counter-increment: step; content: counter(step);
+            position: absolute; left: 0; top: 0;
+            width: 40px; height: 40px; background: rgba(34, 197, 94, 0.1);
+            border: 1px solid var(--accent); color: var(--accent);
+            border-radius: 50%; text-align: center; line-height: 40px;
+            font-weight: 700; font-family: 'JetBrains Mono';
+        }
+
         .btn-primary {
             width: 100%; padding: 16px; background: var(--accent); color: #000;
             font-weight: 700; border: none; border-radius: 4px; cursor: pointer; text-align: center;
@@ -161,19 +160,13 @@
             padding: 40px; border-radius: 8px; width: 100%; max-width: 450px;
             position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
-        .close-modal {
-            position: absolute; top: 15px; right: 20px; font-size: 24px; color: #94A3B8; cursor: pointer;
-        }
+        .close-modal { position: absolute; top: 15px; right: 20px; font-size: 24px; color: #94A3B8; cursor: pointer; }
         .form-label { display: block; font-size: 12px; color: #94A3B8; margin-bottom: 8px; }
         .form-input {
             width: 100%; padding: 12px; background: #020617; border: 1px solid rgba(255,255,255,0.1);
             color: white; border-radius: 4px; outline: none; margin-bottom: 20px; font-family: 'Manrope', sans-serif;
         }
         .form-input:focus { border-color: var(--accent); }
-        .modal-btn {
-            width: 100%; padding: 14px; background: var(--accent); color: #000;
-            font-weight: 700; border: none; border-radius: 4px; cursor: pointer;
-        }
 
         /* MOBILE */
         @media (max-width: 968px) {
@@ -186,7 +179,6 @@
             nav.active { left: 0; }
             nav ul { flex-direction: column; gap: 30px; text-align: center;}
             nav a { font-size: 20px; }
-            
             .content-container { grid-template-columns: 1fr; }
             .metrics-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
             .footer-grid { grid-template-columns: 1fr; gap: 3rem; }
@@ -195,10 +187,10 @@
 </head>
 <body>
 
-    <!-- NAV (UPDATED TO MATCH INDEX) -->
+    <!-- NAV (VERSION FRANÇAISE) -->
     <header>
         <div class="logo">
-            <a href="index.html"><img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Cognitive Banking Logo"></a>
+            <a href="index.html"><img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Logo Cognitive Banking"></a>
         </div>
         
         <div class="hamburger" id="hamburger">
@@ -207,38 +199,37 @@
 
         <nav id="nav-menu">
             <ul>
-                <li><a href="product.html" onclick="closeMenu()">Products</a></li>
-                <!-- Active Link set for Success Stories -->
-                <li><a href="success.html" class="active-link" onclick="closeMenu()">Success Stories</a></li>
-                <li><a href="about.html" onclick="closeMenu()">About Us</a></li>
+                <li><a href="product.html" onclick="closeMenu()">Produits</a></li>
+                <li><a href="success.html" class="active-link" onclick="closeMenu()">Réalisations</a></li>
+                <li><a href="about.html" onclick="closeMenu()">À Propos</a></li>
                 <li><a href="blog.html" onclick="closeMenu()">Insights</a></li>
                 <li><a href="contact.html" onclick="closeMenu()">Contact</a></li>
-                <!-- Added Language Link -->
-                <li class="lang-item"><a href="fr/index.html" style="color: var(--accent); font-weight: 800;">FR</a></li>
-                <li><a href="#" onclick="openModal()" class="btn-header">System Audit</a></li>
+                <!-- Lien de langue vers la version anglaise (répertoire parent) -->
+                <li class="lang-item"><a href="../case-study-financial-capture.html" style="color: var(--accent); font-weight: 800;">EN</a></li>
+                <li><a href="#" onclick="openModal()" class="btn-header">Audit Système</a></li>
             </ul>
         </nav>
     </header>
 
     <!-- HERO -->
     <div class="case-hero">
-        <a href="success.html" style="color: var(--accent); text-decoration: none; font-size: 13px; font-family: 'JetBrains Mono';">&larr; BACK TO CASE STUDIES</a>
-        <div class="mono-tag" style="margin-top: 2rem; color: #94A3B8;">Sector: Commercial Banking | Region: North America</div>
-        <h1>Eliminating Friction in <br>Loan Origination.</h1>
-        <p class="hero-lead">How a leading financial institution used the <strong>Cognitive Engine</strong> to reduce commercial loan preparation time from 120 minutes to 10 minutes.</p>
+        <a href="success.html" style="color: var(--accent); text-decoration: none; font-size: 13px; font-family: 'JetBrains Mono';">&larr; RETOUR AUX RÉALISATIONS</a>
+        <div class="mono-tag" style="margin-top: 2rem; color: #94A3B8;">Solution Globale | Déploiement Multi-Continent</div>
+        <h1>Saisie Financière Déterministe.</h1>
+        <p class="hero-lead">Remplacez la saisie manuelle par des <strong>Agents Déterministes</strong> qui lisent, reclassent et valident les données sans aucune hallucination mathématique.</p>
         
         <div class="metrics-grid">
             <div class="metric">
-                <h4>92%</h4>
-                <span>Reduction in Prep Time</span>
+                <h4>98%</h4>
+                <span>Réduction du temps</span>
             </div>
             <div class="metric">
-                <h4>0%</h4>
-                <span>Rework Rate</span>
+                <h4>0.0%</h4>
+                <span>Écart de calcul</span>
             </div>
             <div class="metric">
                 <h4>100%</h4>
-                <span>Process Traceability</span>
+                <span>Traçabilité bilingue</span>
             </div>
         </div>
     </div>
@@ -246,64 +237,87 @@
     <!-- CONTENT -->
     <div class="content-container">
         <article>
-            <span class="mono-tag">01 | The Challenge</span>
-            <h2>The "Silo" Trap & RPA Failure</h2>
-            <p>A major North American financial institution with a massive commercial portfolio faced chronic inefficiencies. Despite high-level expertise, the loan origination workflow was fragmented across three isolated functions: Account Management, Credit Analysis, and Documentation.</p>
-            <p>Each loan application bounced back and forth multiple times. Previous attempts to use standard RPA (Robotic Process Automation) had failed because the upstream data—client financials and legal documents—was too variable and unstructured for simple "if-then" bots.</p>
-
-            <span class="mono-tag">02 | The Solution</span>
-            <h2>Orchestrating the "Universal Banker"</h2>
-            <p>Instead of a costly core system overhaul, the bank deployed the <strong>Cognitive Foundry</strong> to build an orchestration layer. This wasn't a standard LOS; it was an intelligent layer designed to think and reason like a senior credit officer.</p>
-            
-            <div class="glass-box">
-                <h3>The Intelligence Layer in Action</h3>
-                <ul style="color: var(--text-muted); padding-left: 1.5rem; list-style: square; font-size: 15px; line-height: 1.8;">
-                    <li><strong>Expert Ingestion:</strong> Directly captures messy bank statements and Equifax reports.</li>
-                    <li><strong>Normalization:</strong> Standardizes variable line items into a single, institutional credit framework.</li>
-                    <li><strong>Deterministic Output:</strong> Runs internal risk policies against data to generate a structured, board-ready loan request.</li>
-                </ul>
-            </div>
-
-            <span class="mono-tag">03 | The Results</span>
-            <h2>Unlocking the Tech Stack</h2>
-            <p>The impact was structural. By ensuring data was structured and validated <em>before</em> it reached Operations, the bank eliminated the primary failure mode of their digital transformation efforts.</p>
-            
-            <ul style="color: var(--text-muted); padding-left: 1.5rem; margin-bottom: 2rem; list-style: disc; line-height: 1.7;">
-                <li><strong>Time Savings:</strong> Account Manager prep time dropped from 120 minutes to just <strong>10 minutes</strong>.</li>
-                <li><strong>Zero Rework:</strong> 100% elimination of iterations between Front Office and Risk functions.</li>
-                <li><strong>Downstream Automation:</strong> Because the Engine's output was clean, the bank could finally automate offer letters and security documentation end-to-end.</li>
+            <span class="mono-tag">01 | Le Contexte Global</span>
+            <h2>Le Chaos des Formats Financiers</h2>
+            <p>Les banques commerciales s'appuient sur une saisie financière standardisée pour alimenter les modèles de risque. Cependant, les documents sources varient énormément : des déclarations de revenus T2 canadiennes structurées aux registres manuscrits informels d'Afrique de l'Ouest.</p>
+            <p>Nous avons déployé avec succès le <strong>Moteur Cognitive</strong> dans trois environnements financiers distincts :</p>
+            <ul style="color: var(--text-muted); padding-left: 1.5rem; margin-bottom: 2rem; list-style: disc; line-height:1.7;">
+                <li><strong>DUCA Financial (Canada) :</strong> Déclarations T2 bilingues (Anglais/Français) et avis de cotisation.</li>
+                <li><strong>Alrahma (Micro-Crédit) :</strong> Grands livres informels et non standardisés d'entrepreneurs non bancarisés.</li>
+                <li><strong>BSIC (Bénin) :</strong> Dossiers conformes à l'OHADA selon divers standards comptables régionaux.</li>
             </ul>
+
+            <span class="mono-tag">02 | La Solution</span>
+            <h2>La cognition pour le raisonnement. Le calcul pour les chiffres.</h2>
+            <p>Notre percée réside dans la séparation du flux : <strong>l'IA générative pour le raisonnement et le reclassement, et des moteurs déterministes pour le calcul.</strong> Cela garantit une précision de 100 % dans les ratios financiers.</p>
+            
+            <ul class="step-list">
+                <li>
+                    <strong style="color: white; font-size: 18px;">Ingestion sans perte</strong><br>
+                    Le moteur capture l'état financier exactement comme il est présenté. Si un client fournit 40 lignes uniques, nous ingérons les 40. Aucune hypothèse initiale.
+                </li>
+                <li>
+                    <strong style="color: white; font-size: 18px;">Reclassement Cognitif</strong><br>
+                    Des agents spécialisés effectuent un mappage expert via la Foundry. Ils regroupent les éléments équivalents (ex: Encaisse + Réserves CT) selon la politique spécifique de la banque.
+                </li>
+                <li>
+                    <strong style="color: white; font-size: 18px;">Validation Inter-Agents</strong><br>
+                    Plusieurs agents effectuent les tâches indépendamment et comparent les résultats, signalant uniquement les anomalies à faible confiance pour révision humaine.
+                </li>
+                <li>
+                    <strong style="color: white; font-size: 18px;">Garde-fou Mathématique</strong><br>
+                    Nous ne demandons jamais à un LLM de faire des maths. Une fois les données standardisées, un moteur de calcul traditionnel calcule les ratios de levier, de BAIIA et de liquidité.
+                </li>
+                <li>
+                    <strong style="color: white; font-size: 18px;">Saisie Prête pour l'Audit</strong><br>
+                    Chaque dollar reclassé est lié directement au pixel d'origine dans le PDF source pour une audibilité réglementaire totale.
+                </li>
+            </ul>
+
+            <div class="glass-box">
+                <h3>L'Avantage "Glass Box"</h3>
+                <p style="margin-bottom: 0; color: var(--text-muted);">Il ne s'agit pas d'un simple OCR. C'est l'<strong>industrialisation de l'expertise financière</strong>. Nous avons capturé la logique de réflexion des analystes seniors et l'avons formalisée en un flux à vitesse machine.</p>
+            </div>
         </article>
 
         <!-- SIDEBAR -->
         <aside>
             <div class="info-card">
-                <div class="info-title">Client Profile</div>
-                <p style="font-size: 14px; margin-bottom: 0; color: white; line-height: 1.6;">
-                    <strong>Sector:</strong> Commercial Banking<br>
-                    <strong>Region:</strong> United States / Canada<br>
-                    <strong>Portfolio:</strong> Large Cap SME Lending
-                </p>
+                <div class="info-title">Institutions Déployées</div>
+                <ul style="list-style: none; margin: 0; padding: 0; font-size: 14px; line-height: 1.6;">
+                    <li style="margin-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 1rem;">
+                        <strong style="color: white; display: block;">DUCA Financial</strong>
+                        <span style="color: var(--accent);">Canada (Coopérative de crédit)</span>
+                    </li>
+                    <li style="margin-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 1rem;">
+                        <strong style="color: white; display: block;">Alrahma</strong>
+                        <span style="color: var(--accent);">Afrique de l'Ouest (Micro-Crédit)</span>
+                    </li>
+                    <li style="margin-bottom: 1.5rem;">
+                        <strong style="color: white; display: block;">BSIC Bénin</strong>
+                        <span style="color: var(--accent);">Banque Commerciale Régionale</span>
+                    </li>
+                </ul>
             </div>
 
             <div class="info-card">
-                <div class="info-title">Suite Deployed</div>
+                <div class="info-title">Suite Déployée</div>
                 <ul style="font-size: 14px; list-style: none; margin: 0; color: white; padding: 0;">
-                    <li style="margin-bottom: 8px;"><strong>• Cognitive Engine</strong></li>
+                    <li style="margin-bottom: 8px;"><strong>• Moteur Cognitive</strong></li>
                     <li style="margin-bottom: 8px;"><strong>• Cognitive Foundry</strong></li>
-                    <li style="margin-bottom: 8px; color: var(--text-muted);">• Financial Statement OCR</li>
-                    <li style="color: var(--text-muted);">• Auto-Doc Generation</li>
+                    <li style="margin-bottom: 8px; color: var(--text-muted);">• Journal d'audit (Audit-Trail)</li>
+                    <li style="color: var(--text-muted);">• Couche OCR Bilingue</li>
                 </ul>
             </div>
 
             <div class="info-card" style="border-color: var(--accent); background: rgba(34, 197, 94, 0.05);">
-                <div class="info-title" style="color: var(--accent);">The Insight</div>
+                <div class="info-title" style="color: var(--accent);">Le Fossé Technologique</div>
                 <p style="font-size: 14px; font-style: italic; color: white;">
-                    "Most automation fails because the data is 'bad.' We fix the data upstream at the decision layer, which unlocks the rest of the institution's tech stack."
+                    "Nous utilisons l'IA générative pour comprendre le contexte du document, mais nous utilisons des moteurs mathématiques codés pour les chiffres. La confiance repose sur le calcul, pas sur la probabilité."
                 </p>
             </div>
 
-            <button onclick="openModal()" class="btn-primary">Request Technical Briefing</button>
+            <button onclick="openModal()" class="btn-primary">Demander un Briefing Technique</button>
         </aside>
     </div>
 
@@ -311,51 +325,51 @@
     <footer>
         <div class="footer-grid">
             <div>
-                <h4 class="footer-h4">Our Heritage</h4>
+                <h4 class="footer-h4">Notre Héritage</h4>
                 <p style="color: var(--text-muted); line-height: 1.6;">
-                    Cognitive specializes in deterministic AI for mission-critical banking.
+                    Cognitive se spécialise dans l'IA déterministe pour les opérations bancaires critiques. Fondée en 1995, notre expertise repose sur des décennies d'ingénierie cognitive.
                 </p>
             </div>
             <div>
-                <h4 class="footer-h4">Institutional Links</h4>
-                <a href="blog.html" class="footer-link">Research & Knowledge Base</a>
-                <a href="workflow.html" class="footer-link">The Cognitive Suite</a>
-                <a href="success.html" class="footer-link">Case Study Archive</a>
+                <h4 class="footer-h4">Liens Institutionnels</h4>
+                <a href="products.html" class="footer-link">La Suite Cognitive</a>
+                <a href="blog.html" class="footer-link">Recherche & Insights</a>
+                <a href="success.html" class="footer-link">Archives des Études de Cas</a>
             </div>
             <div>
                 <h4 class="footer-h4">Contact</h4>
                 <p style="color: var(--text-muted);">
-                    1155 René-Lévesque Blvd West #2500<br>
-                    Montréal, QC H3B 2K4<br>
-                    <a href="mailto:info@cognitivegroup.com" style="color:var(--accent); text-decoration:none;">info@cognitivegroup.com</a>
+                    1155 boul. René-Lévesque Ouest #2500<br>
+                    Montréal, QC H3B 2K4, Canada<br><br>
+                    <a href="mailto:info@cognitivegroup.com" style="color: white; text-decoration: none;">info@cognitivegroup.com</a>
                 </p>
             </div>
         </div>
         <div class="copyright">
-            &copy; 2025 Cognitive Group. All Rights Reserved.
+            &copy; 2025 Groupe Cognitive. Tous droits réservés.
         </div>
     </footer>
 
-    <!-- BOOKING MODAL -->
+    <!-- MODAL RÉSERVATION -->
     <div id="bookingModal" class="modal-overlay">
         <div class="modal-card">
             <span class="close-modal" onclick="closeModal()">&times;</span>
             <div style="text-align: center; margin-bottom: 2rem;">
-                <span class="mono-tag" style="display:inline-block; margin-bottom:10px;">Strategy Session</span>
-                <h3 style="color: white; font-size: 24px; margin:0;">Book a Briefing</h3>
-                <p style="font-size: 14px; color: #94A3B8; margin-top:10px;">Tell us who you are, and we'll take you straight to the calendar.</p>
+                <span class="mono-tag" style="display:inline-block; margin-bottom:10px;">Session Stratégique</span>
+                <h3 style="color: white; font-size: 24px; margin:0;">Réserver un Briefing</h3>
+                <p style="font-size: 14px; color: #94A3B8; margin-top:10px;">Dites-nous qui vous êtes, et nous vous dirigerons vers le calendrier.</p>
             </div>
             <form onsubmit="handleGlobalSubmit(event)">
-                <label class="form-label">Full Name</label>
-                <input type="text" id="g-name" class="form-input" required placeholder="Jane Doe">
+                <label class="form-label">Nom Complet</label>
+                <input type="text" id="g-name" class="form-input" required placeholder="Jean Dupont">
                 
-                <label class="form-label">Work Email</label>
-                <input type="email" id="g-email" class="form-input" required placeholder="jane@bank.com">
+                <label class="form-label">Courriel Professionnel</label>
+                <input type="email" id="g-email" class="form-input" required placeholder="jean@banque.com">
                 
-                <label class="form-label">Organization</label>
-                <input type="text" id="g-org" class="form-input" required placeholder="Bank Name">
+                <label class="form-label">Organisation</label>
+                <input type="text" id="g-org" class="form-input" required placeholder="Nom de l'institution">
                 
-                <button type="submit" class="modal-btn">Continue to Calendar &rarr;</button>
+                <button type="submit" class="modal-btn" style="width: 100%; padding: 14px; background: var(--accent); color: #000; font-weight: 700; border: none; border-radius: 4px; cursor: pointer;">Continuer vers le Calendrier &rarr;</button>
             </form>
         </div>
     </div>
@@ -385,7 +399,7 @@
             const name = document.getElementById('g-name').value;
             const email = document.getElementById('g-email').value;
             const org = document.getElementById('g-org').value;
-            const url = `https://cal.com/francoisaubin?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&notes=${encodeURIComponent("Organization: " + org)}`;
+            const url = `https://cal.com/francoisaubin?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&notes=${encodeURIComponent("Organisation: " + org)}`;
             window.open(url, '_blank');
             closeModal();
         }

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Étude de Cas : Crédit via WhatsApp | Cognitive Banking</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* THÈME EXÉCUTIF SOMBRE */
+            --bg-body: #020617;     
+            --text-main: #FFFFFF;   
+            --text-muted: #94A3B8;  
+            --accent: #22C55E;      
+            
+            --overlay-dark: linear-gradient(to right, rgba(2,6,23,0.95) 0%, rgba(2,6,23,0.85) 50%, rgba(2,6,23,0.2) 100%);
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body, html {
+            font-family: 'Manrope', sans-serif;
+            color: var(--text-main);
+            background-color: var(--bg-body);
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        /* --- HEADER --- */
+        header {
+            position: fixed; top: 0; width: 100%; 
+            height: 90px;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 5%; z-index: 1000;
+            background: rgba(2, 6, 23, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        
+        .logo img { height: 30px; width: auto; display: block; }
+
+        nav ul { display: flex; gap: 40px; list-style: none; align-items: center; }
+        nav a { color: var(--text-muted); text-decoration: none; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; transition: 0.3s; }
+        nav a:hover { color: var(--text-main); }
+        .active-link { color: var(--text-main); border-bottom: 2px solid var(--accent); padding-bottom: 4px; }
+
+        .btn-header {
+            background-color: #FFFFFF; color: #020617 !important; 
+            padding: 12px 24px; border-radius: 4px; 
+            font-weight: 700 !important; text-transform: none !important; 
+            letter-spacing: 0.5px; cursor: pointer;
+        }
+        .btn-header:hover { background-color: var(--accent); color: #FFFFFF !important; }
+
+        .hamburger { display: none; cursor: pointer; z-index: 1001; }
+        .bar { display: block; width: 25px; height: 3px; margin: 5px auto; background-color: var(--text-main); transition: 0.3s; }
+
+        /* --- HERO --- */
+        .case-hero {
+            padding: 180px 10% 80px;
+            background: radial-gradient(circle at top right, rgba(34, 197, 94, 0.1), transparent 50%);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .case-hero h1 { font-size: 56px; font-weight: 800; letter-spacing: -1.5px; margin-bottom: 20px; line-height: 1.1; }
+        .hero-lead { font-size: 20px; color: var(--text-muted); max-width: 800px; line-height: 1.6; }
+        
+        .mono-tag { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; }
+
+        /* --- METRICS --- */
+        .metrics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 60px; padding: 40px 0; border-top: 1px solid rgba(255,255,255,0.05); }
+        .metric h4 { font-size: 48px; color: white; margin-bottom: 5px; font-weight: 800; }
+        .metric span { font-size: 11px; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; font-family: 'JetBrains Mono', monospace; }
+
+        /* --- CONTENT --- */
+        .content-container { display: grid; grid-template-columns: 2fr 1fr; gap: 80px; max-width: 1400px; margin: 0 auto; padding: 80px 5%; }
+        article h2 { font-size: 32px; margin-top: 60px; margin-bottom: 20px; color: white; font-weight: 700; letter-spacing: -0.5px; }
+        article p { margin-bottom: 25px; color: var(--text-muted); font-size: 16px; line-height: 1.7; }
+        
+        /* CHAT SIMULATION */
+        .chat-sim {
+            background: #0B141A;
+            border-radius: 12px;
+            padding: 40px;
+            border: 1px solid rgba(255,255,255,0.1);
+            margin: 40px 0;
+            font-size: 15px;
+        }
+        .chat-bubble { max-width: 85%; padding: 12px 18px; border-radius: 12px; margin-bottom: 15px; line-height: 1.5; }
+        .chat-user { background: #005C4B; color: white; margin-left: auto; border-bottom-right-radius: 0; }
+        .chat-ai { background: #202C33; color: #E9EDEF; margin-right: auto; border-bottom-left-radius: 0; }
+        .system-note {
+            text-align: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: var(--accent);
+            margin: 20px 0;
+            background: rgba(34, 197, 94, 0.05);
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px dashed rgba(34, 197, 94, 0.2);
+        }
+
+        /* SIDEBAR */
+        aside { position: sticky; top: 120px; height: fit-content; }
+        .info-card { background: var(--card-bg); border: var(--card-border); padding: 30px; border-radius: 4px; margin-bottom: 30px; }
+        .info-title { font-size: 11px; color: var(--text-muted); text-transform: uppercase; margin-bottom: 15px; letter-spacing: 1px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 10px; }
+        .info-value { display: block; font-size: 15px; font-weight: 600; color: white; margin-bottom: 20px; }
+        .info-value:last-child { margin-bottom: 0; }
+
+        .btn-primary { width: 100%; padding: 16px; background: var(--accent); color: #000; font-weight: 700; border: none; border-radius: 4px; cursor: pointer; text-align: center; display: block; text-decoration: none; font-size: 14px; transition: 0.3s; }
+        .btn-primary:hover { background: #fff; }
+
+        /* --- FOOTER --- */
+        footer { padding: 6rem 10%; background: var(--bg-body); border-top: 1px solid rgba(255,255,255,0.1); }
+        .footer-grid { display: grid; grid-template-columns: 1.5fr 1.5fr 1fr; gap: 4rem; }
+        .footer-h4 { color: white; margin-bottom: 1.5rem; font-weight: 700; font-size: 14px; }
+        .footer-link { color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 0.8rem; font-size: 0.95rem; }
+        .copyright { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; margin-top: 4rem; color: #475569; font-size: 0.85rem; }
+
+        /* --- MODAL --- */
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px); z-index: 2000; align-items: center; justify-content: center; }
+        .modal-card { background: #0F172A; border: 1px solid rgba(255,255,255,0.1); padding: 40px; border-radius: 8px; width: 100%; max-width: 450px; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+        .close-modal { position: absolute; top: 15px; right: 20px; font-size: 24px; color: #94A3B8; cursor: pointer; }
+        .form-label { display: block; font-size: 12px; color: #94A3B8; margin-bottom: 8px; }
+        .form-input { width: 100%; padding: 12px; background: #020617; border: 1px solid rgba(255,255,255,0.1); color: white; border-radius: 4px; outline: none; margin-bottom: 20px; font-family: 'Manrope', sans-serif; }
+        .form-input:focus { border-color: var(--accent); }
+
+        /* MOBILE */
+        @media (max-width: 968px) {
+            header { height: 80px; }
+            .hamburger { display: block; }
+            nav { position: fixed; left: -100%; top: 0; flex-direction: column; background-color: var(--bg-body); width: 100%; height: 100vh; justify-content: center; align-items: center; transition: 0.3s; z-index: 999; display: flex; }
+            nav.active { left: 0; }
+            nav ul { flex-direction: column; gap: 30px; text-align: center;}
+            nav a { font-size: 20px; }
+            .content-container { grid-template-columns: 1fr; }
+            .metrics-grid { grid-template-columns: 1fr 1fr; gap: 40px; text-align: center; }
+            .footer-grid { grid-template-columns: 1fr; gap: 3rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV (VERSION FRANÇAISE) -->
+    <header>
+        <div class="logo">
+            <a href="index.html"><img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Logo Cognitive Banking"></a>
+        </div>
+        
+        <div class="hamburger" id="hamburger">
+            <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        </div>
+
+        <nav id="nav-menu">
+            <ul>
+                <li><a href="product.html" onclick="closeMenu()">Produits</a></li>
+                <li><a href="success.html" class="active-link" onclick="closeMenu()">Réalisations</a></li>
+                <li><a href="about.html" onclick="closeMenu()">À Propos</a></li>
+                <li><a href="blog.html" onclick="closeMenu()">Insights</a></li>
+                <li><a href="contact.html" onclick="closeMenu()">Contact</a></li>
+                <!-- LIEN LANGUE : Pointe vers la version EN dans le dossier parent -->
+                <li class="lang-item"><a href="../case-study-whatsapp.html" style="color: var(--accent); font-weight: 800;">EN</a></li>
+                <li><a href="#" onclick="openModal()" class="btn-header">Audit Système</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <div class="case-hero">
+        <a href="success.html" style="color: var(--accent); text-decoration: none; font-size: 13px; font-family: 'JetBrains Mono';">&larr; RETOUR AUX RÉALISATIONS</a>
+        <div class="mono-tag" style="margin-top: 2rem; color: #94A3B8;">Stratégie Omnicanale | Inclusion Mobile-First</div>
+        <h1>Origination de Crédit via WhatsApp.</h1>
+        <p class="hero-lead">Transformer les services financiers complexes en conversations fluides. Nous avons activé un canal de crédit automatisé pour 2 milliards d'utilisateurs actifs.</p>
+        
+        <div class="metrics-grid">
+            <div class="metric">
+                <h4>Zéro</h4>
+                <span>Friction à l'Adhésion</span>
+            </div>
+            <div class="metric">
+                <h4>Mondial</h4>
+                <span>Portée Régionale</span>
+            </div>
+            <div class="metric">
+                <h4>100%</h4>
+                <span>Données Auto-Structurées</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content-container">
+        <article>
+            <span class="mono-tag">01 | Le Défi</span>
+            <h2>La Barrière des "Formulaires"</h2>
+            <p>La banque traditionnelle repose sur des portails web et des succursales physiques. Cependant, dans les économies "mobile-first" (Afrique, Amérique du Sud et parties de l'Europe), les formulaires web complexes entraînent des taux d'abandon massifs. Ils exigent une consommation de données élevée et une aisance informatique de style bureau.</p>
+            <p><strong>L'Opportunité :</strong> Pour une part importante de la population mondiale, l'Internet *est* WhatsApp. L'objectif était de déplacer l'origination de crédit là où les clients vivent déjà : à l'intérieur de leurs applications de messagerie.</p>
+
+            <span class="mono-tag">02 | La Solution</span>
+            <h2>Interface Cognitive en Langage Naturel</h2>
+            <p>Nous n'avons pas construit un bot rigide du type "Appuyez sur 1 pour un prêt". À la place, nous avons déployé une <strong>Interface Cognitive</strong> via la Foundry. Elle permet aux clients de s'exprimer librement, tandis que le moteur extrait l'intention, le montant et l'objectif en temps réel.</p>
+            
+            <!-- SIMULATION CHAT -->
+            <div class="chat-sim">
+                <div class="chat-bubble chat-user">
+                    Bonjour, je cherche à obtenir environ 50k pour acheter un nouveau camion pour mon entreprise de livraison.
+                </div>
+                
+                <div class="system-note">
+                    > MOTEUR COGNITIVE : Intention=Prêt | Montant=50 000 | Actif=Véhicule
+                </div>
+
+                <div class="chat-bubble chat-ai">
+                    Je peux vous aider pour ce prêt commercial. Est-ce pour votre entreprise actuelle, "Transport Vert" ?
+                </div>
+
+                <div class="chat-bubble chat-user">
+                    Oui, exactement.
+                </div>
+
+                <div class="system-note">
+                    > ACTION : Récupération de l'entité 'Transport Vert' via l'API Core Banking...
+                </div>
+
+                <div class="chat-bubble chat-ai">
+                    Parfait. Veuillez prendre une photo claire de votre dernière facture commerciale ou de votre fiche de paie et l'envoyer directement ici.
+                </div>
+            </div>
+
+            <h3>Le Cadre Technique</h3>
+            <p style="margin-bottom: 2rem;">En intégrant le raisonnement cognitif à la conversation, nous avons éliminé le besoin pour les utilisateurs de naviguer dans des menus complexes. Le système "interviewe" l'utilisateur, imitant ainsi un gestionnaire de compte humain.</p>
+
+            <ul style="color: var(--text-muted); padding-left: 1.5rem; list-style: square; margin-bottom: 2rem; line-height: 1.7;">
+                <li><strong>Structuration Dynamique :</strong> Au fur et à mesure que l'utilisateur discute, le moteur remplit une demande de crédit structurée dans le Moteur Cognitive.</li>
+                <li><strong>Ingestion Multimédia :</strong> Les photos d'identités, de documents fiscaux ou de factures sont capturées via le chat et traitées instantanément par nos agents OCR.</li>
+                <li><strong>Humain-dans-la-boucle :</strong> Si l'IA détecte une ambiguïté, elle signale instantanément la conversation pour qu'un superviseur humain puisse intervenir.</li>
+            </ul>
+
+            <span class="mono-tag">03 | L'Impact</span>
+            <h2>Changement de Paradigme</h2>
+            <p>Cette mise en œuvre a changé la vision de la banque sur son réseau de succursales. En rendant le crédit aussi simple qu'un message texte, l'institution a réussi à étendre sa portée dans des secteurs à forte croissance sans les frais généraux d'une infrastructure physique.</p>
+        </article>
+
+        <!-- SIDEBAR -->
+        <aside>
+            <div class="info-card">
+                <div class="info-title">Objectif Stratégique</div>
+                <p class="info-value">Cible : Prêts PME Mobile-First</p>
+                <p class="info-value">Canal : WhatsApp Business API</p>
+                <p class="info-value">Accessibilité : 2Md+ Utilisateurs</p>
+            </div>
+
+            <div class="info-card">
+                <div class="info-title">Suite Déployée</div>
+                <ul style="font-size: 14px; list-style: none; margin: 0; color: white; padding: 0; line-height:1.6;">
+                    <li><strong>• Moteur Cognitive</strong></li>
+                    <li><strong>• Cognitive Foundry</strong></li>
+                    <li style="color:var(--text-muted);">• Agent NLP WhatsApp</li>
+                    <li style="color:var(--text-muted);">• Intégration LOS Temps Réel</li>
+                </ul>
+            </div>
+
+            <div class="info-card" style="border-color: var(--accent); background: rgba(34, 197, 94, 0.05);">
+                <div class="info-title" style="color: var(--accent);">La Vision</div>
+                <p style="font-size: 14px; font-style: italic; color: white;">
+                    "Pour la majeure partie du monde, WhatsApp est le système d'exploitation. Nous l'avons transformé en une succursale bancaire sécurisée, auditable et institutionnelle."
+                </p>
+            </div>
+
+            <button onclick="openModal()" class="btn-primary">Demander un Briefing Technique</button>
+        </aside>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <h4 class="footer-h4">Notre Héritage</h4>
+                <p style="color: var(--text-muted); line-height: 1.6;">
+                    Cognitive se spécialise dans l'IA déterministe pour les opérations bancaires critiques. Fondée en 1995, notre expertise repose sur des décennies d'ingénierie cognitive.
+                </p>
+            </div>
+            <div>
+                <h4 class="footer-h4">Liens Institutionnels</h4>
+                <a href="product.html" class="footer-link">La Suite Cognitive</a>
+                <a href="blog.html" class="footer-link">Recherche & Insights</a>
+                <a href="success.html" class="footer-link">Archives Études de Cas</a>
+            </div>
+            <div>
+                <h4 class="footer-h4">Contact</h4>
+                <p style="color: var(--text-muted);">
+                    1155 boul. René-Lévesque Ouest #2500<br>
+                    Montréal, QC H3B 2K4, Canada<br><br>
+                    <a href="mailto:info@cognitivegroup.com" style="color: white; text-decoration: none;">info@cognitivegroup.com</a>
+                </p>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2025 Groupe Cognitive. Tous droits réservés.
+        </div>
+    </footer>
+
+    <!-- MODAL RÉSERVATION -->
+    <div id="bookingModal" class="modal-overlay">
+        <div class="modal-card">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <span class="mono-tag" style="display:inline-block; margin-bottom:10px;">Session Stratégique</span>
+                <h3 style="color: white; font-size: 24px; margin:0;">Réserver un Briefing</h3>
+                <p style="font-size: 14px; color: #94A3B8; margin-top:10px;">Dites-nous qui vous êtes, et nous vous dirigerons vers le calendrier.</p>
+            </div>
+            <form onsubmit="handleGlobalSubmit(event)">
+                <label class="form-label">Nom Complet</label>
+                <input type="text" id="g-name" class="form-input" required placeholder="Jean Dupont">
+                
+                <label class="form-label">Courriel Professionnel</label>
+                <input type="email" id="g-email" class="form-input" required placeholder="jean@banque.com">
+                
+                <label class="form-label">Organisation</label>
+                <input type="text" id="g-org" class="form-input" required placeholder="Nom de la Banque">
+                
+                <button type="submit" class="modal-btn" style="width: 100%; padding: 14px; background: var(--accent); color: #000; font-weight: 700; border: none; border-radius: 4px; cursor: pointer;">Continuer vers le Calendrier &rarr;</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        function closeMenu() {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }
+
+        const gModal = document.getElementById('bookingModal');
+        function openModal() { gModal.style.display = 'flex'; }
+        function closeModal() { gModal.style.display = 'none'; }
+        window.onclick = function(e) { if (e.target == gModal) closeModal(); }
+
+        function handleGlobalSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('g-name').value;
+            const email = document.getElementById('g-email').value;
+            const org = document.getElementById('g-org').value;
+            const url = `https://cal.com/francoisaubin?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&notes=${encodeURIComponent("Organisation: " + org)}`;
+            window.open(url, '_blank');
+            closeModal();
+        }
+    </script>
+
+</body>
+</html>

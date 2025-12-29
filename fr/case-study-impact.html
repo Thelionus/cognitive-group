@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Étude de Cas : Inclusion Financière | Cognitive Banking</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* THÈME EXÉCUTIF SOMBRE */
+            --bg-body: #020617;     
+            --text-main: #FFFFFF;   
+            --text-muted: #94A3B8;  
+            --accent: #22C55E;      
+            
+            --overlay-dark: linear-gradient(to right, rgba(2,6,23,0.95) 0%, rgba(2,6,23,0.85) 50%, rgba(2,6,23,0.2) 100%);
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --card-border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body, html {
+            font-family: 'Manrope', sans-serif;
+            color: var(--text-main);
+            background-color: var(--bg-body);
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        /* --- HEADER --- */
+        header {
+            position: fixed; top: 0; width: 100%; 
+            height: 90px;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 5%; z-index: 1000;
+            background: rgba(2, 6, 23, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        
+        .logo img { height: 30px; width: auto; display: block; }
+
+        nav ul { display: flex; gap: 40px; list-style: none; align-items: center; }
+        nav a { color: var(--text-muted); text-decoration: none; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; transition: 0.3s; }
+        nav a:hover { color: var(--text-main); }
+        .active-link { color: var(--text-main); border-bottom: 2px solid var(--accent); padding-bottom: 4px; }
+
+        .btn-header {
+            background-color: #FFFFFF; color: #020617 !important; 
+            padding: 12px 24px; border-radius: 4px; 
+            font-weight: 700 !important; text-transform: none !important; 
+            letter-spacing: 0.5px; cursor: pointer;
+        }
+        .btn-header:hover { background-color: var(--accent); color: #FFFFFF !important; }
+
+        .hamburger { display: none; cursor: pointer; z-index: 1001; }
+        .bar { display: block; width: 25px; height: 3px; margin: 5px auto; background-color: var(--text-main); transition: 0.3s; }
+
+        /* --- HERO --- */
+        .case-hero {
+            padding: 180px 10% 80px;
+            background: radial-gradient(circle at top right, rgba(34, 197, 94, 0.1), transparent 50%);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .case-hero h1 { font-size: 56px; font-weight: 800; letter-spacing: -1.5px; margin-bottom: 20px; line-height: 1.1; }
+        .hero-lead { font-size: 20px; color: var(--text-muted); max-width: 800px; line-height: 1.6; }
+        
+        .mono-tag { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; }
+
+        /* --- METRICS --- */
+        .metrics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 60px; padding: 40px 0; border-top: 1px solid rgba(255,255,255,0.05); }
+        .metric h4 { font-size: 48px; color: white; margin-bottom: 5px; font-weight: 800; }
+        .metric span { font-size: 11px; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; font-family: 'JetBrains Mono', monospace; }
+
+        /* --- CONTENT --- */
+        .content-container { display: grid; grid-template-columns: 2fr 1fr; gap: 80px; max-width: 1400px; margin: 0 auto; padding: 80px 5%; }
+        article h2 { font-size: 32px; margin-top: 60px; margin-bottom: 20px; color: white; font-weight: 700; letter-spacing: -0.5px; }
+        article p { margin-bottom: 25px; color: var(--text-muted); font-size: 16px; line-height: 1.7; }
+        
+        .glass-box { background: rgba(34, 197, 94, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); padding: 30px; margin: 40px 0; border-radius: 4px; }
+        .glass-box h3 { color: var(--accent); font-size: 20px; margin-bottom: 20px; }
+
+        /* SIDEBAR */
+        aside { position: sticky; top: 120px; height: fit-content; }
+        .info-card { background: var(--card-bg); border: var(--card-border); padding: 30px; border-radius: 4px; margin-bottom: 30px; }
+        .info-title { font-size: 11px; color: var(--text-muted); text-transform: uppercase; margin-bottom: 15px; letter-spacing: 1px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 10px; }
+        .info-value { display: block; font-size: 15px; font-weight: 600; color: white; margin-bottom: 20px; }
+        
+        .btn-primary { width: 100%; padding: 16px; background: var(--accent); color: #000; font-weight: 700; border: none; border-radius: 4px; cursor: pointer; text-align: center; display: block; text-decoration: none; font-size: 14px; transition: 0.3s; }
+        .btn-primary:hover { background: #fff; }
+
+        /* --- FOOTER --- */
+        footer { padding: 6rem 10%; background: var(--bg-body); border-top: 1px solid rgba(255,255,255,0.1); }
+        .footer-grid { display: grid; grid-template-columns: 1.5fr 1.5fr 1fr; gap: 4rem; }
+        .footer-h4 { color: white; margin-bottom: 1.5rem; font-weight: 700; font-size: 14px; }
+        .footer-link { color: var(--text-muted); text-decoration: none; display: block; margin-bottom: 0.8rem; font-size: 0.95rem; }
+        .copyright { text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; margin-top: 4rem; color: #475569; font-size: 0.85rem; }
+
+        /* --- MODAL --- */
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px); z-index: 2000; align-items: center; justify-content: center; }
+        .modal-card { background: #0F172A; border: 1px solid rgba(255,255,255,0.1); padding: 40px; border-radius: 8px; width: 100%; max-width: 450px; position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+        .close-modal { position: absolute; top: 15px; right: 20px; font-size: 24px; color: #94A3B8; cursor: pointer; }
+        .form-label { display: block; font-size: 12px; color: #94A3B8; margin-bottom: 8px; }
+        .form-input { width: 100%; padding: 12px; background: #020617; border: 1px solid rgba(255,255,255,0.1); color: white; border-radius: 4px; outline: none; margin-bottom: 20px; font-family: 'Manrope', sans-serif; }
+        .form-input:focus { border-color: var(--accent); }
+
+        /* MOBILE */
+        @media (max-width: 968px) {
+            header { height: 80px; }
+            .hamburger { display: block; }
+            nav { position: fixed; left: -100%; top: 0; flex-direction: column; background-color: var(--bg-body); width: 100%; height: 100vh; justify-content: center; align-items: center; transition: 0.3s; z-index: 999; display: flex; }
+            nav.active { left: 0; }
+            nav ul { flex-direction: column; gap: 30px; text-align: center;}
+            nav a { font-size: 20px; }
+            .content-container { grid-template-columns: 1fr; }
+            .metrics-grid { grid-template-columns: 1fr 1fr; gap: 40px; text-align: center; }
+            .footer-grid { grid-template-columns: 1fr; gap: 3rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV (VERSION FRANÇAISE) -->
+    <header>
+        <div class="logo">
+            <a href="index.html"><img src="https://i.postimg.cc/x13mJnMs/Logo-cognitive.png" alt="Logo Cognitive Banking"></a>
+        </div>
+        
+        <div class="hamburger" id="hamburger">
+            <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        </div>
+
+        <nav id="nav-menu">
+            <ul>
+                <li><a href="product.html" onclick="closeMenu()">Produits</a></li>
+                <li><a href="success.html" class="active-link" onclick="closeMenu()">Réalisations</a></li>
+                <li><a href="about.html" onclick="closeMenu()">À Propos</a></li>
+                <li><a href="blog.html" onclick="closeMenu()">Insights</a></li>
+                <li><a href="contact.html" onclick="closeMenu()">Contact</a></li>
+                <!-- LIEN LANGUE : Pointe vers la version EN dans la racine -->
+                <li class="lang-item"><a href="../case-study-impact.html" style="color: var(--accent); font-weight: 800;">EN</a></li>
+                <li><a href="#" onclick="openModal()" class="btn-header">Audit Système</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <div class="case-hero">
+        <a href="success.html" style="color: var(--accent); text-decoration: none; font-size: 13px; font-family: 'JetBrains Mono';">&larr; RETOUR AUX RÉALISATIONS</a>
+        <div class="mono-tag" style="margin-top: 2rem; color: #94A3B8;">Secteur : Finance à Impact | Région : Canada</div>
+        <h1>L'Inclusion à l'échelle grâce à l'IA Comportementale.</h1>
+        <p class="hero-lead">Comment Impact Labs a utilisé les <strong>Agents Cognitive</strong> pour réduire le temps d'origination des prêts de 6 heures à 15 minutes, libérant les clients des cycles de prêts usuraires.</p>
+        
+        <div class="metrics-grid">
+            <div class="metric">
+                <h4>96%</h4>
+                <span>Accélération de l'Origination</span>
+            </div>
+            <div class="metric">
+                <h4>6x</h4>
+                <span>Expansion Opérationnelle</span>
+            </div>
+            <div class="metric">
+                <h4>Zéro</h4>
+                <span>Intérêts Prédateurs</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content-container">
+        <article>
+            <span class="mono-tag">01 | Le Défi</span>
+            <h2>L'Inviabilité Économique de l'Inclusion</h2>
+            <p>Impact Labs sert des clients piégés dans un cercle financier vicieux. Rejetés par les institutions traditionnelles en raison de mauvais scores de crédit, ces individus se tournent vers des prêteurs prédateurs. Impact Labs refinance ces prêts à des taux raisonnables, mais le marché est "sous-desservi" pour une raison critique : le coût.</p>
+            <p>Le scoring de crédit traditionnel échoue auprès de cette démographie, nécessitant une analyse "forensique" manuelle fastidieuse des talons de paie, des relevés bancaires et des antécédents personnels. Historiquement, il fallait <strong>6 heures</strong> pour traiter un seul prêt de faible valeur, rendant la mission économiquement insoutenable.</p>
+
+            <span class="mono-tag">02 | La Solution</span>
+            <h2>"Shadow Cores" et Agents Pré-entraînés</h2>
+            <p>Pour passer à l'échelle, nous devions automatiser ce qui semblait impossible. Nous avons déployé le <strong>Moteur Cognitive</strong> en tant que "Shadow Core"—une couche légère pilotée par API, spécifiquement conçue pour le prêt d'inclusion, qui contourne les coûts des systèmes bancaires centraux (Core Banking) hérités.</p>
+            
+            <div class="glass-box">
+                <h3>Adjudication Comportementale via la Foundry</h3>
+                <p>Nous avons remplacé le travail manuel par des agents d'IA spécialisés, pré-entraînés sur la logique experte bancaire :</p>
+                <ul style="color: var(--text-muted); padding-left: 1.5rem; list-style: square; margin-top: 1rem; line-height: 1.7;">
+                    <li style="margin-bottom: 0.5rem;"><strong>L'Agent de Validation Croisée :</strong> Valide l'identité en recoupant les données de crédit avec les fiches de paie pour détecter la fraude sans dépendre des scores.</li>
+                    <li style="margin-bottom: 0.5rem;"><strong>L'Analyseur de Comportement :</strong> Encode l'intuition experte pour évaluer le "caractère"—analysant la ponctualité et la cohérence des signaux sur les relevés bancaires.</li>
+                    <li><strong>Synthétiseur de Revenus :</strong> Interprète les fiches de paie à fréquence variable qui confondent généralement les outils OCR standards.</li>
+                </ul>
+            </div>
+
+            <span class="mono-tag">03 | L'Impact</span>
+            <h2>De la Paperasse au Conseil Financier</h2>
+            <p>La transformation a été radicale. En automatisant les couches de vérification et de risque, le temps d'adjudication est tombé de <strong>6 heures à 15 minutes</strong>.</p>
+            <p>Plus important encore, cela a redéfini le rôle humain. Au lieu de passer des heures en tant que commis à la saisie de données, les agents de prêt agissent désormais comme des <strong>coachs financiers</strong>, se concentrant sur le rétablissement sociologique et les événements de vie du client plutôt que sur l'analyse de documents.</p>
+        </article>
+
+        <!-- SIDEBAR -->
+        <aside>
+            <div class="info-card">
+                <div class="info-title">Profil du Client</div>
+                <p class="info-value">Entité : Impact Labs</p>
+                <p class="info-value">Mission : Inclusion Financière</p>
+                <p class="info-value">Cible : Sous-desservis / Refinancement</p>
+            </div>
+
+            <div class="info-card">
+                <div class="info-title">Suite Déployée</div>
+                <ul style="font-size: 14px; list-style: none; margin: 0; color: white; padding: 0; line-height: 1.6;">
+                    <li><strong>• Moteur Cognitive</strong></li>
+                    <li><strong>• Cognitive Foundry</strong></li>
+                    <li style="color:var(--text-muted);">• Agents d'IA Comportementale</li>
+                    <li style="color:var(--text-muted);">• API Shadow Core</li>
+                </ul>
+            </div>
+
+            <div class="info-card" style="border-color: var(--accent); background: rgba(34, 197, 94, 0.05);">
+                <div class="info-title" style="color: var(--accent);">La Vision</div>
+                <p style="font-size: 14px; font-style: italic; color: white;">
+                    "Nous utilisons l'IA pour évaluer le 'Caractère'—cohérence et ponctualité—nous permettant de prêter en toute sécurité là où les algorithmes traditionnels ne voient que l'échec."
+                </p>
+            </div>
+
+            <button onclick="openModal()" class="btn-primary">Demander un Briefing Technique</button>
+        </aside>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <h4 class="footer-h4">Notre Héritage</h4>
+                <p style="color: var(--text-muted); line-height: 1.6;">
+                    Cognitive se spécialise dans l'IA déterministe pour les opérations bancaires critiques. Fondée en 1995 par le CRIM, notre expertise repose sur des décennies d'ingénierie cognitive.
+                </p>
+            </div>
+            <div>
+                <h4 class="footer-h4">Liens Institutionnels</h4>
+                <a href="product.html" class="footer-link">La Suite Cognitive</a>
+                <a href="blog.html" class="footer-link">Recherche & Insights</a>
+                <a href="success.html" class="footer-link">Archives Études de Cas</a>
+            </div>
+            <div>
+                <h4 class="footer-h4">Contact</h4>
+                <p style="color: var(--text-muted);">
+                    1155 boul. René-Lévesque Ouest #2500<br>
+                    Montréal, QC H3B 2K4, Canada<br><br>
+                    <a href="mailto:info@cognitivegroup.com" style="color: white; text-decoration: none;">info@cognitivegroup.com</a>
+                </p>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2025 Groupe Cognitive. Tous droits réservés.
+        </div>
+    </footer>
+
+    <!-- MODAL RÉSERVATION -->
+    <div id="bookingModal" class="modal-overlay">
+        <div class="modal-card">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <span class="mono-tag" style="display:inline-block; margin-bottom:10px;">Session Stratégique</span>
+                <h3 style="color: white; font-size: 24px; margin:0;">Réserver un Briefing</h3>
+                <p style="font-size: 14px; color: #94A3B8; margin-top:10px;">Dites-nous qui vous êtes, et nous vous dirigerons vers le calendrier.</p>
+            </div>
+            <form onsubmit="handleGlobalSubmit(event)">
+                <label class="form-label">Nom Complet</label>
+                <input type="text" id="g-name" class="form-input" required placeholder="Jean Dupont">
+                
+                <label class="form-label">Courriel Professionnel</label>
+                <input type="email" id="g-email" class="form-input" required placeholder="jean@banque.com">
+                
+                <label class="form-label">Organisation</label>
+                <input type="text" id="g-org" class="form-input" required placeholder="Nom de l'organisation">
+                
+                <button type="submit" class="modal-btn" style="width: 100%; padding: 14px; background: var(--accent); color: #000; font-weight: 700; border: none; border-radius: 4px; cursor: pointer;">Continuer vers le Calendrier &rarr;</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        function closeMenu() {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }
+
+        const gModal = document.getElementById('bookingModal');
+        function openModal() { gModal.style.display = 'flex'; }
+        function closeModal() { gModal.style.display = 'none'; }
+        window.onclick = function(e) { if (e.target == gModal) closeModal(); }
+
+        function handleGlobalSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('g-name').value;
+            const email = document.getElementById('g-email').value;
+            const org = document.getElementById('g-org').value;
+            const url = `https://cal.com/francoisaubin?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&notes=${encodeURIComponent("Organisation: " + org)}`;
+            window.open(url, '_blank');
+            closeModal();
+        }
+    </script>
+
+</body>
+</html>
